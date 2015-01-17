@@ -1,0 +1,98 @@
+﻿<div class="col-md-6 top-bottom-padding" data-ng-show="!EditMode">
+    <h3>Profile</h3>
+    <table class="table table-hover table-bordered table-striped">
+        <tr>
+            <td>Name</td>
+            <td>{{ProfileInfo.FirstName}} {{ProfileInfo.LastName}}</td>
+        </tr>
+        <tr>
+            <td>Gender</td>
+            <td>{{ProfileInfo.Gender}}</td>
+        </tr>
+        <tr>
+            <td>Email</td>
+            <td>{{ProfileInfo.Email}}</td>
+        </tr>
+        <tr>
+            <td>Age</td>
+            <td>{{ProfileInfo.Age}}</td>
+        </tr>
+        <tr>
+            <td>Country</td>
+            <td>{{ProfileInfo.Country}}</td>
+        </tr>
+        <tr>
+            <td>About</td>
+            <td>{{ProfileInfo.About}}</td>
+        </tr>
+    </table>
+    <a data-ng-click="EditProfile()" class="btn btn-info">Edit</a>    {{Message}}
+</div>
+
+<div class="col-lg-6 top-bottom-padding center" data-ng-show="EditMode">
+    <div class="well bs-component">
+        <form class="form-horizontal">
+            <fieldset>
+                <legend>
+                    Profile
+                </legend>
+                <div class="form-group">
+                    <label for="inputFName" class="col-lg-3 control-label">First Name</label>
+                    <div class="col-lg-9">
+                        <input type="text" class="form-control" id="inputFName" name="FirstName" data-ng-model="NewProfileInfo.FirstName" placeholder="First Name">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputLName" class="col-lg-3 control-label">Last Name</label>
+                    <div class="col-lg-9">
+                        <input type="text" class="form-control" id="inputLName" name="LastName" data-ng-model="NewProfileInfo.LastName" placeholder="Last Name">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputEmail" class="col-lg-3 control-label">Gender</label>
+                    <div class="col-lg-9">
+                        <label class="radio-inline">
+                            <input type="radio" data-ng-model="NewProfileInfo.Gender" name="Gender" value="Male" checked="" /> Male
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" data-ng-model="NewProfileInfo.Gender" name="Gender" value="Female" /> Female
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputPassword" class="col-lg-3 control-label">Age</label>
+                    <div class="col-lg-9">
+                        <input type="number" data-ng-model="NewProfileInfo.Age" min="1" max="100" class="form-control" id="inputPassword" placeholder="Age" name="Age">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputEmail" class="col-lg-3 control-label">Email</label>
+                    <div class="col-lg-9">
+                        <input type="email" name="Email" placeholder="Email" data-ng-model="NewProfileInfo.Email" class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputCPassword" class="col-lg-3 control-label">Country</label>
+                    <div class="col-lg-9">
+                        <input type="text" class="form-control" id="inputCPassword" data-ng-model="NewProfileInfo.Country" placeholder="Country" name="Country">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputCPassword" class="col-lg-3 control-label">About</label>
+                    <div class="col-lg-9">
+                        <textarea class="form-control" name="About" data-ng-model="NewProfileInfo.About"></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-lg-9 col-lg-offset-3">
+                        <button class="btn btn-success" data-ng-click="UpdateProfile()">Update</button>
+                        <button class="btn btn-primary" data-ng-click="ResetInfo()">Reset</button>
+                        <button class="btn btn-primary" data-ng-click="CancelEdit()">Cancel</button>
+
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>
+{{Message}}

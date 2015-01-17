@@ -40,7 +40,7 @@ namespace CodeWarriors.IITDU.Controllers
                 {
                     FormsAuthentication.SetAuthCookie(model.UserName, model.RememberMe);
                     ViewData["Status"] = "Login Successful";
-                    return RedirectToAction("Index", "Profile");
+                    return RedirectToAction("Index", "Home");
                 }
                 else
                 {
@@ -74,7 +74,7 @@ namespace CodeWarriors.IITDU.Controllers
                     _profile.LastName = model.LastName;
                     _accountService.SaveProfile(_profile, model.UserName);
                     ViewData["Status"] = "Registration Successful";
-                    return RedirectToAction("Index", "Profile");
+                    return RedirectToAction("Index", "Home");
                 }
                 else
                 {
@@ -120,7 +120,7 @@ namespace CodeWarriors.IITDU.Controllers
         public ActionResult LogOut()
         {
             FormsAuthentication.SignOut();
-            return RedirectToAction("Login");
+            return RedirectToAction("Index","Home");
         }
 
     }
