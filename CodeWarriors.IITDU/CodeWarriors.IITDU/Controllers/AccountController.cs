@@ -13,14 +13,16 @@ namespace CodeWarriors.IITDU.Controllers
 {
     public class AccountController : Controller
     {
-        private readonly  AccountService _accountService;
+        private readonly AccountService _accountService;
         private User _user;
         private UserProfile _profile;
-        public AccountController(AccountService accountService, User user, UserProfile profile)
+        private EditAccountModel _editAccountModel;
+        public AccountController(AccountService accountService, User user, UserProfile profile, EditAccountModel editAccountModel)
         {
             _accountService = accountService;
             _user = user;
             _profile = profile;
+            _editAccountModel = editAccountModel;
         }
         [HttpGet]
         public ActionResult Login()
@@ -38,15 +40,15 @@ namespace CodeWarriors.IITDU.Controllers
                 {
                     FormsAuthentication.SetAuthCookie(model.UserName, model.RememberMe);
                     ViewData["Status"] = "Login Successful";
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Profile");
                 }
                 else
                 {
-                    ModelState.AddModelError("","User Name/ Password Mismatch");
+                    ModelState.AddModelError("", "User Name/ Password Mismatch");
                     ViewData["Status"] = "Login Failure";
                     return View();
                 }
-                
+
             }
             return View();
         }
@@ -72,7 +74,7 @@ namespace CodeWarriors.IITDU.Controllers
                     _profile.LastName = model.LastName;
                     _accountService.SaveProfile(_profile, model.UserName);
                     ViewData["Status"] = "Registration Successful";
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Profile");
                 }
                 else
                 {
@@ -80,16 +82,46 @@ namespace CodeWarriors.IITDU.Controllers
                     ViewData["Status"] = "Registration Failure";
                     return View();
                 }
-                
+
             }
             return View();
         }
+        [Authorize]
+        public ActionResult Edit()
+        {
+            var user = _accountService.GetUser(User.Identity.Name);
+            _editAccountModel.UserName = user.UserName;
+            return View(_editAccountModel);
+        }
 
+        [Authorize]
+        [HttpPost]
+        public ActionResult Edit([Bind(Exclude = "UserName")]EditAccountModel model)
+        {
+            model.UserName = User.Identity.Name;
+            if (ModelState.IsValid)
+            {
+                if (_accountService.ValidatePassword(model.UserName, model.CurrentPassword))
+                {
+                    _user.UserName = model.UserName;
+                    _user.Password = model.Password;
+                    _accountService.UpdateAccount(_user);
+                    ViewBag.Success = "Edit account successful";
+                }
+                else
+                {
+                    ModelState.AddModelError("","Current Password does not match");
+                }
+            }
+
+            return View(model);
+        }
         [Authorize]
         public ActionResult LogOut()
         {
             FormsAuthentication.SignOut();
             return RedirectToAction("Login");
         }
+
     }
 }

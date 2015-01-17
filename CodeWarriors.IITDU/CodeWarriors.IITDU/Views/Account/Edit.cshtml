@@ -1,0 +1,57 @@
+﻿@model CodeWarriors.IITDU.ViewModels.EditAccountModel
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container" role="main">
+    <div class="col-lg-7 top-bottom-padding center">
+        <div class="well">
+            <form class="form-horizontal" method="POST">
+                <fieldset>
+                    <legend>Edit Account</legend>
+                    <div class="form-group">
+                        <label for="inputUserName" class="col-lg-4 control-label">User Name</label>
+                        <div class="col-lg-8">
+                            <input type="text" class="form-control" id="inputUserName" name="UserName" disabled value="@Model.UserName">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputPassword" class="col-lg-4 control-label">Current Password</label>
+                        <div class="col-lg-8">
+                            <input type="password" class="form-control" id="inputPassword" name="CurrentPassword" placeholder="Current Password">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPassword" class="col-lg-4 control-label">New Password</label>
+                        <div class="col-lg-8">
+                            <input type="password" class="form-control" id="inputPassword" name="Password" placeholder="New Password">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPassword" class="col-lg-4 control-label">Confirm Password</label>
+                        <div class="col-lg-8">
+                            <input type="password" class="form-control" id="inputPassword" name="ConfirmPassword" placeholder="Confirm Password">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-lg-9 col-lg-offset-4">
+                            <button class="btn btn-success" type="submit">Update</button>
+                            <button class="btn btn-primary" type="reset">Reset</button>
+                        </div>
+                    </div>
+                    @Html.ValidationSummary()
+                    @if (!string.IsNullOrEmpty(ViewBag.Success))
+                    {
+                        <div class="alert alert-success">
+                            @ViewBag.Success
+                        </div>
+                    }
+                </fieldset>
+            </form>
+
+        </div>
+    </div>
+</div>

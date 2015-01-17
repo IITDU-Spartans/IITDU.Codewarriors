@@ -41,5 +41,32 @@ namespace CodeWarriors.IITDU.Service
             profile.UserId = _userRepository.GetUserId(userName);
             _profileRepository.Insert(profile);
         }
+
+        public UserProfile GetProfile(string userName)
+        {
+            int userId = _userRepository.GetUserId(userName);
+            return _profileRepository.Get(userId);
+        }
+
+        public User GetUser(string userName)
+        {
+            return _userRepository.GetUser(userName);
+        }
+
+        public void UpdateAccount(User user)
+        {
+            _userRepository.Update(user, _userRepository.GetUserId(user.UserName));
+        }
+
+        public bool ValidatePassword(string userName, string password)
+        {
+            var user = _userRepository.GetUser(userName);
+            return user.Password == password;
+        }
+
+        public void EditProfile(UserProfile userProfile, string userName)
+        {
+            _profileRepository.Update(userProfile, _userRepository.GetUserId(userName));
+        }
     }
 }

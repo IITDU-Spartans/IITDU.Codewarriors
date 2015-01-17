@@ -29,7 +29,9 @@ namespace CodeWarriors.IITDU.Repository
 
         public bool Update(User user, int id)
         {
-            _userContext.Entry(user).State = EntityState.Modified;
+            var oldUser = Get(id);
+            oldUser.Password = user.Password;
+            _userContext.Entry(oldUser).State = EntityState.Modified;
             return _userContext.SaveChanges() > 0;
         }
 

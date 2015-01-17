@@ -1,0 +1,74 @@
+﻿@model CodeWarriors.IITDU.ViewModels.ProfileModel
+@{
+    ViewBag.Title = "Profile";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container" role="main">
+    <div class="col-lg-6 top-bottom-padding center">
+        <div class="well bs-component">
+            <form class="form-horizontal" method="POST">
+                <fieldset>
+                    <legend>
+                        Profile
+                    </legend>
+                    <div class="form-group">
+                        <label for="inputFName" class="col-lg-3 control-label">First Name</label>
+                        <div class="col-lg-9">
+                            <input type="text" class="form-control" id="inputFName" name="FirstName" value="@Model.FirstName" placeholder="First Name">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputLName" class="col-lg-3 control-label">Last Name</label>
+                        <div class="col-lg-9">
+                            <input type="text" class="form-control" id="inputLName" name="LastName" value="@Model.LastName"placeholder="Last Name">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputEmail" class="col-lg-3 control-label">Gender</label>
+                        <div class="col-lg-9">
+                            <label class="radio-inline">
+                                <input type="radio" name="Gender" value="Male" checked="" /> Male
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="Gender" value="Female" /> Female
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPassword" class="col-lg-3 control-label">Age</label>
+                        <div class="col-lg-9">
+                            <input type="number" value="@Model.Age" min="1" max="100" class="form-control" id="inputPassword" placeholder="Age" name="Age">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputEmail" class="col-lg-3 control-label">Email</label>
+                        <div class="col-lg-9">
+                            <input type="email" name="Email" placeholder="Email" value="@Model.Email" class="form-control"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputCPassword" class="col-lg-3 control-label">Country</label>
+                        <div class="col-lg-9">
+                            <input type="text" class="form-control" id="inputCPassword" value="@Model.Country" placeholder="Country" name="Country">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputCPassword" class="col-lg-3 control-label">About</label>
+                        <div class="col-lg-9">
+                            <textarea class="form-control" name="About">@Model.About</textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-lg-9 col-lg-offset-3">
+                            <button class="btn btn-success" type="submit">Update</button>
+                            <button class="btn btn-primary" type="reset">Reset</button>
+
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+            @Html.ValidationSummary()
+        </div>
+    </div>
+</div>

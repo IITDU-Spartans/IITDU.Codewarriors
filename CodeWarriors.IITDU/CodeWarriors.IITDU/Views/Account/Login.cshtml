@@ -12,14 +12,14 @@
                     <div class="form-group">
                         <label for="inputUserName" class="col-lg-3 control-label">User Name</label>
                         <div class="col-lg-9">
-                            <input type="text" class="form-control" id="inputUserName" name="UserName" placeholder="User Name">
+                            <input type="text" class="form-control" id="inputUserName" name="UserName" placeholder="User Name" required="">
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label for="inputPassword" class="col-lg-3 control-label">Password</label>
                         <div class="col-lg-9">
-                            <input type="password" class="form-control" id="inputPassword" name="Password" placeholder="Password">
+                            <input type="password" class="form-control" id="inputPassword" name="Password" placeholder="Password" required="">
                             <div class="checkbox">
                                 <label>
                                     <input type="checkbox" name="RememerMe"> Rememer Me
@@ -35,6 +35,7 @@
 
                         </div>
                     </div>
+                    @Html.ValidationSummary()
                 </fieldset>
             </form>
 
