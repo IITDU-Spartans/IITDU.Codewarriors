@@ -1,0 +1,42 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'C:\\Program Files\\nodejs\\\\node.exe',
+1 verbose cli   'C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'install',
+1 verbose cli   'C:\\Users\\NahaR\\node_modules/karma-coverage',
+1 verbose cli   '--save-dev' ]
+2 info using npm@1.4.28
+3 info using node@v0.10.35
+4 verbose node symlink C:\Program Files\nodejs\\node.exe
+5 verbose config Skipping project config: C:\Users\NahaR/.npmrc. (matches userconfig)
+6 verbose cache add [ 'C:\\Users\\NahaR\\node_modules/karma-coverage', null ]
+7 verbose cache add name=undefined spec="C:\\Users\\NahaR\\node_modules/karma-coverage" args=["C:\\Users\\NahaR\\node_modules/karma-coverage",null]
+8 verbose parsed url { protocol: 'c:',
+8 verbose parsed url   slashes: null,
+8 verbose parsed url   auth: null,
+8 verbose parsed url   host: '',
+8 verbose parsed url   port: null,
+8 verbose parsed url   hostname: '',
+8 verbose parsed url   hash: null,
+8 verbose parsed url   search: null,
+8 verbose parsed url   query: null,
+8 verbose parsed url   pathname: '/Users/NahaR/node_modules/karma-coverage',
+8 verbose parsed url   path: '/Users/NahaR/node_modules/karma-coverage',
+8 verbose parsed url   href: 'c:/Users/NahaR/node_modules/karma-coverage' }
+9 silly lockFile 9ea7eca3-ahaR-node-modules-karma-coverage C:\Users\NahaR\node_modules/karma-coverage
+10 verbose lock C:\Users\NahaR\node_modules/karma-coverage C:\Users\NahaR\AppData\Roaming\npm-cache\9ea7eca3-ahaR-node-modules-karma-coverage.lock
+11 silly lockFile 9ea7eca3-ahaR-node-modules-karma-coverage C:\Users\NahaR\node_modules/karma-coverage
+12 silly lockFile 9ea7eca3-ahaR-node-modules-karma-coverage C:\Users\NahaR\node_modules/karma-coverage
+13 error addLocal Could not install C:\Users\NahaR\node_modules/karma-coverage
+14 error Error: ENOENT, open 'C:\Users\NahaR\node_modules\karma-coverage\package.json'
+15 error If you need help, you may report this *entire* log,
+15 error including the npm and node versions, at:
+15 error     <http://github.com/npm/npm/issues>
+16 error System Windows_NT 6.2.9200
+17 error command "C:\\Program Files\\nodejs\\\\node.exe" "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "install" "C:\\Users\\NahaR\\node_modules/karma-coverage" "--save-dev"
+18 error cwd C:\Users\NahaR\Documents\GitHub\IITDU.Codewarriors\CodeWarriors.IITDU\CodeWarriors.IITDU\App\AppTest
+19 error node -v v0.10.35
+20 error npm -v 1.4.28
+21 error path C:\Users\NahaR\node_modules\karma-coverage\package.json
+22 error code ENOENT
+23 error errno 34
+24 verbose exit [ 34, true ]
