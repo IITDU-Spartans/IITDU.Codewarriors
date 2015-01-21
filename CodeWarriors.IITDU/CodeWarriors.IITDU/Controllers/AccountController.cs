@@ -101,7 +101,7 @@ namespace CodeWarriors.IITDU.Controllers
             model.UserName = User.Identity.Name;
             if (ModelState.IsValid)
             {
-                if (_accountService.ValidatePassword(model.UserName, model.CurrentPassword))
+                if (_accountService.ValidateLogin(model.UserName, model.CurrentPassword))
                 {
                     _user.UserName = model.UserName;
                     _user.Password = model.Password;

@@ -7,7 +7,7 @@ using CodeWarriors.IITDU.Repository;
 
 namespace CodeWarriors.IITDU.Service
 {
-    public class AccountService
+    public class AccountService : IAccountService
     {
         private readonly UserRepository _userRepository;
         private readonly ProfileRepository _profileRepository;
@@ -56,12 +56,6 @@ namespace CodeWarriors.IITDU.Service
         public void UpdateAccount(User user)
         {
             _userRepository.Update(user, _userRepository.GetUserId(user.UserName));
-        }
-
-        public bool ValidatePassword(string userName, string password)
-        {
-            var user = _userRepository.GetUser(userName);
-            return user.Password == password;
         }
 
         public void EditProfile(UserProfile userProfile, string userName)

@@ -136,6 +136,7 @@
     <Compile Include="Repository\ProfileRepository.cs" />
     <Compile Include="Repository\UserRepository.cs" />
     <Compile Include="Service\AccountService.cs" />
+    <Compile Include="Service\IAccountService.cs" />
     <Compile Include="ViewModels\AccountViewModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
   </ItemGroup>
