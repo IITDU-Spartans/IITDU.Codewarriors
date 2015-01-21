@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!--This file represents the results of running a test suite-->
+<test-results name="C:\Users\rashed.riyadh\IITDU.Codewarriors\CodeWarriors.IITDU\Test\bin\Debug\Test.dll" total="1" errors="1" failures="0" not-run="0" inconclusive="0" ignored="0" skipped="0" invalid="0" date="2015-01-21" time="17:21:21">
+  <environment nunit-version="2.6.4.14350" clr-version="2.0.50727.5485" os-version="Microsoft Windows NT 6.1.7601 Service Pack 1" platform="Win32NT" cwd="D:\NUnit-2.6.4\bin" machine-name="INTERN-PC" user="rashed.riyadh" user-domain="KAZ" />
+  <culture-info current-culture="en-US" current-uiculture="en-US" />
+  <test-suite type="Assembly" name="C:\Users\rashed.riyadh\IITDU.Codewarriors\CodeWarriors.IITDU\Test\bin\Debug\Test.dll" executed="True" result="Failure" success="False" time="0.480" asserts="0">
+    <results>
+      <test-suite type="Namespace" name="Test" executed="True" result="Failure" success="False" time="0.452" asserts="0">
+        <results>
+          <test-suite type="TestFixture" name="AccountServiceTest" executed="True" result="Failure" success="False" time="0.448" asserts="0">
+            <results>
+              <test-case name="Test.AccountServiceTest.ValidateLoginTest" executed="True" result="Error" success="False" time="0.429" asserts="0">
+                <failure>
+                  <message><![CDATA[System.MissingMethodException : Can't find a constructor with matching arguments
+  ----> System.MissingMethodException : Constructor on type 'AccountServiceProxy0a21bceaa1b34ff3803028ef8e28e5fa' not found.]]></message>
+                  <stack-trace><![CDATA[at Rhino.Mocks.MockRepository.MockClass(CreateMockState mockStateFactory, Type type, Type[] extras, Object[] argumentsForConstructor)
+at Rhino.Mocks.MockRepository.CreateMockObject(Type type, CreateMockState factory, Type[] extras, Object[] argumentsForConstructor)
+at Rhino.Mocks.MockRepository.DynamicMock[T](Object[] argumentsForConstructor)
+at Rhino.Mocks.MockRepository.<>c__DisplayClass7`1.<GenerateMock>b__6(MockRepository r)
+at Rhino.Mocks.MockRepository.CreateMockInReplay[T](Func`2 createMock)
+at Rhino.Mocks.MockRepository.GenerateMock[T](Object[] argumentsForConstructor)
+at Test.AccountServiceTest.ValidateLoginTest() in c:\Users\rashed.riyadh\IITDU.Codewarriors\CodeWarriors.IITDU\Test\AccountServiceTest.cs:line 18
+--MissingMethodException
+at System.RuntimeType.CreateInstanceImpl(BindingFlags bindingAttr, Binder binder, Object[] args, CultureInfo culture, Object[] activationAttributes, StackCrawlMark& stackMark)
+at System.Activator.CreateInstance(Type type, BindingFlags bindingAttr, Binder binder, Object[] args, CultureInfo culture, Object[] activationAttributes)
+at System.Activator.CreateInstance(Type type, Object[] args)
+at Castle.DynamicProxy.ProxyGenerator.CreateClassProxy(Type classToProxy, Type[] additionalInterfacesToProxy, ProxyGenerationOptions options, Object[] constructorArguments, IInterceptor[] interceptors)
+at Rhino.Mocks.MockRepository.MockClass(CreateMockState mockStateFactory, Type type, Type[] extras, Object[] argumentsForConstructor)
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </results>
+          </test-suite>
+        </results>
+      </test-suite>
+    </results>
+  </test-suite>
+</test-results>
