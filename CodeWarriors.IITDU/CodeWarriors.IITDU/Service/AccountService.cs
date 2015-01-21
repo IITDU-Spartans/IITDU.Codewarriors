@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using CodeWarriors.IITDU.Models;
 using CodeWarriors.IITDU.Repository;
+using CodeWarriors.IITDU.Utility;
 
 namespace CodeWarriors.IITDU.Service
 {
@@ -21,7 +22,7 @@ namespace CodeWarriors.IITDU.Service
             var user = _userRepository.GetUser(userName);
             if (user != null)
             {
-                return user.Password == password;
+                return user.Password == Encryption.GetHash(password);
             }
             return false;
         }
@@ -34,6 +35,7 @@ namespace CodeWarriors.IITDU.Service
 
         public void SaveUser(User user)
         {
+            user.Password = Encryption.GetHash(user.Password);
             _userRepository.Insert(user);
         }
         public void SaveProfile(UserProfile profile, string userName)
@@ -55,6 +57,7 @@ namespace CodeWarriors.IITDU.Service
 
         public void UpdateAccount(User user)
         {
+            user.Password = Encryption.GetHash(user.Password);
             _userRepository.Update(user, _userRepository.GetUserId(user.UserName));
         }
 
