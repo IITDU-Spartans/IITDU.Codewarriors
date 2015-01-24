@@ -5,21 +5,8 @@
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
     <link href="~/Content/bootstrap/css/bootstrap.css" rel="stylesheet" />
-    <style>
-        body {
-            margin-left: 10%;
-            margin-right: 10%;
-        }
-
-        .center {
-            margin: auto;
-        }
-
-        .top-bottom-padding {
-            padding-bottom: 100px;
-            padding-top: 100px;
-        }
-    </style>
+    <link href="~/Content/custom.css" rel="stylesheet"/>
+    <link href="~/Content/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
 </head>
 <body data-ng-app="CodeWarriorsApp">
     <div data-ng-controller="AppController">
@@ -40,6 +27,7 @@
                         {
                             <li><a ui-sref="home">Home</a></li>
                             <li><a ui-sref="products">Products</a></li>
+                            <li><a ui-sref="addProduct">Add Product</a></li>
                             <li><a ui-sref="profile">Profile</a></li>
                         }
                         else
@@ -55,6 +43,7 @@
                     </ul>
 
                     <ul class="nav navbar-nav navbar-right">
+                        <li><a ui-sref="cart">Cart</a></li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Account <b class="caret"></b></a>
 
@@ -90,6 +79,12 @@
         <script src="~/App/app.js"></script>
         <script src="~/App/Controllers/AppController.js"></script>
         <script src="~/App/Controllers/ProfileController.js"></script>
+        <script src="~/App/Services/ProductService.js"></script>
+        <script src="~/App/Controllers/ProductListController.js"></script>
+        <script src="~/App/Controllers/ProductController.js"></script>
+        <script src="~/App/Directives/ProductItemDirective.js"></script>
+        <script src="~/App/Controllers/AddProductController.js"></script>
+        <script src="~/App/Controllers/CartController.js"></script>
     </div>
 </body>
 </html>

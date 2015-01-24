@@ -123,23 +123,37 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\NinjectWebCommon.cs" />
+    <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\CartItem.cs" />
+    <Compile Include="Models\Catagory.cs" />
+    <Compile Include="Models\Product.cs" />
+    <Compile Include="Models\Sale.cs" />
     <Compile Include="Models\User.cs" />
-    <Compile Include="Models\UserContext.cs" />
+    <Compile Include="Models\DatabaseContext.cs" />
     <Compile Include="Models\UserProfile.cs" />
+    <Compile Include="Models\WishedProduct.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\CatagoryRepository.cs" />
+    <Compile Include="Repository\ICatagoryRepository.cs" />
+    <Compile Include="Repository\IProductRepository.cs" />
     <Compile Include="Repository\IRepository.cs" />
+    <Compile Include="Repository\ProductRepository.cs" />
     <Compile Include="Repository\ProfileRepository.cs" />
+    <Compile Include="Repository\SaleRepository.cs" />
     <Compile Include="Repository\UserRepository.cs" />
     <Compile Include="Service\AccountService.cs" />
     <Compile Include="Service\IAccountService.cs" />
+    <Compile Include="Service\ProductService.cs" />
     <Compile Include="Utility\Encryption.cs" />
     <Compile Include="ViewModels\AccountViewModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="ViewModels\ProductViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -147,7 +161,16 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Content Include="App\app.js" />
     <Content Include="App\Controllers\AppController.js" />
+    <Content Include="App\Controllers\AddProductController.js" />
+    <Content Include="App\Controllers\CartController.js" />
+    <Content Include="App\Controllers\ProductController.js" />
+    <Content Include="App\Controllers\ProductListController.js" />
     <Content Include="App\Controllers\ProfileController.js" />
+    <Content Include="App\Directives\ProductItemDirective.js" />
+    <Content Include="App\Services\ProductService.js" />
+    <Content Include="App\Views\addProduct.html" />
+    <Content Include="App\Views\cart.html" />
+    <Content Include="App\Views\product.html" />
     <Content Include="App\Views\products.html" />
     <Content Include="App\Views\home.html" />
     <Content Include="App\Views\profile.html" />
@@ -157,6 +180,11 @@
     <Content Include="Content\bootstrap\css\bootstrap.min.css" />
     <Content Include="Content\bootstrap\js\bootstrap.js" />
     <Content Include="Content\bootstrap\js\bootstrap.min.js" />
+    <Content Include="Content\custom.css" />
+    <Content Include="Content\font-awesome\css\font-awesome.css" />
+    <Content Include="Content\font-awesome\css\font-awesome.min.css" />
+    <Content Include="Content\images\shoping_cart.png" />
+    <Content Include="Content\images\wish_list.png" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\jquery.min.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
@@ -173,8 +201,8 @@
     <Content Include="Views\Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App\Directives\" />
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Product\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -207,6 +235,13 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Account\Edit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\font-awesome\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\font-awesome\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\font-awesome\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\font-awesome\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\font-awesome\fonts\FontAwesome.otf" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

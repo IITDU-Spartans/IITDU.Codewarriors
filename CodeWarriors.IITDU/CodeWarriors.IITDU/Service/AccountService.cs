@@ -36,12 +36,12 @@ namespace CodeWarriors.IITDU.Service
         public void SaveUser(User user)
         {
             user.Password = Encryption.GetHash(user.Password);
-            _userRepository.Insert(user);
+            _userRepository.Add(user);
         }
         public void SaveProfile(UserProfile profile, string userName)
         {
             profile.UserId = _userRepository.GetUserId(userName);
-            _profileRepository.Insert(profile);
+            _profileRepository.Add(profile);
         }
 
         public UserProfile GetProfile(string userName)

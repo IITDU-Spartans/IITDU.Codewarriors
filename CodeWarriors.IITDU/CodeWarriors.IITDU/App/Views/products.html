@@ -1,3 +1,5 @@
 ﻿<div class="col-md-6 top-bottom-padding">
-    Product
+    <div data-ng-repeat="p in Products">
+        <product-item info="p" add-to-wishlist="addToWishlist()" add-to-cart="addToCart(p.ProductId)"></product-item>
+    </div>
 </div>

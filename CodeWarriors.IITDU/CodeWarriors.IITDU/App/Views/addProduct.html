@@ -1,0 +1,54 @@
+﻿<div class="col-lg-8 top-bottom-padding center">
+    <div class="well bs-component">
+        <form class="form-horizontal">
+            <fieldset>
+                <legend>
+                    Product
+                </legend>
+                <div class="form-group">
+                    <label for="inputPName" class="col-lg-3 control-label">Product Name</label>
+                    <div class="col-lg-9">
+                        <input type="text" class="form-control" id="inputPName" name="FirstName" data-ng-model="NewProduct.ProductName" placeholder="Product Name">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputLName" class="col-lg-3 control-label">Category Name</label>
+                    <div class="col-lg-9">
+                        <input type="text" class="form-control" id="inputLName" name="LastName" data-ng-model="NewProduct.CategoryName" placeholder="Category Name">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputPassword" class="col-lg-3 control-label">Price</label>
+                    <div class="col-lg-9">
+                        <input type="number" data-ng-model="NewProduct.Price" min="0" class="form-control" id="inputPassword" placeholder="Price" name="Price">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputPassword" class="col-lg-3 control-label">Total Available</label>
+                    <div class="col-lg-9">
+                        <input type="number" data-ng-model="NewProduct.AvailableCount" min="0" class="form-control" id="inputPassword" placeholder="Total Available" name="Price">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputEmail" class="col-lg-3 control-label">Description</label>
+                    <div class="col-lg-9">
+                        <input type="text" name="Email" placeholder="Description" data-ng-model="NewProduct.Description" class="form-control"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputEmail" class="col-lg-3 control-label">Image</label>
+                    <div class="col-lg-9">
+                        <input type="text" name="Email" placeholder="Image" data-ng-model="NewProduct.ImageUrl" class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-lg-9 col-lg-offset-3">
+                        <button class="btn btn-success" data-ng-click="AddProduct()">Add</button>
+                        <button class="btn btn-primary" data-ng-click="ResetInfo()">Reset</button>
+                    </div>
+                </div><br/>
+                {{Message}}
+            </fieldset>
+        </form>
+    </div>
+</div>

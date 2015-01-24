@@ -9,21 +9,36 @@ namespace CodeWarriors.IITDU.Repository
 {
     public class ProfileRepository : IRepository<UserProfile>
     {
-        private readonly UserContext _userContext;
-        public ProfileRepository(UserContext userContext)
+        private readonly DatabaseContext _userContext;
+        public ProfileRepository(DatabaseContext userContext)
         {
             _userContext = userContext;
         }
 
-        public bool Insert(UserProfile profile)
+        public bool Add(UserProfile profile)
         {
-            _userContext.Profiles.Add(profile);
+            _userContext.UserProfiles.Add(profile);
             return _userContext.SaveChanges() > 0;
+        }
+
+        public bool Remove(UserProfile model)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool Update(UserProfile model)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<UserProfile> GetAll()
+        {
+            throw new NotImplementedException();
         }
 
         public bool Update(UserProfile profile, int id)
         {
-            var oldProfile = _userContext.Profiles.Find(id);
+            var oldProfile = _userContext.UserProfiles.Find(id);
             oldProfile.FirstName = profile.FirstName;
             oldProfile.LastName = profile.LastName;
             oldProfile.Gender = profile.Gender;
@@ -37,7 +52,7 @@ namespace CodeWarriors.IITDU.Repository
 
         public UserProfile Get(int userId)
         {
-            return _userContext.Profiles.FirstOrDefault(u => u.UserId == userId);
+            return _userContext.UserProfiles.FirstOrDefault(u => u.UserId == userId);
         }
     }
 }

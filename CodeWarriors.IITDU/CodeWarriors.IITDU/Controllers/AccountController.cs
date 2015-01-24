@@ -40,6 +40,7 @@ namespace CodeWarriors.IITDU.Controllers
                 {
                     FormsAuthentication.SetAuthCookie(model.UserName, model.RememberMe);
                     ViewData["Status"] = "Login Successful";
+                    Session["CartList"] = new List<CartItem>();
                     return RedirectToAction("Index", "Home");
                 }
                 else
@@ -74,6 +75,7 @@ namespace CodeWarriors.IITDU.Controllers
                     _profile.LastName = model.LastName;
                     _accountService.SaveProfile(_profile, model.UserName);
                     ViewData["Status"] = "Registration Successful";
+                    Session["CartList"] = new List<CartItem>();
                     return RedirectToAction("Index", "Home");
                 }
                 else
@@ -110,7 +112,7 @@ namespace CodeWarriors.IITDU.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError("","Current Password does not match");
+                    ModelState.AddModelError("", "Current Password does not match");
                 }
             }
 
@@ -119,8 +121,9 @@ namespace CodeWarriors.IITDU.Controllers
         [Authorize]
         public ActionResult LogOut()
         {
+            Session.RemoveAll();
             FormsAuthentication.SignOut();
-            return RedirectToAction("Index","Home");
+            return RedirectToAction("Index", "Home");
         }
 
     }

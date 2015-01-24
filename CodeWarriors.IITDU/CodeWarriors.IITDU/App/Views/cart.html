@@ -1,0 +1,41 @@
+﻿<div class="col-md-8 col-md-offset-1 top-bottom-padding">
+    <h3>Cart</h3>
+    <table class="table table-bordered table-hover table-striped">
+        <tr>
+            <td>
+                Product
+            </td>
+            <td>
+                Quantity
+            </td>
+            <td>
+                Unit Price
+            </td>
+            <td>
+                Total Price
+            </td>
+        </tr>
+        <tr data-ng-repeat="item in CartItems">
+            <td>
+                {{item.ProductName}}
+            </td>
+            <td>
+                {{item.Quantity}}
+            </td>
+            <td>
+                {{item.Price}}
+            </td>
+            <td>
+                {{item.Price * item.Quantity}}
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3">
+                Total Price
+            </td>
+            <td>
+                
+            </td>
+        </tr>
+    </table>
+</div>

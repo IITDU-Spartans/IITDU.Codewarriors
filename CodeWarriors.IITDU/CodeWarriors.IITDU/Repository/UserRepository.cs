@@ -9,8 +9,8 @@ namespace CodeWarriors.IITDU.Repository
 {
     public class UserRepository : IRepository<User>
     {
-        private readonly UserContext _userContext;
-        public UserRepository(UserContext userContext)
+        private readonly DatabaseContext _userContext;
+        public UserRepository(DatabaseContext userContext)
         {
             _userContext = userContext;
         }
@@ -21,10 +21,25 @@ namespace CodeWarriors.IITDU.Repository
         }
 
 
-        public bool Insert(User user)
+        public bool Add(User user)
         {
             _userContext.Users.Add(user);
             return _userContext.SaveChanges() > 0;
+        }
+
+        public bool Remove(User model)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool Update(User model)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<User> GetAll()
+        {
+            throw new NotImplementedException();
         }
 
         public bool Update(User user, int id)
