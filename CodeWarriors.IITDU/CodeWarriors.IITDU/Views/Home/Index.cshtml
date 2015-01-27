@@ -20,7 +20,7 @@
                     <ul class="nav navbar-nav">
                         @if (User.Identity.IsAuthenticated)
                         {
-                            <li><a ui-sref="home">Home</a></li>
+                            <li><a ui-sref="home" class="active">Home</a></li>
                             <li><a ui-sref="products">Products</a></li>
                             <li><a ui-sref="myProducts">My Products</a></li>
                             <li><a ui-sref="profile">Profile</a></li>
@@ -40,7 +40,7 @@
                     <ul class="nav navbar-nav navbar-right">
                         @if (User.Identity.IsAuthenticated)
                         {
-                            <li><a ui-sref="wishList">WishList</a></li>
+                            <li><a ui-sref="wishList">Wishlist</a></li>
                             <li><a ui-sref="cart">Cart</a></li>
                         }
                         <li class="dropdown">
@@ -66,6 +66,11 @@
         </nav>
     </div>
     <ui-view></ui-view>
+</div>
+<div class="navbar navbar-fixed-bottom">
+    <div class="footer">
+        &copy; All Rights Reserved by IITDU Spartans
+    </div>
 </div>
 <script src="~/Scripts/jquery.min.js"></script>
 <script src="~/Scripts/jquery.signalR-2.0.0.min.js"></script>

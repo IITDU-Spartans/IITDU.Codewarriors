@@ -18,15 +18,19 @@ namespace CodeWarriors.IITDU.Service
         private Sale _sale;
         private Category _category;
         private readonly UserRepository _userRepository;
-        public ProductService(UserRepository userRepository, ProductRepository productRepository, SaleRepository saleRepository, CategoryRepository catagoryRepository, Product product, Sale sale, Category category)
+        private readonly PurchaseRepository _purchaseRepository;
+        private Purchase _purchase;
+        public ProductService(UserRepository userRepository, ProductRepository productRepository, SaleRepository saleRepository, CategoryRepository catagoryRepository, Product product, Sale sale, Category category, PurchaseRepository purchaseRepository, Purchase purchase)
         {
             _userRepository = userRepository;
             _productRepository = productRepository;
             _saleRepository = saleRepository;
             _catagoryRepository = catagoryRepository;
+            _purchaseRepository = purchaseRepository;
             _product = product;
             _sale = sale;
             _category = category;
+            _purchase = purchase;
         }
         public bool AddProduct(ProductViewModel model, string userName)
         {
@@ -114,6 +118,21 @@ namespace CodeWarriors.IITDU.Service
         public int GetUserIdByProductId(int productId)
         {
             return _saleRepository.GetUserId(productId);
+        }
+
+        public void Purchase(List<int> productIdList, string userName)
+        {
+            var userId = _userRepository.GetUserId(userName);
+            foreach (var id in productIdList)
+            {
+                var product = _productRepository.Get(id);
+                product.PurchaseCount++;
+                _productRepository.Update(product);
+                _purchase.ProductId = id;
+                _purchase.PurchaseTime = DateTime.Now;
+                _purchase.UserId = userId;
+                _purchaseRepository.Add(_purchase);
+            }
         }
     }
 }

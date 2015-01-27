@@ -115,3 +115,12 @@ C:\Users\NahaR\Documents\GitHub\IITDU.Codewarriors\CodeWarriors.IITDU\CodeWarrio
 C:\Users\NahaR\Documents\GitHub\IITDU.Codewarriors\CodeWarriors.IITDU\CodeWarriors.IITDU\obj\Debug\CodeWarriors.IITDU.dll
 C:\Users\NahaR\Documents\GitHub\IITDU.Codewarriors\CodeWarriors.IITDU\CodeWarriors.IITDU\obj\Debug\CodeWarriors.IITDU.pdb
 C:\Users\NahaR\Documents\GitHub\IITDU.Codewarriors\CodeWarriors.IITDU\CodeWarriors.IITDU\obj\Debug\CodeWarriors.IITDU.csprojResolveAssemblyReference.cache
+D:\ASP.NET\IITDU.Codewarriors\CodeWarriors.IITDU\CodeWarriors.IITDU\bin\Microsoft.AspNet.SignalR.Core.dll
+D:\ASP.NET\IITDU.Codewarriors\CodeWarriors.IITDU\CodeWarriors.IITDU\bin\Microsoft.Owin.dll
+D:\ASP.NET\IITDU.Codewarriors\CodeWarriors.IITDU\CodeWarriors.IITDU\bin\Microsoft.Owin.Host.SystemWeb.dll
+D:\ASP.NET\IITDU.Codewarriors\CodeWarriors.IITDU\CodeWarriors.IITDU\bin\Microsoft.Owin.Security.dll
+D:\ASP.NET\IITDU.Codewarriors\CodeWarriors.IITDU\CodeWarriors.IITDU\bin\Owin.dll
+D:\ASP.NET\IITDU.Codewarriors\CodeWarriors.IITDU\CodeWarriors.IITDU\bin\Microsoft.AspNet.SignalR.Core.xml
+D:\ASP.NET\IITDU.Codewarriors\CodeWarriors.IITDU\CodeWarriors.IITDU\bin\Microsoft.Owin.xml
+D:\ASP.NET\IITDU.Codewarriors\CodeWarriors.IITDU\CodeWarriors.IITDU\bin\Microsoft.Owin.Host.SystemWeb.xml
+D:\ASP.NET\IITDU.Codewarriors\CodeWarriors.IITDU\CodeWarriors.IITDU\bin\Microsoft.Owin.Security.xml

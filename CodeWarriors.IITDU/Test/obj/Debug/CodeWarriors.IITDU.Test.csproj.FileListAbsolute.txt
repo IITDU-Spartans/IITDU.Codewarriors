@@ -74,3 +74,10 @@ C:\Users\NahaR\Documents\GitHub\IITDU.Codewarriors\CodeWarriors.IITDU\Test\bin\D
 C:\Users\NahaR\Documents\GitHub\IITDU.Codewarriors\CodeWarriors.IITDU\Test\obj\Debug\CodeWarriors.IITDU.Test.csprojResolveAssemblyReference.cache
 C:\Users\NahaR\Documents\GitHub\IITDU.Codewarriors\CodeWarriors.IITDU\Test\obj\Debug\Test.dll
 C:\Users\NahaR\Documents\GitHub\IITDU.Codewarriors\CodeWarriors.IITDU\Test\obj\Debug\Test.pdb
+D:\ASP.NET\IITDU.Codewarriors\CodeWarriors.IITDU\Test\bin\Debug\Microsoft.AspNet.SignalR.Core.dll
+D:\ASP.NET\IITDU.Codewarriors\CodeWarriors.IITDU\Test\bin\Debug\Owin.dll
+D:\ASP.NET\IITDU.Codewarriors\CodeWarriors.IITDU\Test\bin\Debug\Microsoft.Owin.dll
+D:\ASP.NET\IITDU.Codewarriors\CodeWarriors.IITDU\Test\bin\Debug\Microsoft.Owin.Security.dll
+D:\ASP.NET\IITDU.Codewarriors\CodeWarriors.IITDU\Test\bin\Debug\Microsoft.AspNet.SignalR.Core.xml
+D:\ASP.NET\IITDU.Codewarriors\CodeWarriors.IITDU\Test\bin\Debug\Microsoft.Owin.xml
+D:\ASP.NET\IITDU.Codewarriors\CodeWarriors.IITDU\Test\bin\Debug\Microsoft.Owin.Security.xml

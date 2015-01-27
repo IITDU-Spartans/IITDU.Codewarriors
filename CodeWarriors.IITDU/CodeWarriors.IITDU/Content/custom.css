@@ -239,3 +239,28 @@ a:link {
 .navbar {
     background-color: #061D4F !important; 
 }
+
+.navbar-nav>li>a {
+    color: #B0ABAB !important;
+}
+.navbar-nav>li>a:hover {
+    color: white !important;
+}
+.navbar-brand {
+    color: #B0ABAB !important;
+    font-size: 30px;
+}
+.navbar-brand:hover {
+    color: white !important;
+}
+
+.thumbnail>img {
+    width: 100% !important;
+    height: 280px !important;
+}
+.footer {
+    padding-top: 12px;
+    color: rgb(156, 158, 166);
+    display: block;
+    text-align: center;
+}

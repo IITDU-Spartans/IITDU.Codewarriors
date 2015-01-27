@@ -9,9 +9,12 @@
     }
     $scope.Message = "";
     $scope.Show = false;
+    $scope.Total = parseInt(0);
     $scope.CartItems = [];
     $http.get("/Cart/GetAllCartItems").success(function (response) {
         $scope.CartItems = response;
+        for (var i = 0; i < $scope.CartItems.length; i++)
+            $scope.Total += $scope.CartItems[i].Price;
     });
     $scope.RemoveFromCart = function (id) {
         var data = { productId: parseInt(id) };
@@ -24,6 +27,14 @@
             }
             $scope.Show = true;
             $scope.Message = response;
+        });
+    }
+    $scope.CheckOut = function() {
+        $http.post("/Cart/CheckOut").success(function(response) {
+            $scope.Message = response;
+            $scope.CartItems = [];
+            $scope.Show = true;
+            $scope.Total = 0;
         });
     }
 })

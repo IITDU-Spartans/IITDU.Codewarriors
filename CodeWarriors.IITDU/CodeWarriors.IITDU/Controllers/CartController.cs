@@ -61,5 +61,15 @@ namespace CodeWarriors.IITDU.Controllers
             return Json(cartList, JsonRequestBehavior.AllowGet);
         }
 
+        [HttpPost]
+        public ActionResult CheckOut()
+        {
+            List<CartItem> cartList = (List<CartItem>)Session["CartList"];
+            var idList = cartList.Select(c => c.ProductId).ToList();
+            _productService.Purchase(idList, User.Identity.Name);
+            cartList.Clear();
+            Session["CartList"] = cartList;
+            return Json("Your request for check out is successful. Thank you.", JsonRequestBehavior.AllowGet);
+        }
     }
 }

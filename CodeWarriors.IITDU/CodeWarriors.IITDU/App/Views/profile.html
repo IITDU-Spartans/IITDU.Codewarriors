@@ -7,15 +7,14 @@
                 </div>
                 <div class="centerP">
                     <span class="btn btn-info btn-file">
-                        <span class="fileinput-new centerP"><i class="fa fa-check"></i>Select image</span>
-                        <span class="fileinput-exists centerP"><i class="fa fa-edit"></i>Change</span>
+                        <span class="fileinput-new centerP">Select Image</span>
+                        <span class="fileinput-exists centerP">Change</span>
 
                         <input type="file" name="file" data-url="http://localhost:33754/Upload/Upload" upload>
                     </span>
-                    <a data-ng-click="upload()" class="btn btn-success fileinput-exists"><i class="fa fa-times"></i>Save</a>
+                    <a data-ng-click="upload()" class="btn btn-success fileinput-exists">Save</a>
                 </div>
             </div>
-
         </div>
     </div>
 </div>
@@ -50,7 +49,7 @@
     <a data-ng-click="EditProfile()" class="btn btn-info">Edit Information</a>    {{Message}}
 </div>
 
-<div class="col-lg-6 top-bottom-padding center" data-ng-show="EditMode">
+<div class="col-lg-6 top-bottom-padding" data-ng-show="EditMode">
     <div class="well bs-component">
         <form class="form-horizontal">
             <fieldset>

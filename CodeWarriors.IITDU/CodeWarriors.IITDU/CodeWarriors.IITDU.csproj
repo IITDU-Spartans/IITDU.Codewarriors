@@ -153,6 +153,7 @@
     <Compile Include="Models\CartItem.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Product.cs" />
+    <Compile Include="Models\Purchase.cs" />
     <Compile Include="Models\Rating.cs" />
     <Compile Include="Models\Review.cs" />
     <Compile Include="Models\Sale.cs" />
@@ -167,6 +168,7 @@
     <Compile Include="Repository\IRepository.cs" />
     <Compile Include="Repository\ProductRepository.cs" />
     <Compile Include="Repository\ProfileRepository.cs" />
+    <Compile Include="Repository\PurchaseRepository.cs" />
     <Compile Include="Repository\RatingRepository.cs" />
     <Compile Include="Repository\ReviewRepository.cs" />
     <Compile Include="Repository\SaleRepository.cs" />
