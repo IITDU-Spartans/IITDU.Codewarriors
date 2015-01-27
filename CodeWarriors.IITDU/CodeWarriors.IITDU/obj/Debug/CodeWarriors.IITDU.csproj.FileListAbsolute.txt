@@ -74,8 +74,6 @@ D:\ASP.NET\IITDU.Codewarriors\CodeWarriors.IITDU\CodeWarriors.IITDU\bin\System.W
 D:\ASP.NET\IITDU.Codewarriors\CodeWarriors.IITDU\CodeWarriors.IITDU\obj\Debug\CodeWarriors.IITDU.dll
 D:\ASP.NET\IITDU.Codewarriors\CodeWarriors.IITDU\CodeWarriors.IITDU\obj\Debug\CodeWarriors.IITDU.pdb
 D:\ASP.NET\IITDU.Codewarriors\CodeWarriors.IITDU\CodeWarriors.IITDU\obj\Debug\CodeWarriors.IITDU.csprojResolveAssemblyReference.cache
-C:\Users\NahaR\Documents\GitHub\IITDU.Codewarriors\CodeWarriors.IITDU\CodeWarriors.IITDU\bin\Ninject.Web.Mvc.dll
-C:\Users\NahaR\Documents\GitHub\IITDU.Codewarriors\CodeWarriors.IITDU\CodeWarriors.IITDU\bin\Owin.dll
 C:\Users\NahaR\Documents\GitHub\IITDU.Codewarriors\CodeWarriors.IITDU\CodeWarriors.IITDU\bin\CodeWarriors.IITDU.dll.config
 C:\Users\NahaR\Documents\GitHub\IITDU.Codewarriors\CodeWarriors.IITDU\CodeWarriors.IITDU\bin\CodeWarriors.IITDU.dll
 C:\Users\NahaR\Documents\GitHub\IITDU.Codewarriors\CodeWarriors.IITDU\CodeWarriors.IITDU\bin\CodeWarriors.IITDU.pdb
@@ -89,6 +87,8 @@ C:\Users\NahaR\Documents\GitHub\IITDU.Codewarriors\CodeWarriors.IITDU\CodeWarrio
 C:\Users\NahaR\Documents\GitHub\IITDU.Codewarriors\CodeWarriors.IITDU\CodeWarriors.IITDU\bin\Newtonsoft.Json.dll
 C:\Users\NahaR\Documents\GitHub\IITDU.Codewarriors\CodeWarriors.IITDU\CodeWarriors.IITDU\bin\Ninject.dll
 C:\Users\NahaR\Documents\GitHub\IITDU.Codewarriors\CodeWarriors.IITDU\CodeWarriors.IITDU\bin\Ninject.Web.Common.dll
+C:\Users\NahaR\Documents\GitHub\IITDU.Codewarriors\CodeWarriors.IITDU\CodeWarriors.IITDU\bin\Ninject.Web.Mvc.dll
+C:\Users\NahaR\Documents\GitHub\IITDU.Codewarriors\CodeWarriors.IITDU\CodeWarriors.IITDU\bin\Owin.dll
 C:\Users\NahaR\Documents\GitHub\IITDU.Codewarriors\CodeWarriors.IITDU\CodeWarriors.IITDU\bin\System.Web.Helpers.dll
 C:\Users\NahaR\Documents\GitHub\IITDU.Codewarriors\CodeWarriors.IITDU\CodeWarriors.IITDU\bin\System.Web.Mvc.dll
 C:\Users\NahaR\Documents\GitHub\IITDU.Codewarriors\CodeWarriors.IITDU\CodeWarriors.IITDU\bin\System.Web.Razor.dll
@@ -114,3 +114,4 @@ C:\Users\NahaR\Documents\GitHub\IITDU.Codewarriors\CodeWarriors.IITDU\CodeWarrio
 C:\Users\NahaR\Documents\GitHub\IITDU.Codewarriors\CodeWarriors.IITDU\CodeWarriors.IITDU\bin\System.Web.WebPages.Razor.xml
 C:\Users\NahaR\Documents\GitHub\IITDU.Codewarriors\CodeWarriors.IITDU\CodeWarriors.IITDU\obj\Debug\CodeWarriors.IITDU.dll
 C:\Users\NahaR\Documents\GitHub\IITDU.Codewarriors\CodeWarriors.IITDU\CodeWarriors.IITDU\obj\Debug\CodeWarriors.IITDU.pdb
+C:\Users\NahaR\Documents\GitHub\IITDU.Codewarriors\CodeWarriors.IITDU\CodeWarriors.IITDU\obj\Debug\CodeWarriors.IITDU.csprojResolveAssemblyReference.cache

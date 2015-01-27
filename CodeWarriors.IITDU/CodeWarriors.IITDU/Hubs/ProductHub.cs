@@ -19,7 +19,7 @@ namespace CodeWarriors.IITDU.Hubs
 
         public void UpdateClientsAboutLastProductHub(Product lastProductData)
         {
-            Clients.All.updateAboutNewProduct(lastProductData);
+            Clients.Others.updateAboutNewProduct(lastProductData);
         }
     }
 }

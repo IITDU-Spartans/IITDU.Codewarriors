@@ -1,7 +1,6 @@
-﻿app.controller("AddProductController", function ($, $scope, $http, addProductFactory) {
+﻿app.controller("AddProductController", function ($, $scope, $rootScope, $http, addProductFactory) {
 
     var addProductFactoryOperations = addProductFactory();
-
     $scope.EditMode = true;
     $scope.Product = {};
     $scope.NewProduct = {};
@@ -20,11 +19,12 @@
         });
     }
 
-    var newProductFunc = function (product) {
-        alert(product);
+    var showNewProductFunc = function (productData) {
+        alert(productData);
     };
 
-    addProductFactoryOperations.setCallbacks(newProductFunc);
+    addProductFactoryOperations.setCallbacks($rootScope.getAddedProduct);
+    //addProductFactoryOperations.setCallbacks(showNewProductFunc);
     addProductFactoryOperations.initializeClient();
 
     $scope.CopyProfileObject = function (a, b) {

@@ -15,8 +15,8 @@ app.factory('addProductFactory', ['$', '$rootScope', function ($, $rootScope) {
             start();
         };
 
-        var setCallbacks = function (product) {
-            showNewProduct = product;
+        var setCallbacks = function (productFunc) {
+            showNewProduct = productFunc;
         };
 
         var configureProxyClientFunction = function () {
