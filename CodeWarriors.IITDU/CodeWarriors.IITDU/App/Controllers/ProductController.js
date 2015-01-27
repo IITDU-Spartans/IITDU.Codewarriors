@@ -6,7 +6,7 @@
         var productId = parseInt($stateParams.productId);
         $http.get("/Product/GetProduct?ProductId=" + productId).success(function (response) {
             $scope.Product = response.product;
-
+            $scope.Product.CategoryName = response.CategoryName;
         });
     }
     $scope.Rate = function () {

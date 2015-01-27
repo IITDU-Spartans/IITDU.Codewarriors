@@ -1,4 +1,12 @@
-﻿app.controller("ProfileController", function ($scope, $http, uploadManager, $rootScope) {
+﻿app.controller("ProfileController", function ($scope, $http, uploadManager, $rootScope, $location) {
+    init();
+    function init() {
+        $http.get("/Account/IsAuthenticated").success(function (response) {
+            if (!response) {
+                $location.path("home");
+            }
+        });
+    }
     $scope.EditMode = false;
     $scope.ProfileInfo = {};
     $scope.NewProfileInfo = {};
@@ -52,18 +60,12 @@
     };
 
     $rootScope.$on('uploadDone', function (e, call) {
-        //setTimeout(function () {
-        //    $http.get("/Profile/GetProfileInformation").success(function (response) {
-        //        $scope.ProfileInfo = response;
-        //        if ($scope.ProfileInfo.ImagePath == null) {
-        //            $scope.ProfileInfo.ImagePath = "Upload//default.jpg";
-        //        }
-        //        $scope.$$phase || $scope.$apply();
-        //        $scope.files = [];
-        //    });
-
-        //}, 1500);
-        alert('done');
+        $scope.CopyProfileObject($scope.NewProfileInfo, $scope.ProfileInfo);
+        $scope.NewProfileInfo.ImageUrl = uploadManager.files()[0];
+        $http.post("/Profile/UpdateProfile", $scope.NewProfileInfo).success(function(response) {
+            alert('done');
+        });
+        
     });
 
 

@@ -1,4 +1,12 @@
 ﻿app.controller("WishListController", function ($http, $scope) {
+    init();
+    function init() {
+        $http.get("/Account/IsAuthenticated").success(function (response) {
+            if (!response) {
+                $location.path("home");
+            }
+        });
+    }
     $scope.Message = "";
     $scope.Show = false;
     $scope.WishList = [];

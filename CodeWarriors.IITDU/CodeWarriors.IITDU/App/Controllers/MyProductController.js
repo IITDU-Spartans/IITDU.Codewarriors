@@ -2,6 +2,11 @@
     $scope.Products = [];
     init();
     function init() {
+        $http.get("/Account/IsAuthenticated").success(function (response) {
+            if (!response) {
+                $location.path("home");
+            }
+        });
         $http.get("/Product/GetAllProductByUser").success(function (response) {
             $scope.Products = response;
         });

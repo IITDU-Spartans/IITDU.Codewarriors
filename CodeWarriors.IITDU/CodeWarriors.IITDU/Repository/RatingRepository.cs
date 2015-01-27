@@ -41,5 +41,10 @@ namespace CodeWarriors.IITDU.Repository
         {
             return _databaseContext.Ratings.FirstOrDefault(r => r.RatingId == id);
         }
+
+        public Rating GetRatingByUserId(int userId)
+        {
+            return _databaseContext.Ratings.FirstOrDefault(e => e.UserId == userId);
+        }
     }
 }

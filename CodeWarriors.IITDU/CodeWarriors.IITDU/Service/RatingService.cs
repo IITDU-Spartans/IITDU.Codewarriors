@@ -25,17 +25,22 @@ namespace CodeWarriors.IITDU.Service
         public double AddRating(int productId, int rating, string userName)
         {
             var product = _productRepository.GetProductByProductId(productId);
-            if (_saleRepository.GetUserId(productId) != _userRepository.GetUserId(userName))
+            var userId = _userRepository.GetUserId(userName);
+            if (_saleRepository.GetUserId(productId) != userId)
             {
-
+                var existingRating = _ratingRepository.GetRatingByUserId(userId);
+                if (existingRating != null)
+                {
+                    product.AverageRate = 2 * product.AverageRate - existingRating.Rate;
+                    _ratingRepository.Remove(existingRating);
+                }
                 _rating.Rate = rating;
                 _rating.ProductId = productId;
-                _rating.UserId = _userRepository.GetUserId(userName);
-                if (product.AverageRate == 0)
-                    product.AverageRate = rating;
-                else product.AverageRate = (product.AverageRate + rating) / 2;
-                _productRepository.Update(product);
+                _rating.UserId = userId;
                 _ratingRepository.Add(_rating);
+                product.AverageRate = _ratingRepository.GetAll().Average(e => e.Rate);
+                _productRepository.Update(product);
+                
             }
             return product.AverageRate;
         }

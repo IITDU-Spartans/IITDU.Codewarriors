@@ -46,6 +46,7 @@ namespace CodeWarriors.IITDU.Repository
             oldProfile.Country = profile.Country;
             oldProfile.Age = profile.Age;
             oldProfile.About = profile.About;
+            oldProfile.ImageUrl = profile.ImageUrl;
             _userContext.Entry(oldProfile).State = EntityState.Modified;
             return _userContext.SaveChanges() > 0;
         }

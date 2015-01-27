@@ -27,6 +27,10 @@ namespace CodeWarriors.IITDU.Controllers
         [HttpGet]
         public ActionResult Login()
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                return Redirect("/#/home");
+            }
             return View();
         }
 
@@ -45,17 +49,21 @@ namespace CodeWarriors.IITDU.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError("", "User Name/ Password Mismatch");
+                    Session["Error"] = "User Name/ Password Mismatch";
                     ViewData["Status"] = "Login Failure";
-                    return View();
+                    return Redirect("/#/login");
                 }
 
             }
-            return View();
+            return Redirect("/#/login");
         }
         [HttpGet]
         public ActionResult Register()
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                return Redirect("/#/home");
+            }
             return View();
         }
 
@@ -89,7 +97,7 @@ namespace CodeWarriors.IITDU.Controllers
             return View();
         }
         [Authorize]
-        public ActionResult Edit()
+        public ActionResult ChangePassword()
         {
             var user = _accountService.GetUser(User.Identity.Name);
             _editAccountModel.UserName = user.UserName;
@@ -98,7 +106,7 @@ namespace CodeWarriors.IITDU.Controllers
 
         [Authorize]
         [HttpPost]
-        public ActionResult Edit([Bind(Exclude = "UserName")]EditAccountModel model)
+        public ActionResult ChangePassword([Bind(Exclude = "UserName")]EditAccountModel model)
         {
             model.UserName = User.Identity.Name;
             if (ModelState.IsValid)
@@ -108,15 +116,15 @@ namespace CodeWarriors.IITDU.Controllers
                     _user.UserName = model.UserName;
                     _user.Password = model.Password;
                     _accountService.UpdateAccount(_user);
-                    ViewBag.Success = "Edit account successful";
+                    Session["Success"] = "Edit account successful";
                 }
                 else
                 {
-                    ModelState.AddModelError("", "Current Password does not match");
+                    Session["Error"] = "Current Password does not match";
                 }
             }
 
-            return View(model);
+            return Redirect("/#/password");
         }
         [Authorize]
         public ActionResult LogOut()
@@ -124,6 +132,11 @@ namespace CodeWarriors.IITDU.Controllers
             Session.RemoveAll();
             FormsAuthentication.SignOut();
             return RedirectToAction("Index", "Home");
+        }
+        [AllowAnonymous]
+        public ActionResult IsAuthenticated()
+        {
+            return Json(User.Identity.IsAuthenticated,JsonRequestBehavior.AllowGet);
         }
 
     }

@@ -16,10 +16,7 @@ namespace CodeWarriors.IITDU.Controllers
             if (filename != null)
             {
                 var path = Path.Combine(Server.MapPath("~/Upload"), filename);
-
                 file.SaveAs(path);
-                var start = path.IndexOf("upload", System.StringComparison.Ordinal);
-                path = path.Substring(start, path.Length - start);
             }
             return Json(filename, JsonRequestBehavior.AllowGet);
         }

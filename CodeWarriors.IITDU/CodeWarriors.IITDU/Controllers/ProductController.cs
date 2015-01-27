@@ -22,6 +22,7 @@ namespace CodeWarriors.IITDU.Controllers
         [HttpPost]
         public ActionResult AddProduct(ProductViewModel model)
         {
+            model.ImageUrl = "Upload/" + model.ImageUrl;
             _productService.AddProduct(model, User.Identity.Name);
             return Json("Product Added Successfully", JsonRequestBehavior.AllowGet);
         }
@@ -56,6 +57,7 @@ namespace CodeWarriors.IITDU.Controllers
         [HttpPost]
         public ActionResult UpdateProduct(ProductViewModel model, int productId)
         {
+            model.ImageUrl = "Upload/" + model.ImageUrl;
             _productService.UpdateProduct(model, productId);
             return Json("Product updated successfully");
         }
