@@ -13,12 +13,12 @@ namespace CodeWarriors.IITDU.Service
     {
         private readonly ProductRepository _productRepository;
         private readonly SaleRepository _saleRepository;
-        private readonly CatagoryRepository _catagoryRepository;
+        private readonly CategoryRepository _catagoryRepository;
         private Product _product;
         private Sale _sale;
-        private Catagory _catagory;
+        private Category _category;
         private readonly UserRepository _userRepository;
-        public ProductService(UserRepository userRepository, ProductRepository productRepository, SaleRepository saleRepository, CatagoryRepository catagoryRepository, Product product, Sale sale, Catagory catagory)
+        public ProductService(UserRepository userRepository, ProductRepository productRepository, SaleRepository saleRepository, CategoryRepository catagoryRepository, Product product, Sale sale, Category category)
         {
             _userRepository = userRepository;
             _productRepository = productRepository;
@@ -26,7 +26,7 @@ namespace CodeWarriors.IITDU.Service
             _catagoryRepository = catagoryRepository;
             _product = product;
             _sale = sale;
-            _catagory = catagory;
+            _category = category;
         }
         public bool AddProduct(ProductViewModel model, string userName)
         {
@@ -36,14 +36,14 @@ namespace CodeWarriors.IITDU.Service
             _product.Description = model.Description;
             _product.ImageUrl = model.ImageUrl;
             _product.AvailableCount = model.AvailableCount;
-            int categoryId = _catagoryRepository.GetCategoryIdByCategoryName(model.CatagoryName);
+            int categoryId = _catagoryRepository.GetCategoryIdByCategoryName(model.CategoryName);
 
             if (categoryId == 0)
             {
                 //category
-                _catagory.Name = model.CatagoryName;
-                _catagoryRepository.Add(_catagory);
-                categoryId = _catagoryRepository.GetCategoryIdByCategoryName(model.CatagoryName);
+                _category.Name = model.CategoryName;
+                _catagoryRepository.Add(_category);
+                categoryId = _catagoryRepository.GetCategoryIdByCategoryName(model.CategoryName);
             }
             _product.CatagoryId = categoryId;
 
@@ -84,19 +84,36 @@ namespace CodeWarriors.IITDU.Service
             _product.Price = model.Price;
             _product.Description = model.Description;
             _product.ImageUrl = model.ImageUrl;
-            int categoryId = _catagoryRepository.GetCategoryIdByCategoryName(model.CatagoryName);
+            _product.AvailableCount = model.AvailableCount;
+            int categoryId = _catagoryRepository.GetCategoryIdByCategoryName(model.CategoryName);
 
             if (categoryId == 0)
             {
                 //category
-                _catagory.Name = model.CatagoryName;
-                _catagoryRepository.Add(_catagory);
-                categoryId = _catagoryRepository.GetCategoryIdByCategoryName(model.CatagoryName);
+                _category.Name = model.CategoryName;
+                _catagoryRepository.Add(_category);
+                categoryId = _catagoryRepository.GetCategoryIdByCategoryName(model.CategoryName);
             }
             _product.CatagoryId = categoryId;
             return _productRepository.Update(_product);
         }
 
+        public String GetProductCategory(int categoryId)
+        {
+            return  _catagoryRepository.Get(categoryId).Name;
+        }
 
+        public List<Product> GetAllProductsByProductId(List<int> idList)
+        {
+            var products = from product in GetAllProduct()
+                join id in idList on product.ProductId equals id
+                select product;
+            return products.ToList();
+        }
+
+        public int GetUserIdByProductId(int productId)
+        {
+            return _saleRepository.GetUserId(productId);
+        }
     }
 }

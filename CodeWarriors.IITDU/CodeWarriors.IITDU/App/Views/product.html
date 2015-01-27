@@ -1,5 +1,26 @@
-﻿<div class="col-md-6 top-bottom-padding">
-    <h1>{{Product.ProductName}}</h1>
-    <div><small>{{Product.Price}}</small></div>
-    <div>{{Product.Description}}</div>
+﻿<div class="col-md-10 top-bottom-padding">
+    <div class="col-md-8">
+        <div class="thumbnail">
+            <div class="caption">
+                <h1>{{Product.ProductName}}</h1>
+                <div class="pull-right">
+                    <div class="roundedIcon wishlist" title="Add to Wishlist" data-ng-click="addToWishlist(Product.ProductId)">
+                        <i class="fa fa-heart-o"></i>
+                    </div>
+                    <div class="roundedIcon cart" title="Add to Cart" data-ng-click="addToCart(Product.ProductId)">
+                        <i class="fa fa-shopping-cart"></i>
+                    </div>
+                </div>
+                <div>
+                    Price: {{Product.Price}}
+                </div>
+                <div>
+                    {{Product.Description}}
+                </div>
+                <div>
+                    <rating data-ng-model="Product.AverageRate" max="5" data-ng-click="Rate()"></rating>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

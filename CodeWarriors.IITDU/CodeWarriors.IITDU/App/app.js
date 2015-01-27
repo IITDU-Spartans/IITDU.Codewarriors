@@ -12,7 +12,11 @@ app.config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
             .state("password", { url: "/password", templateUrl: "/Account/Edit" })
             .state("addProduct", { url: "/addProduct", templateUrl: "/App/Views/addProduct.html", controller: "AddProductController" })
             .state('product', { url: '/product/:productId', templateUrl: "/App/Views/product.html", controller: "ProductController" })
-            .state("cart",{url:"/cart", templateUrl:"/App/Views/cart.html", controller:"CartController"});
+            .state('editProduct', { url: '/editProduct/:productId', templateUrl: "/App/Views/editProduct.html", controller: "EditProductController" })
+            .state("cart", { url: "/cart", templateUrl: "/App/Views/cart.html", controller: "CartController" })
+            .state("wishList", { url: "/wishList", templateUrl: "/App/Views/wishlist.html", controller: "WishListController" })
+            .state("myProducts", { url: "/myProducts", templateUrl: "/App/Views/myProducts.html", controller: "MyProductController" })
+            .state("error", { url: "/error", templateUrl: "/App/Views/error.html" });
 
     if (!$httpProvider.defaults.headers.get) {
         $httpProvider.defaults.headers.get = {};

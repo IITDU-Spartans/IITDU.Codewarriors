@@ -12,10 +12,11 @@ namespace CodeWarriors.IITDU.Controllers
     public class ProductController : Controller
     {
         private readonly ProductService _productService;
-        
-        public ProductController(ProductService productService)
+        private ProductViewModel _productViewModel;
+        public ProductController(ProductService productService, ProductViewModel productViewModel)
         {
             _productService = productService;
+            _productViewModel = productViewModel;
         }
 
         [HttpPost]
@@ -31,10 +32,12 @@ namespace CodeWarriors.IITDU.Controllers
             _productService.RemoveProduct(productId);
             return Json("Product Removed Successfully", JsonRequestBehavior.AllowGet);
         }
-
+        [AllowAnonymous]
         public ActionResult GetProduct(int productId)
         {
-            return Json(_productService.GetProduct(productId), JsonRequestBehavior.AllowGet);
+            var product = _productService.GetProduct(productId);
+
+            return Json(new { product, CategoryName = _productService.GetProductCategory(product.CatagoryId) }, JsonRequestBehavior.AllowGet);
         }
 
         [AllowAnonymous]

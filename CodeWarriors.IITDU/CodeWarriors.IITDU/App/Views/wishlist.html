@@ -1,0 +1,30 @@
+﻿<div class="col-md-8 col-md-offset-1 top-bottom-padding">
+    <h3>WishList</h3>
+    <table class="table table-bordered table-hover table-striped">
+        <tr>
+            <td>
+                Product
+            </td>
+            <td>
+                Price
+            </td>
+            <td>
+                Action
+            </td>
+        </tr>
+        <tr data-ng-repeat="item in WishList">
+            <td>
+                {{item.ProductName}}
+            </td>
+            <td>
+                {{item.Price}}
+            </td>
+            <td>
+                <button data-ng-click="RemoveFromWishList(item.WishedProductId)">Remove</button>
+            </td>
+        </tr>
+    </table>
+    <div class="alert alert-success" data-ng-show="Show">
+        {{Message}}
+    </div>
+</div>

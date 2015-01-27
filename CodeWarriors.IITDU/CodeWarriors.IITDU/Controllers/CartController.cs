@@ -12,9 +12,11 @@ namespace CodeWarriors.IITDU.Controllers
     public class CartController : Controller
     {
         private readonly ProductService _productService;
-        public CartController(ProductService productService)
+        private readonly CartService _cartService;
+        public CartController(ProductService productService, CartService cartService)
         {
             _productService = productService;
+            _cartService = cartService;
         }
 
         [HttpPost]
@@ -22,8 +24,8 @@ namespace CodeWarriors.IITDU.Controllers
         {
             List<CartItem> cartList = (List<CartItem>)Session["CartList"];
             var item = cartList.FirstOrDefault(p => p.ProductId == cartItem.ProductId);
-            var message = "";
-            if (item == null)
+            var message = "Product is already in the cart";
+            if (item == null && !_cartService.IsOwnProduct(cartItem.ProductId, User.Identity.Name))
             {
                 var product = _productService.GetProduct(cartItem.ProductId);
                 if (product.AvailableCount > 0)

@@ -39,9 +39,6 @@ D:\ASP.NET\IITDU.Codewarriors\CodeWarriors.IITDU\Test\bin\Debug\System.Web.Http.
 D:\ASP.NET\IITDU.Codewarriors\CodeWarriors.IITDU\Test\bin\Debug\System.Net.Http.Formatting.dll
 D:\ASP.NET\IITDU.Codewarriors\CodeWarriors.IITDU\Test\bin\Debug\Newtonsoft.Json.dll
 D:\ASP.NET\IITDU.Codewarriors\CodeWarriors.IITDU\Test\bin\Debug\CodeWarriors.IITDU.pdb
-D:\ASP.NET\IITDU.Codewarriors\CodeWarriors.IITDU\Test\bin\Debug\NSubstitute.xml
-D:\ASP.NET\IITDU.Codewarriors\CodeWarriors.IITDU\Test\bin\Debug\nunit.framework.xml
-D:\ASP.NET\IITDU.Codewarriors\CodeWarriors.IITDU\Test\bin\Debug\Rhino.Mocks.xml
 D:\ASP.NET\IITDU.Codewarriors\CodeWarriors.IITDU\Test\bin\Debug\EntityFramework.xml
 D:\ASP.NET\IITDU.Codewarriors\CodeWarriors.IITDU\Test\bin\Debug\Ninject.Web.Common.xml
 D:\ASP.NET\IITDU.Codewarriors\CodeWarriors.IITDU\Test\bin\Debug\Ninject.xml

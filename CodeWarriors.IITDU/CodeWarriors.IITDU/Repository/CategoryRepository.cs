@@ -5,21 +5,21 @@ using CodeWarriors.IITDU.Models;
 
 namespace CodeWarriors.IITDU.Repository
 {
-    public class CatagoryRepository : IRepository<Catagory>
+    public class CategoryRepository : IRepository<Category>
     {
         private DatabaseContext _databaseContext;
-        public CatagoryRepository(DatabaseContext databaseContext)
+        public CategoryRepository(DatabaseContext databaseContext)
         {
             _databaseContext = databaseContext;
         }
-        public bool Add(Catagory model)
+        public bool Add(Category model)
         {
             _databaseContext.Catagories.Add(model);
             _databaseContext.SaveChanges();
             return true;
         }
 
-        public bool Remove(Catagory model)
+        public bool Remove(Category model)
         {
             if (!IsCatagoryExists(model.CatagoryId))
                 return false;
@@ -27,7 +27,7 @@ namespace CodeWarriors.IITDU.Repository
             return true;
         }
 
-        public bool Update(Catagory model)
+        public bool Update(Category model)
         {
             if (!IsCatagoryExists(model.CatagoryId))
                 return false;
@@ -36,16 +36,16 @@ namespace CodeWarriors.IITDU.Repository
             return true;
         }
 
-        public List<Catagory> GetAll()
+        public List<Category> GetAll()
         {
             var query=from catagory in _databaseContext.Catagories select catagory;
             return query.ToList();
         }
 
-        public Catagory Get(int modelId)
+        public Category Get(int modelId)
         {
             if (!IsCatagoryExists(modelId)) 
-                return new NullCatagory();
+                return new NullCategory();
             var query = from catagory in _databaseContext.Catagories where catagory.CatagoryId.Equals(modelId) select catagory;
             return query.First();
         }

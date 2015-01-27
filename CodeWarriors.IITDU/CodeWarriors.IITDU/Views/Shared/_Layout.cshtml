@@ -27,7 +27,7 @@
                         {
                             <li><a ui-sref="home">Home</a></li>
                             <li><a ui-sref="products">Products</a></li>
-                            <li><a ui-sref="addProduct">Add Product</a></li>
+                            <li><a ui-sref="myProducts">My Products</a></li>
                             <li><a ui-sref="profile">Profile</a></li>
                         }
                         else
@@ -43,7 +43,11 @@
                     </ul>
 
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a ui-sref="cart">Cart</a></li>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li><a ui-sref="wishList">WishList</a></li>
+                            <li><a ui-sref="cart">Cart</a></li>
+                        }
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Account <b class="caret"></b></a>
 
@@ -73,9 +77,13 @@
         <script src="~/Scripts/jquery.validate.min.js"></script>
         <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
         <script src="~/Content/bootstrap/js/bootstrap.min.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
-        <script src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.10.0.min.js"></script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.8/angular-ui-router.js"></script>
+        <script src="http://code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
+        <script src="~/Scripts/angular.min.js"></script>
+        <script src="~/Scripts/angular-ui-router.js"></script>
+        <script src="~/Scripts/ui-bootstrap-tpls-0.12.0.min.js"></script>
+        <script src="~/Scripts/fileinput.js"></script>
+        <script src="~/Scripts/jquery.fileupload.js"></script>
+        <script src="~/Scripts/jquery.fileupload-jquery-ui.js"></script>
         <script src="~/App/app.js"></script>
         <script src="~/App/Controllers/AppController.js"></script>
         <script src="~/App/Controllers/ProfileController.js"></script>
@@ -85,6 +93,11 @@
         <script src="~/App/Directives/ProductItemDirective.js"></script>
         <script src="~/App/Controllers/AddProductController.js"></script>
         <script src="~/App/Controllers/CartController.js"></script>
+        <script src="~/App/Controllers/MyProductController.js"></script>
+        <script src="~/App/Controllers/EditProductController.js"></script>
+        <script src="~/App/Directives/UploadDirective.js"></script>
+        <script src="~/App/Factories/UploadFactory.js"></script>
+        <script src="~/App/Controllers/WishListController.js"></script>
     </div>
 </body>
 </html>

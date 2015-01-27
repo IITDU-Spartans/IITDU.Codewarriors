@@ -7,11 +7,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CodeWarriors.IITDU.Models
 {
-    public class Catagory
+    public class Rating
     {
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int CatagoryId { get; set; }
-        public String Name { get; set; }
+        public int RatingId { get; set; }
+        public int UserId { get; set; }
+        public int ProductId { get; set; }
+        public int  Rate { get; set; }
     }
-
 }

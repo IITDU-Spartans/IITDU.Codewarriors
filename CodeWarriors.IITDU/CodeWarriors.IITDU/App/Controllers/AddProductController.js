@@ -22,5 +22,4 @@
         a.ImageUrl = b.ImageUrl;
         a.Description = b.Description;
     }
-
 });

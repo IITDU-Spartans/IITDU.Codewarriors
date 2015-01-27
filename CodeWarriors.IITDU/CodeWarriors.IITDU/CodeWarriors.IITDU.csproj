@@ -122,34 +122,45 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\RatingController.cs" />
+    <Compile Include="Controllers\UploadController.cs" />
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\ProfileController.cs" />
+    <Compile Include="Controllers\WishListController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\CartItem.cs" />
-    <Compile Include="Models\Catagory.cs" />
+    <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Product.cs" />
+    <Compile Include="Models\Rating.cs" />
+    <Compile Include="Models\Review.cs" />
     <Compile Include="Models\Sale.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\DatabaseContext.cs" />
     <Compile Include="Models\UserProfile.cs" />
     <Compile Include="Models\WishedProduct.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repository\CatagoryRepository.cs" />
-    <Compile Include="Repository\ICatagoryRepository.cs" />
+    <Compile Include="Repository\CategoryRepository.cs" />
+    <Compile Include="Repository\ICategoryRepository.cs" />
     <Compile Include="Repository\IProductRepository.cs" />
     <Compile Include="Repository\IRepository.cs" />
     <Compile Include="Repository\ProductRepository.cs" />
     <Compile Include="Repository\ProfileRepository.cs" />
+    <Compile Include="Repository\RatingRepository.cs" />
+    <Compile Include="Repository\ReviewRepository.cs" />
     <Compile Include="Repository\SaleRepository.cs" />
     <Compile Include="Repository\UserRepository.cs" />
+    <Compile Include="Repository\WishedProductRepository.cs" />
     <Compile Include="Service\AccountService.cs" />
+    <Compile Include="Service\CartService.cs" />
     <Compile Include="Service\IAccountService.cs" />
     <Compile Include="Service\ProductService.cs" />
+    <Compile Include="Service\RatingService.cs" />
+    <Compile Include="Service\WishListService.cs" />
     <Compile Include="Utility\Encryption.cs" />
     <Compile Include="ViewModels\AccountViewModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -162,15 +173,24 @@
     <Content Include="App\app.js" />
     <Content Include="App\Controllers\AppController.js" />
     <Content Include="App\Controllers\AddProductController.js" />
+    <Content Include="App\Controllers\WishListController.js" />
     <Content Include="App\Controllers\CartController.js" />
+    <Content Include="App\Controllers\EditProductController.js" />
+    <Content Include="App\Controllers\MyProductController.js" />
     <Content Include="App\Controllers\ProductController.js" />
     <Content Include="App\Controllers\ProductListController.js" />
     <Content Include="App\Controllers\ProfileController.js" />
     <Content Include="App\Directives\ProductItemDirective.js" />
+    <Content Include="App\Directives\UploadDirective.js" />
+    <Content Include="App\Factories\UploadFactory.js" />
     <Content Include="App\Services\ProductService.js" />
+    <Content Include="App\Views\error.html" />
+    <Content Include="App\Views\wishlist.html" />
+    <Content Include="App\Views\editProduct.html" />
     <Content Include="App\Views\addProduct.html" />
     <Content Include="App\Views\cart.html" />
     <Content Include="App\Views\product.html" />
+    <Content Include="App\Views\myProducts.html" />
     <Content Include="App\Views\products.html" />
     <Content Include="App\Views\home.html" />
     <Content Include="App\Views\profile.html" />
@@ -186,9 +206,21 @@
     <Content Include="Content\images\shoping_cart.png" />
     <Content Include="Content\images\wish_list.png" />
     <Content Include="Global.asax" />
+    <Content Include="Scripts\angular-ui-router.js" />
+    <Content Include="Scripts\angular.min.js" />
+    <Content Include="Scripts\fileinput.js" />
+    <Content Include="Scripts\jasmine\jasmine-html.js" />
+    <Content Include="Scripts\jasmine\jasmine.css" />
+    <Content Include="Scripts\jasmine\jasmine.js" />
+    <Content Include="Scripts\jquery.fileupload-jquery-ui.js" />
+    <Content Include="Scripts\jquery.fileupload.js" />
     <Content Include="Scripts\jquery.min.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\ui-bootstrap-tpls-0.12.0.min.js" />
+    <Content Include="Scripts\ui-bootstrap.min.js" />
+    <Content Include="Upload\default.jpg" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>

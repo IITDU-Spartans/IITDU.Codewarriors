@@ -14,7 +14,7 @@ namespace CodeWarriors.IITDU.Repository
         List<T> GetAll();
         T Get(int id);
     }
-    public class NullCatagory : Catagory
+    public class NullCategory : Category
     {
 
     }

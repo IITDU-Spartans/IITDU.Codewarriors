@@ -5,24 +5,39 @@
         $http.get("/Product/GetAllProducts").success(function (response) {
             $scope.Products = response;
         });
-        
+
     }
 
-    $scope.addToWishlist = function () {
-        alert("Added to wishlist");
+    $scope.addToWishlist = function (id) {
+        var data = { productId: parseInt(id) };
+        $http.post("/WishList/AddToWishList", data).success(function (response) {
+            $scope.Message = response;
+            alert(response);
+        }).error(function () {
+            $location.path("login");
+        });
     }
 
     $scope.addToCart = function (id) {
-        alert(id);
+
         var cartItem = {
-            ProductId:id,
-            Quantity:1 
+            ProductId: id,
+            Quantity: 1
         };
-        $http.post("/Cart/AddToCart/",cartItem).success(function(response) {
+        $http.post("/Cart/AddToCart/", cartItem).success(function (response) {
             $scope.Message = response;
             alert(response);
-        }).error(function() {
+        }).error(function () {
             $location.path("login");
+        });
+    }
+    $scope.Rate = function (ratedValue, id) {
+        var data = {
+            productId: id,
+            rating: ratedValue
+        };
+        $http.post("/Rating/AddRating", data).success(function (response) {
+            alert(response);
         });
     }
 });

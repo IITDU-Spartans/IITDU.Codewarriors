@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using CodeWarriors.IITDU.Models;
+using Ninject.Web.Common;
 
 namespace CodeWarriors.IITDU.Repository
 {
@@ -61,6 +62,11 @@ namespace CodeWarriors.IITDU.Repository
         public Sale GetSaleByProductId(int productId)
         {
             return _databaseContext.Sales.FirstOrDefault(sale => sale.ProductId == productId);
+        }
+
+        public int GetUserId(int productId)
+        {
+            return _databaseContext.Sales.Where(s => s.ProductId == productId).Select(s => s.UserId).First();
         }
 
     }
