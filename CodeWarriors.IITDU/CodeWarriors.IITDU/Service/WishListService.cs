@@ -47,6 +47,9 @@ namespace CodeWarriors.IITDU.Service
 
         public void RemoveWishedProduct(int wishId)
         {
+            var product = _productRepository.GetProductByProductId(_wishedProductRepository.Get(wishId).ProductId);
+            product.WishCount--;
+            _productRepository.Update(product);
             _wishedProductRepository.RemoveById(wishId);
         }
     }

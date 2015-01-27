@@ -1,31 +1,43 @@
-﻿app.controller("EditProductController", function ($scope, $http, $stateParams) {
+﻿app.controller("EditProductController", function ($scope, $http, $stateParams, uploadManager, $rootScope) {
     init();
-    var Product = {};
+    $scope.Product = {};
     function init() {
+        $http.get("/Account/IsAuthenticated").success(function (response) {
+            if (!response) {
+                $location.path("home");
+            }
+        });
         var productId = parseInt($stateParams.productId);
         $http.get("/Product/GetProduct?productId=" + productId).success(function (response) {
             $scope.NewProduct = response.product;
             $scope.NewProduct.CategoryName = response.CategoryName;
-            $scope.CopyObject(Product, $scope.NewProduct);
+            $scope.CopyObject($scope.Product, $scope.NewProduct);
         });
     }
 
     $scope.UpdateProduct = function () {
-        var data = {
-            ProductName: $scope.NewProduct.ProductName,
-            Price: $scope.NewProduct.Price,
-            CategoryName: $scope.NewProduct.CategoryName,
-            Description: $scope.NewProduct.Description,
-            AvailableCount: $scope.NewProduct.AvailableCount,
-            ImageUrl: $scope.NewProduct.ImageUrl,
-            productId: $scope.NewProduct.ProductId
-        };
-        $http.post("/Product/UpdateProduct", data).success(function (response) {
+        uploadManager.upload();
+    }
+    $rootScope.$on('uploadDone', function (e, call) {
+        $scope.NewProduct.ImageUrl = uploadManager.files()[0];
+
+        $http.post("/Product/UpdateProduct", $scope.NewProduct).success(function (response) {
+            $scope.CopyObject($scope.Product, $scope.NewProduct);
+            $scope.EditMode = false;
             $scope.Message = response;
         });
-    }
+
+    });
+
+
+    $rootScope.$on('fileAdded', function (e, call) {
+        $scope.files = [];
+        $scope.files.push(call);
+        $scope.$apply();
+    });
+
     $scope.ResetInfo = function () {
-        $scope.CopyObject($scope.NewProduct, Product);
+        $scope.CopyObject($scope.NewProduct, $scope.Product);
     }
 
     $scope.CopyObject = function (a, b) {

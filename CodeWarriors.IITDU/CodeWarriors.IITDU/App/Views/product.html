@@ -1,24 +1,51 @@
-﻿<div class="col-md-10 top-bottom-padding">
+﻿
+
+<div class="row top-bottom-padding">
     <div class="col-md-8">
-        <div class="thumbnail">
-            <div class="caption">
-                <h1>{{Product.ProductName}}</h1>
-                <div class="pull-right">
-                    <div class="roundedIcon wishlist" title="Add to Wishlist" data-ng-click="addToWishlist(Product.ProductId)">
-                        <i class="fa fa-heart-o"></i>
-                    </div>
-                    <div class="roundedIcon cart" title="Add to Cart" data-ng-click="addToCart(Product.ProductId)">
-                        <i class="fa fa-shopping-cart"></i>
-                    </div>
-                </div>
-                <div>
-                    Price: {{Product.Price}}
-                </div>
-                <div>
-                    {{Product.Description}}
-                </div>
-                <div>
-                    <rating data-ng-model="Product.AverageRate" max="5" data-ng-click="Rate()"></rating>
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h1>Product Details</h1>
+            </div>
+            <div class="panel-body">
+                <img data-ng-src="/{{Product.ImageUrl}}"
+                     height="250px" width="300px" class="col-md-5 pull-right" />
+                <div class="col-md-7">
+                    <table class="table table-striped">
+                        <tr>
+                            <th>Product Name</th>
+                            <td>: {{Product.ProductName}}</td>
+                        <tr />
+                        <tr>
+                            <th>Price</th>
+                            <td>: {{Product.Price}}</td>
+                        <tr />
+                        <tr>
+                            <th>Category</th>
+                            <td>: {{Product.CategoryName}}</td>
+                        <tr />
+                        <tr>
+                            <th>Description</th>
+                            <td>: {{Product.Description}}</td>
+                        <tr />
+                        <tr>
+                            <td colspan="2" class="well-lg">
+                                <rating data-ng-model="Product.AverageRate" max="5" data-ng-click="Rate()"></rating>
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <a class="btn btn-primary" title="Add to Cart" data-ng-click="addToCart(Product.ProductId)">
+                                    <span class="fa fa-shopping-cart"></span> Add to Cart
+                                </a>
+                                <a class="btn btn-info" title="Add to Wishlist" data-ng-click="addToWishlist(Product.ProductId)">
+                                    <i class="fa fa-heart"></i> Add to Wishlist
+                                </a>
+                            </td>
+                        </tr>
+                        
+                    </table>
+
                 </div>
             </div>
         </div>

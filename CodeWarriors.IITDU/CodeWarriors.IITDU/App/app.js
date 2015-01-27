@@ -9,7 +9,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
             .state("login", { url: "/login", templateUrl: "/Account/Login" })
             .state("register", { url: "/register", templateUrl: "/Account/Register" })
             .state("profile", { url: "/profile", templateUrl: "/App/Views/profile.html", controller: "ProfileController" })
-            .state("password", { url: "/password", templateUrl: "/Account/Edit" })
+            .state("password", { url: "/password", templateUrl: "/Account/ChangePassword" })
             .state("addProduct", { url: "/addProduct", templateUrl: "/App/Views/addProduct.html", controller: "AddProductController" })
             .state('product', { url: '/product/:productId', templateUrl: "/App/Views/product.html", controller: "ProductController" })
             .state('editProduct', { url: '/editProduct/:productId', templateUrl: "/App/Views/editProduct.html", controller: "EditProductController" })

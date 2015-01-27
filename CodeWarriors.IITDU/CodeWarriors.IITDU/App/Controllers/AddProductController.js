@@ -1,4 +1,12 @@
-﻿app.controller("AddProductController", function ($scope, $http) {
+﻿app.controller("AddProductController", function ($scope, $http, $location, uploadManager, $rootScope) {
+    init();
+    function init() {
+        $http.get("/Account/IsAuthenticated").success(function (response) {
+            if (!response) {
+                $location.path("home");
+            }
+        });
+    }
     $scope.EditMode = true;
     $scope.Product = {};
     $scope.NewProduct = {};
@@ -8,12 +16,25 @@
     }
 
     $scope.AddProduct = function () {
+        uploadManager.upload();
+    }
+    $rootScope.$on('uploadDone', function (e, call) {
+        $scope.NewProduct.ImageUrl = uploadManager.files()[0];
+        
         $http.post("/Product/AddProduct", $scope.NewProduct).success(function (response) {
             $scope.CopyProfileObject($scope.Product, $scope.NewProduct);
             $scope.EditMode = false;
             $scope.Message = response;
         });
-    }
+
+    });
+
+
+    $rootScope.$on('fileAdded', function (e, call) {
+        $scope.files = [];
+        $scope.files.push(call);
+        $scope.$apply();
+    });
 
     $scope.CopyProfileObject = function (a, b) {
         a.ProductName = b.ProductName;

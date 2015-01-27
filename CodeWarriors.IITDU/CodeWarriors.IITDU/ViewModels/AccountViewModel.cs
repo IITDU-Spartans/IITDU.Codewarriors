@@ -39,6 +39,7 @@ namespace CodeWarriors.IITDU.ViewModels
         public int Age { get; set; }
         public String Country { get; set; }
         public String About { get; set; }
+        public string ImageUrl { get; set; }
     }
 
     public class EditAccountModel

@@ -17,5 +17,6 @@ namespace CodeWarriors.IITDU.Models
         public int Age { get; set; }
         public String Country { get; set; }
         public String About { get; set; }
+        public String ImageUrl { get; set; }
     }
 }

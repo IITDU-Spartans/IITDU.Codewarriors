@@ -1,4 +1,12 @@
-﻿app.controller("CartController", function ($http, $scope) {
+﻿app.controller("CartController", function ($http, $scope, $location) {
+    init();
+    function init() {
+        $http.get("/Account/IsAuthenticated").success(function (response) {
+            if (!response) {
+                $location.path("home");
+            }
+        });
+    }
     $scope.Message = "";
     $scope.Show = false;
     $scope.CartItems = [];
