@@ -37,8 +37,15 @@ namespace CodeWarriors.IITDU.Controllers
         public ActionResult GetProduct(int productId)
         {
             var product = _productService.GetProduct(productId);
-
-            return Json(new { product, CategoryName = _productService.GetProductCategory(product.CatagoryId) }, JsonRequestBehavior.AllowGet);
+            var owner = false;
+            if (!string.IsNullOrEmpty(User.Identity.Name))
+                owner = _productService.IsOwnProduct(productId, User.Identity.Name);
+            return Json(new
+            {
+                product,
+                CategoryName = _productService.GetProductCategory(product.CatagoryId),
+                IsOwner = owner
+            }, JsonRequestBehavior.AllowGet);
         }
 
         [AllowAnonymous]

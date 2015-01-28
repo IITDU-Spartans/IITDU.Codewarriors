@@ -1,53 +1,127 @@
-﻿
+﻿<div class="container top-bottom-padding">
 
-<div class="row top-bottom-padding">
-    <div class="col-md-8">
-        <div class="panel panel-info">
-            <div class="panel-heading">
-                <h1>Product Details</h1>
-            </div>
-            <div class="panel-body">
-                <img data-ng-src="/{{Product.ImageUrl}}"
-                     height="250px" width="300px" class="col-md-5 pull-right" />
-                <div class="col-md-7">
-                    <table class="table table-striped">
-                        <tr>
-                            <th>Product Name</th>
-                            <td>: {{Product.ProductName}}</td>
-                        <tr />
-                        <tr>
-                            <th>Price</th>
-                            <td>: {{Product.Price}}</td>
-                        <tr />
-                        <tr>
-                            <th>Category</th>
-                            <td>: {{Product.CategoryName}}</td>
-                        <tr />
-                        <tr>
-                            <th>Description</th>
-                            <td>: {{Product.Description}}</td>
-                        <tr />
-                        <tr>
-                            <td colspan="2" class="well-lg">
-                                <rating data-ng-model="Product.AverageRate" max="5" data-ng-click="Rate()"></rating>
 
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan="2">
-                                <a class="btn btn-primary" title="Add to Cart" data-ng-click="addToCart(Product.ProductId)">
-                                    <span class="fa fa-shopping-cart"></span> Add to Cart
-                                </a>
-                                <a class="btn btn-info" title="Add to Wishlist" data-ng-click="addToWishlist(Product.ProductId)">
-                                    <i class="fa fa-heart"></i> Add to Wishlist
-                                </a>
-                            </td>
-                        </tr>
-                        
-                    </table>
-
+    <div class="row">
+        <div class="col-md-8">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Product Details
                 </div>
+                <div class="panel-body">
+                    <img data-ng-src="/{{Product.ImageUrl}}"
+                         height="300" width="300" class="col-md-5 pull-right" />
+                    <div class="col-md-7">
+                        <table class="table table-striped">
+                            <tr>
+                                <th>Product Name</th>
+                                <td>: {{Product.ProductName}}</td>
+                            <tr />
+                            <tr>
+                                <th>Price</th>
+                                <td>: {{Product.Price}}</td>
+                            <tr />
+                            <tr>
+                                <th>Category</th>
+                                <td>: {{Product.CategoryName}}</td>
+                            <tr />
+                            <tr>
+                                <th>Description</th>
+                                <td>: {{Product.Description}}</td>
+                            <tr />
+                            <tr>
+                                <th>
+                                    Available Count
+                                </th>
+                                <td>
+                                    : {{Product.AvailableCount}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    Purchase Count
+                                </th>
+                                <td>
+                                    : {{Product.PurchaseCount}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    Wish Count
+                                </th>
+                                <td>
+                                    : {{Product.WishCount}}
+                                </td>
+                            </tr>
+                            <tr data-ng-show="IsOwner">
+                                <th>
+                                    Average Rate
+                                </th>
+                                <td>
+                                    : {{Product.AverageRate}}
+                                </td>
+                            </tr>
+                            <tr data-ng-show="!IsOwner">
+                                <td colspan="2" class="well-lg">
+                                    <rating data-ng-model="Product.AverageRate" max="5" data-ng-click="Rate()"></rating>
+
+                                </td>
+                            </tr>
+                            <tr data-ng-show="!IsOwner">
+                                <td colspan="2">
+                                    <a class="btn btn-primary" title="Add to Cart" data-ng-click="addToCart(Product.ProductId)">
+                                        <span class="fa fa-shopping-cart"></span> Add to Cart
+                                    </a>
+                                    <a class="btn btn-info" title="Add to Wishlist" data-ng-click="addToWishlist(Product.ProductId)">
+                                        <i class="fa fa-heart"></i> Add to Wishlist
+                                    </a>
+                                </td>
+                            </tr>
+
+                        </table>
+
+                    </div>
+                    <accordion class="col-md-12" data-ng-click="ShowReviews()">
+                        <accordion-group heading="{{statusMessage}}" is-open="show">
+                            <div class="media">
+                                <div class="pull-left">
+                                    <img class="media-object" src="/Upload/default.jpg" height="64" width="64" alt="">
+                                </div>
+                                <div class="media-body">
+                                    <h4 class="media-heading"><b>User</b> <small>says at 6:39:33</small></h4>
+                                    <p>
+                                        It's a quality product.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="media">
+                                <div class="pull-left">
+                                    <img class="media-object" src="/Upload/default.jpg" height="64" width="64" alt="">
+                                </div>
+                                <div class="media-body">
+                                    <h4 class="media-heading"><b>User</b> <small>says at 6:39:33</small></h4>
+                                    <p>
+                                        It's a quality product.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="media">
+                                <div class="pull-left">
+                                    <img class="media-object" src="/Upload/default.jpg" height="64" width="64" alt="">
+                                </div>
+                                <div class="media-body">
+                                    <h4 class="media-heading"><b>User</b> <small>says at 6:39:33</small></h4>
+                                    <p>
+                                        It's a quality product.
+                                    </p>
+                                </div>
+                            </div>
+                        </accordion-group>
+                    </accordion>
+                </div>
+                
             </div>
+
         </div>
+
     </div>
 </div>

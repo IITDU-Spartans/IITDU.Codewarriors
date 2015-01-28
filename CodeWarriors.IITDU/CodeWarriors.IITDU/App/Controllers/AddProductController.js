@@ -18,9 +18,9 @@ app.controller("AddProductController", function ($, $scope, $rootScope, $http, $
     }
 
     $scope.AddProduct = function () {
-        uploadManager.upload();
+        uploadManager.uploadProduct();
     }
-    $rootScope.$on('uploadDone', function (e, call) {
+    $rootScope.$on('uploadProductDone', function (e, call) {
         $scope.NewProduct.ImageUrl = uploadManager.files()[0];
         
         $http.post("/Product/AddProduct", $scope.NewProduct).success(function (response) {

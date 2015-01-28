@@ -7,7 +7,10 @@
         $http.get("/Product/GetProduct?ProductId=" + productId).success(function (response) {
             $scope.Product = response.product;
             $scope.Product.CategoryName = response.CategoryName;
+            $scope.IsOwner = response.IsOwner;
         });
+        $scope.statusMessage = "Show Reviews";
+        $scope.show = false;
     }
     $scope.Rate = function () {
         var data = {
@@ -17,14 +20,15 @@
         $http.post("/Rating/AddRating", data).success(function (response, status) {
             if (status == 200)
                 $scope.Product.AverageRate = response;
-            else alert("Error");
+            else $location.path("login");
         });
     }
     $scope.addToWishlist = function (id) {
         var data = { productId: parseInt(id) };
-        $http.post("/WishList/AddToWishList", data).success(function (response) {
-            $scope.Message = response;
-            alert(response);
+        $http.post("/WishList/AddToWishList", data).success(function (response, status) {
+            if (status == 200)
+                $scope.Message = response;
+            else $location.path("login");
         }).error(function () {
             $location.path("login");
         });
@@ -43,5 +47,8 @@
             $location.path("login");
         });
     }
-
+    $scope.ShowReviews = function() {
+        $scope.statusMessage = $scope.statusMessage == "Hide Reviews" ? "Show Reviews" : "Hide Reviews";
+        $scope.show = !$scope.show;
+    }
 });

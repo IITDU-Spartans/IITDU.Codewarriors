@@ -104,14 +104,14 @@ namespace CodeWarriors.IITDU.Service
 
         public String GetProductCategory(int categoryId)
         {
-            return  _catagoryRepository.Get(categoryId).Name;
+            return _catagoryRepository.Get(categoryId).Name;
         }
 
         public List<Product> GetAllProductsByProductId(List<int> idList)
         {
             var products = from product in GetAllProduct()
-                join id in idList on product.ProductId equals id
-                select product;
+                           join id in idList on product.ProductId equals id
+                           select product;
             return products.ToList();
         }
 
@@ -127,12 +127,18 @@ namespace CodeWarriors.IITDU.Service
             {
                 var product = _productRepository.Get(id);
                 product.PurchaseCount++;
+                product.AvailableCount--;
                 _productRepository.Update(product);
                 _purchase.ProductId = id;
                 _purchase.PurchaseTime = DateTime.Now;
                 _purchase.UserId = userId;
                 _purchaseRepository.Add(_purchase);
             }
+        }
+
+        public bool IsOwnProduct(int productId, string userName)
+        {
+            return _saleRepository.GetUserId(productId) == _userRepository.GetUserId(userName);
         }
     }
 }

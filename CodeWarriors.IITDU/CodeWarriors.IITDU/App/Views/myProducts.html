@@ -1,16 +1,19 @@
 ﻿<div class="col-md-12 top-bottom-padding">
-    <a class="btn btn-primary col-md-2 btn-lg" ui-sref="addProduct">Add Product</a><br /><br />
-    <div class="col-md-6" data-ng-repeat="p in Products">
-        <div class="thumbnail">
-            <div class="caption">
-                <h3>{{p.ProductName}}</h3>
-                <div>Price: {{p.Price}}</div>
-                <div>Available: {{p.AvailableCount}}</div>
-                <div>Purchased: {{p.PurchaseCount}}</div>
-                <div>
-                    <a class="btn btn-success" ui-sref="product({productId:p.ProductId})">Details</a>
-                    <a class="btn btn-info" ui-sref="editProduct({productId:p.ProductId})">Edit</a>
-                    <a class="btn btn-danger" data-ng-click="RemoveProduct(p.ProductId)">Remove</a>
+    <a class="btn btn-primary btn-lg" ui-sref="addProduct">Add Product</a><br /><br />
+    <div class="row">
+        <div class="col-md-4" data-ng-repeat="p in Products">
+            <div class="thumbnail">
+                <img data-ng-src="/{{p.ImageUrl}}"/>
+                <div class="caption">
+                    <h3>{{p.ProductName}}</h3>
+                    <div>Price: {{p.Price}}</div>
+                    <div>Available: {{p.AvailableCount}}</div>
+                    <div>Purchased: {{p.PurchaseCount}}</div>
+                    <div>
+                        <a class="btn btn-success" ui-sref="product({productId:p.ProductId})">Details</a>
+                        <a class="btn btn-info" ui-sref="editProduct({productId:p.ProductId})">Edit</a>
+                        <a class="btn btn-danger" data-ng-click="RemoveProduct(p.ProductId)">Remove</a>
+                    </div>
                 </div>
             </div>
         </div>

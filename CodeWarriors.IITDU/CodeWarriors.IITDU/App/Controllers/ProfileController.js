@@ -56,10 +56,10 @@
     $scope.percentage = 0;
 
     $scope.upload = function () {
-        uploadManager.upload();
+        uploadManager.uploadProfile();
     };
 
-    $rootScope.$on('uploadDone', function (e, call) {
+    $rootScope.$on('uploadProfileDone', function (e, call) {
         $scope.CopyProfileObject($scope.NewProfileInfo, $scope.ProfileInfo);
         $scope.NewProfileInfo.ImageUrl = uploadManager.files()[0];
         $http.post("/Profile/UpdateProfile", $scope.NewProfileInfo).success(function(response) {

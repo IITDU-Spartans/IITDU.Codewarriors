@@ -17,11 +17,18 @@
             });
             return fileNames;
         },
-        upload: function () {
+        uploadProduct: function () {
             $.each(_files, function (index, file) {
                 file.submit();
             });
-            $rootScope.$broadcast('uploadDone', "done");
+            $rootScope.$broadcast('uploadProductDone', "productDone");
+            this.clear();
+        },
+        uploadProfile: function () {
+            $.each(_files, function (index, file) {
+                file.submit();
+            });
+            $rootScope.$broadcast('uploadProfileDone', "profileDone");
             this.clear();
         },
         setProgress: function (percentage) {

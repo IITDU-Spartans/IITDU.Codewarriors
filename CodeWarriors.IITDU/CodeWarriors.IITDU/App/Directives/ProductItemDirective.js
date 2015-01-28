@@ -11,10 +11,10 @@
         <b>Price</b>: {{productInfo.Price}}<br /> <b>Category</b>:\
     {{productInfo.CategoryName}}\
     </p>\
-        <a class="btn btn-primary" title="Add to Cart" data-ng-click="addToCart(Product.ProductId)">\
+        <a class="btn btn-primary" title="Add to Cart" data-ng-click="addToCart(productInfo.ProductId)">\
                                     <span class="fa fa-shopping-cart"></span> Add to Cart\
                                 </a>\
-                                <a class="btn btn-info" title="Add to Wishlist" data-ng-click="addToWishlist(Product.ProductId)">\
+                                <a class="btn btn-info" title="Add to Wishlist" data-ng-click="addToWishlist(productInfo.ProductId)">\
                                     <i class="fa fa-heart"></i> Add to Wishlist\
                                 </a>\
 						</div>\

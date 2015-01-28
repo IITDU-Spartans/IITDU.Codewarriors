@@ -10,9 +10,10 @@
 
     $scope.addToWishlist = function (id) {
         var data = { productId: parseInt(id) };
-        $http.post("/WishList/AddToWishList", data).success(function (response) {
-            $scope.Message = response;
-            alert(response);
+        $http.post("/WishList/AddToWishList", data).success(function (response, status) {
+            if (status == 200)
+                $scope.Message = response;
+            else $location.path("login");
         }).error(function () {
             $location.path("login");
         });
@@ -24,9 +25,10 @@
             ProductId: id,
             Quantity: 1
         };
-        $http.post("/Cart/AddToCart/", cartItem).success(function (response) {
-            $scope.Message = response;
-            alert(response);
+        $http.post("/Cart/AddToCart/", cartItem).success(function (response, status) {
+            if (status == 200)
+                $scope.Message = response;
+            else $location.path("login");
         }).error(function () {
             $location.path("login");
         });
