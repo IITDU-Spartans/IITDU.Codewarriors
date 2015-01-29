@@ -161,6 +161,14 @@
     <Compile Include="Models\DatabaseContext.cs" />
     <Compile Include="Models\UserProfile.cs" />
     <Compile Include="Models\WishedProduct.cs" />
+    <Compile Include="OAuth\FacebookUserInfo.cs" />
+    <Compile Include="OAuth\GooglaUserInfo.cs" />
+    <Compile Include="OAuth\GoogleOAuthClient.cs" />
+    <Compile Include="OAuth\GoogleOAuthTokenResponse.cs" />
+    <Compile Include="OAuth\IOAuthClient.cs" />
+    <Compile Include="OAuth\IOAuthTokenResponse.cs" />
+    <Compile Include="OAuth\IOAuthUserInfo.cs" />
+    <Compile Include="OAuth\OAuthResponseParameters.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\CategoryRepository.cs" />
     <Compile Include="Repository\ICategoryRepository.cs" />
