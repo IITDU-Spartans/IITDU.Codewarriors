@@ -137,6 +137,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\OAuthController.cs" />
     <Compile Include="Controllers\RatingController.cs" />
     <Compile Include="Controllers\UploadController.cs" />
     <Compile Include="App_Start\NinjectWebCommon.cs" />
