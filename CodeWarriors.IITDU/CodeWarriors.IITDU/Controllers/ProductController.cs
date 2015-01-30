@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI.WebControls;
 using CodeWarriors.IITDU.Models;
 using CodeWarriors.IITDU.Service;
 using CodeWarriors.IITDU.ViewModels;
@@ -59,8 +60,8 @@ namespace CodeWarriors.IITDU.Controllers
                 }
             }
 
-            _product.ImageUrls = imageUrls;
             var Id = _productService.AddProduct(_product, User.Identity.Name);
+            _productService.SaveProductImages(imageUrls, Id);
             return Json(new { Message = "Product Added Successfully", ProductId = Id }, JsonRequestBehavior.AllowGet);
         }
 
@@ -77,11 +78,13 @@ namespace CodeWarriors.IITDU.Controllers
             var owner = false;
             if (!string.IsNullOrEmpty(User.Identity.Name))
                 owner = _productService.IsOwnProduct(productId, User.Identity.Name);
+            var images = _productService.GetProductImages(productId);
             return Json(new
             {
                 product,
                 CategoryName = _productService.GetProductCategory(product.CatagoryId),
-                IsOwner = owner
+                IsOwner = owner,
+                images
             }, JsonRequestBehavior.AllowGet);
         }
 
@@ -95,12 +98,15 @@ namespace CodeWarriors.IITDU.Controllers
         public ActionResult GetProducts(int index, int size)
         {
             var products = _productService.GetProducts(index, size);
-            return Json(products, JsonRequestBehavior.AllowGet);
+            List<List<string>> images = products.Select(product => _productService.GetProductImages(product.ProductId)).ToList();
+            return Json(new { products, images }, JsonRequestBehavior.AllowGet);
         }
+
         public ActionResult GetAllProductByUser()
         {
             var products = _productService.GetAllProductByUserName(User.Identity.Name);
-            return Json(products, JsonRequestBehavior.AllowGet);
+            List<List<string>> images = products.Select(product => _productService.GetProductImages(product.ProductId)).ToList();
+            return Json(new { products, images }, JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
@@ -143,11 +149,23 @@ namespace CodeWarriors.IITDU.Controllers
                 }
             }
 
-            _product.ImageUrls = imageUrls;
-            _productService.AddProduct(_product, User.Identity.Name);
+            _productService.UpdateProduct(_product);
+            _productService.SaveProductImages(imageUrls, _product.ProductId);
             return Json("Product Added Successfully", JsonRequestBehavior.AllowGet);
         }
+        [AllowAnonymous]
+        public ActionResult GetProductByCategory(String category, int index, int size)
+        {
+            var products = _productService.GetProductByCatagoryName(category, index, size);
+            return Json(products, JsonRequestBehavior.AllowGet);
+        }
 
+        [AllowAnonymous]
+        public ActionResult GetProductBySubCategory(String category, String subCategory, int index, int size)
+        {
+            var products = _productService.GetProductBySubCatagoryName(category, subCategory, index, size);
+            return Json(products, JsonRequestBehavior.AllowGet);
+        }
         [HttpGet]
         public ActionResult GetFormElements(String category)
         {

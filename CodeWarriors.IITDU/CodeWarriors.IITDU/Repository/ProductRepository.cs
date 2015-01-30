@@ -102,21 +102,21 @@ namespace CodeWarriors.IITDU.Repository
             return products.ToList();
         }
 
-        public List<Product> GetProductBySubCatagoryName(string subCatagoryName)
+        public List<Product> GetProductByCatagoryName(string catagoryName, int index, int size)
         {
             var products = from product in _databaseContext.Products
-                           where product.SubCatagoryName.Equals(subCatagoryName)
+                           where product.CatagoryName.Equals(catagoryName)
                            select product;
-            return products.ToList();
+            return products.OrderBy(p => p.ProductId).Skip(index * size).Take(size).ToList();
 
         }
 
-        public List<Product> GetProductBySubCatagoryName(string catagoryName, string subCatagoryName)
+        public List<Product> GetProductBySubCatagoryName(string catagoryName, string subCatagoryName, int index, int size)
         {
             var products = from product in _databaseContext.Products
-                           where product.CatagoryName.Equals(catagoryName) & product.SubCatagoryName.Equals(subCatagoryName)
+                           where product.CatagoryName.Equals(catagoryName) && product.SubCatagoryName.Equals(subCatagoryName)
                            select product;
-            return products.ToList();
+            return products.OrderBy(p => p.ProductId).Skip(index * size).Take(size).ToList();
 
         }
 

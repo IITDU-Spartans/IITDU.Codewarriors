@@ -48,5 +48,44 @@ namespace CodeWarriors.IITDU.Repository
         {
             return _databaseContext.WishedProducts.Where(w => w.UserId == userId).ToList();
         }
+
+        public List<User> GetAllUser(String subCatagoryName)
+        {
+            UserRepository userProfileRepository = new UserRepository(new DatabaseContext());
+            var sql = from wishedProduct in _databaseContext.WishedProducts
+                      join product in _databaseContext.Products on wishedProduct.ProductId equals product.ProductId
+                      where product.SubCatagoryName.Equals(subCatagoryName)
+                      select new
+                      {
+                          UserId = wishedProduct.UserId
+                      }
+            ;
+
+            List<User> userProfiles = new List<User>();
+            foreach (var userId in sql)
+            {
+                userProfiles.Add(userProfileRepository.Get(userId.UserId));
+            }
+            return userProfiles;
+
+        }
+
+        //story number 16
+        //public List<Product>GetTopRatedProducts(int userId)
+        //{
+        //    var sql = from wishedProduct in _databaseContext.WishedProducts
+        //              join product in _databaseContext.Products on wishedProduct.ProductId equals product.ProductId
+        //              select product.SubCatagoryName;
+            
+        //    List<Product>topRatedProducts=new List<Product>();
+
+        //    foreach (var s in sql)
+        //    {
+                
+        //    }
+
+
+        //}
+
     }
 }

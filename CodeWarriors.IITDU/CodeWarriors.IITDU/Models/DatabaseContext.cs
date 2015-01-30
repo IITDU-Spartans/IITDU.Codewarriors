@@ -22,5 +22,6 @@ namespace CodeWarriors.IITDU.Models
         public DbSet<Rating> Ratings { get; set; }
         public DbSet<Review> Reviews { get; set; }
         public DbSet<Purchase> Purchases { get; set; }
+        public DbSet<ProductImage> ProductImages { get; set; } 
     }
 }

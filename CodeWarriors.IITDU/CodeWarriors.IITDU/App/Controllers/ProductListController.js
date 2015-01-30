@@ -17,7 +17,7 @@
         //    $scope.Products = response;
         //});
         $http.get("/Product/GetProducts?index=" + $scope.index + "&size=" + $scope.size).success(function (response) {
-            $scope.Products = response;
+            $scope.Products = response.products;
             $scope.index++;
         });
 
@@ -34,7 +34,7 @@
                 });
         }
         else if ($scope.selectedSubCategory == "") {
-            $http.get("/Product/GetCategoryProducts?category=" + $scope.selectedCategory
+            $http.get("/Product/GetProductByCategory?category=" + $scope.selectedCategory
                 + "&index=" + $scope.index + "&size=" + $scope.size).success(function (response) {
                     for (var i = 0; i < response.length; i++) {
                         $scope.Products.push(response[i]);
@@ -44,7 +44,7 @@
 
         }
         else {
-            $http.get("/Product/GetSubCategoryProducts?category=" + $scope.selectedCategory + "subCategory="
+            $http.get("/Product/GetProductBySubCategory?category=" + $scope.selectedCategory + "subCategory="
                 + $scope.selectedSubCategory + "&index=" + $scope.index + "&size=" + $scope.size)
                 .success(function (response) {
                     for (var i = 0; i < response.length; i++) {
@@ -94,7 +94,7 @@
         $scope.index = 0;
         $scope.selectedCategory = categoryName;
         $scope.selectedSubCategory = subCategoryName;
-        $http.get("/Product/GetSubCategoryProducts?category=" + categoryName + "subCategory=" + subCategoryName + "&index=" + $scope.index + "&size=" + $scope.size).success(function (response) {
+        $http.get("/Product/GetProductBySubCategory?category=" + categoryName + "&subCategory=" + subCategoryName + "&index=" + $scope.index + "&size=" + $scope.size).success(function (response) {
             $scope.Products = response;
             $scope.index++;
         });
@@ -104,7 +104,7 @@
         console.log(categoryName);
         $scope.index = 0;
         $scope.selectedCategory = categoryName;
-        $http.get("/Product/GetCategoryProducts?category=" + categoryName + "&index=" + $scope.index + "&size=" + $scope.size).success(function (response) {
+        $http.get("/Product/GetProductByCategory?category=" + categoryName + "&index=" + $scope.index + "&size=" + $scope.size).success(function (response) {
             $scope.Products = response;
             $scope.index++;
         });

@@ -4,6 +4,8 @@ app.controller("AddProductController", function ($, $scope, $rootScope, $http, $
     init();
     $scope.SortedFormList = [];
     $scope.DynamicFormList = [];
+    $scope.NewProduct = {};
+    $scope.NewProduct.Dynamic = {};
     function init() {
         $http.get("/Account/IsAuthenticated").success(function (response) {
             if (!response) {
@@ -39,19 +41,55 @@ app.controller("AddProductController", function ($, $scope, $rootScope, $http, $
             }
         });
     }
+
+    $scope.AddProduct = function () {
+        if (typeof $scope.NewProduct.Dynamic === 'undefined') {
+            $scope.Message = 'Set Product Title';
+            return;
+        }
+        if (typeof $scope.NewProduct.Dynamic[0] === 'undefined' || $scope.NewProduct.Dynamic[0] == '') {
+            $scope.Message = 'Set Product Title';
+            return;
+        }
+        if (typeof $scope.NewProduct.Dynamic[1] === 'undefined' || $scope.NewProduct.Dynamic[1] == '') {
+            $scope.Message = 'Set Product Category';
+            return;
+        }
+        if (typeof $scope.NewProduct.Dynamic[2] === 'undefined' || $scope.NewProduct.Dynamic[2] == '') {
+            $scope.Message = 'Set Product Sub Category';
+            return;
+        }
+        if ($scope.files.length < 3) {
+            $scope.Message = 'Upload at Least 3 Images';
+            return;
+        }
+        for (var i = 0; i < $scope.SortedFormList.length; i++) {
+            if (typeof $scope.NewProduct.Dynamic[i] === 'undefined' || $scope.NewProduct.Dynamic[i] == '') {
+                $scope.Message = 'Complete the Form Fields';
+                return;
+            }
+        }
+        uploadManager.uploadProduct();
+    }
+
+    $scope.RemoveImage = function (fileName) {
+        uploadManager.remove(fileName);
+    }
+
     $scope.$on('fileAdded', function (e, call) {
         $scope.files.push(call);
         $scope.$apply();
     });
 
-    $scope.AddProduct = function () {
-        uploadManager.uploadProduct();
-    }
+    $scope.$on('fileRemoved', function (e, call) {
+        $scope.files.splice(call, 1);
+        //$scope.$apply();
+    });
+
     $scope.$on('uploadProductDone', function (e, call) {
-        $scope.NewProduct.ImageUrl = uploadManager.files()[0];
         var data = [];
         for (var i = 0; i < $scope.SortedFormList.length; i++) {
-            if(i==1) {
+            if (i == 1) {
                 data.push($scope.NewProduct.Dynamic[i].category);
             }
             else data.push($scope.NewProduct.Dynamic[i]);

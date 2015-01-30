@@ -8,7 +8,7 @@
             }
         });
         $http.get("/Product/GetAllProductByUser").success(function (response) {
-            $scope.Products = response;
+            $scope.Products = response.products;
         });
     }
 

@@ -4,8 +4,26 @@
     return {
         add: function (file) {
             //this.clear();
-            _files.push(file);
-            $rootScope.$broadcast('fileAdded', file.files[0].name);
+            var fileExists = false;
+            for (var i = 0; i < _files.length; i++) {
+                if (_files[i].files[0].name == file.files[0].name) {
+                    fileExists = true;
+                    break;
+                }
+            }
+            if (!fileExists) {
+                _files.push(file);
+                $rootScope.$broadcast('fileAdded', file.files[0].name);
+            }
+        },
+        remove: function (fileName) {
+            for (var i = 0; i < _files.length; i++) {
+                if (_files[i].files[0].name == fileName) {
+                    _files.splice(i, 1);
+                    break;
+                }
+            }
+            $rootScope.$broadcast('fileRemoved', i);
         },
         clear: function () {
             _files = [];

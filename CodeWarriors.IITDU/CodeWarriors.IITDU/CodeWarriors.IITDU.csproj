@@ -154,6 +154,7 @@
     <Compile Include="Models\CartItem.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Product.cs" />
+    <Compile Include="Models\ProductImage.cs" />
     <Compile Include="Models\Purchase.cs" />
     <Compile Include="Models\Rating.cs" />
     <Compile Include="Models\Review.cs" />
@@ -175,6 +176,7 @@
     <Compile Include="Repository\ICategoryRepository.cs" />
     <Compile Include="Repository\IProductRepository.cs" />
     <Compile Include="Repository\IRepository.cs" />
+    <Compile Include="Repository\ProductImageRepository.cs" />
     <Compile Include="Repository\ProductRepository.cs" />
     <Compile Include="Repository\ProfileRepository.cs" />
     <Compile Include="Repository\PurchaseRepository.cs" />
@@ -186,6 +188,7 @@
     <Compile Include="Service\AccountService.cs" />
     <Compile Include="Service\CartService.cs" />
     <Compile Include="Service\IAccountService.cs" />
+    <Compile Include="Service\MailService.cs" />
     <Compile Include="Service\ProductService.cs" />
     <Compile Include="Service\RatingService.cs" />
     <Compile Include="Service\WishListService.cs" />
@@ -210,6 +213,7 @@
     <Content Include="App\Controllers\ProductListController.js" />
     <Content Include="App\Controllers\ProfileController.js" />
     <Content Include="App\Directives\ProductItemDirective.js" />
+    <Content Include="App\Directives\ScrollDirective.js" />
     <Content Include="App\Directives\UploadDirective.js" />
     <Content Include="App\Factories\AddProduct.js" />
     <Content Include="App\Factories\UploadFactory.js" />

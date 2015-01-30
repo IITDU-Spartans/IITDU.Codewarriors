@@ -75,7 +75,7 @@
                                     </span>
                                 </div>
                                 <div data-ng-repeat="file in files track by $index">
-                                    {{file}}
+                                    {{file}}<span class="glyphicon glyphicon-remove" data-ng-click="RemoveImage(file)"></span>
                                 </div>
                             </div>
 

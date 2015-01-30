@@ -16,7 +16,6 @@ namespace CodeWarriors.IITDU.Models
         public String ProductName { get; set; }
         public Double Price { get; set; }
         public String Description { get; set; }
-        public List<String> ImageUrls { get; set; }
         public int WishCount { get; set; }
         public int PurchaseCount { get; set; }
         public int AvailableCount { get; set; }

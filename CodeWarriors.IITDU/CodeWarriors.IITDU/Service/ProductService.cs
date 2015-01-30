@@ -19,8 +19,13 @@ namespace CodeWarriors.IITDU.Service
         private Category _category;
         private readonly UserRepository _userRepository;
         private readonly PurchaseRepository _purchaseRepository;
+        private ProductImageRepository _productImageRepository;
         private Purchase _purchase;
-        public ProductService(UserRepository userRepository, ProductRepository productRepository, SaleRepository saleRepository, CategoryRepository catagoryRepository, Product product, Sale sale, Category category, PurchaseRepository purchaseRepository, Purchase purchase)
+        private ProductImage _productImage;
+        public ProductService(UserRepository userRepository, ProductRepository productRepository, SaleRepository saleRepository,
+            CategoryRepository catagoryRepository, Product product, Sale sale, Category category,
+            PurchaseRepository purchaseRepository, ProductImageRepository productImageRepository, Purchase purchase,
+            ProductImage productImage)
         {
             _userRepository = userRepository;
             _productRepository = productRepository;
@@ -31,6 +36,8 @@ namespace CodeWarriors.IITDU.Service
             _sale = sale;
             _category = category;
             _purchase = purchase;
+            _productImageRepository = productImageRepository;
+            _productImage = productImage;
         }
         public int AddProduct(Product product, string userName)
         {
@@ -40,6 +47,7 @@ namespace CodeWarriors.IITDU.Service
             _sale.UserId = _userRepository.GetUserId(userName);
             _sale.UploadDateTime = DateTime.Now;
             _saleRepository.Add(_sale);
+            //NotifyUsers(product);
             return _sale.ProductId;
         }
         public List<Product> GetProducts(int index, int size)
@@ -50,6 +58,7 @@ namespace CodeWarriors.IITDU.Service
         {
             var product = _productRepository.Get(productId);
             var sale = _saleRepository.GetSaleByProductId(productId);
+            _productImageRepository.RemoveAllImagesByProductId(productId);
             return _productRepository.Remove(product) && _saleRepository.Remove(sale);
         }
 
@@ -111,14 +120,36 @@ namespace CodeWarriors.IITDU.Service
             return _saleRepository.GetUserId(productId) == _userRepository.GetUserId(userName);
         }
 
-        public List<Product> GetProductByCatagoryName(string catagoryName)
+
+        public void SaveProductImages(List<String> images, int productId)
         {
-            return _productRepository.GetProductByCatagoryName(catagoryName);
+            foreach (var image in images)
+            {
+                _productImage.ProductId = productId;
+                _productImage.ImageUrl = image;
+                _productImageRepository.Add(_productImage);
+            }
+        }
+        public List<Product> GetProductByCatagoryName(string catagoryName, int index, int size)
+        {
+            return _productRepository.GetProductByCatagoryName(catagoryName, index, size);
         }
 
-        public List<Product> GetProductBySubCatagoryName(string catagoryName, string subCatagoryName)
+        public List<Product> GetProductBySubCatagoryName(string catagoryName, string subCatagoryName, int index, int size)
         {
-            return _productRepository.GetProductBySubCatagoryName(catagoryName, subCatagoryName);
+            return _productRepository.GetProductBySubCatagoryName(catagoryName, subCatagoryName, index, size);
+        }
+        public List<String> GetProductImages(int productId)
+        {
+            return _productImageRepository.GetImagesByProductId(productId).Select(e => e.ImageUrl).ToList();
+        }
+
+        private void NotifyUsers(Product product)
+        {
+            MailService mailService = new MailService();
+            WishedProductRepository wishedProductRepository = new WishedProductRepository(new DatabaseContext());
+            List<User> users = wishedProductRepository.GetAllUser(product.SubCatagoryName);
+            mailService.SendMail(users, product);
         }
     }
 }
