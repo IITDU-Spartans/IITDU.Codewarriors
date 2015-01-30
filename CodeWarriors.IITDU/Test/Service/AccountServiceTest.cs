@@ -41,13 +41,13 @@ namespace Test.Service
             accountService.Stub(s => s.GetUser("User")).Return(new User()
             {
                 UserId = 1,
-                UserName = "User",
+                Email = "User",
                 Password = "Password"
             });
             Assert.NotNull(accountService.GetUser("User"));
             Assert.IsNull(accountService.GetUser("Demo"));
             Assert.AreEqual(accountService.GetUser("User").UserId, 1);
-            Assert.AreEqual(accountService.GetUser("User").UserName, "User");
+            Assert.AreEqual(accountService.GetUser("User").Email, "User");
             Assert.AreEqual(accountService.GetUser("User").Password, "Password");
         }
 
@@ -61,7 +61,7 @@ namespace Test.Service
                 FirstName = "First",
                 LastName = "Last",
                 Gender = "Male",
-                Country = "BD",
+                Location = "BD",
                 Age = 21,
                 Email = "user@gmail.com"
             });
@@ -72,7 +72,7 @@ namespace Test.Service
             Assert.AreEqual(accountService.GetProfile("User").LastName, "Last");
             Assert.AreEqual(accountService.GetProfile("User").Age, 21);
             Assert.AreEqual(accountService.GetProfile("User").Gender, "Male");
-            Assert.AreEqual(accountService.GetProfile("User").Country, "BD");
+            Assert.AreEqual(accountService.GetProfile("User").Location, "BD");
             Assert.AreEqual(accountService.GetProfile("User").Email, "user@gmail.com");
         }
     }

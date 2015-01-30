@@ -29,8 +29,8 @@ namespace CodeWarriors.IITDU.Controllers
             _profileModel.About = profile.About;
             _profileModel.Age = profile.Age;
             _profileModel.Gender = profile.Gender;
-            _profileModel.Country = profile.Country;
-            _profileModel.Email = profile.Email;
+            _profileModel.Location = profile.Location;
+            
             _profileModel.ImageUrl = profile.ImageUrl;
             return View(_profileModel);
         }
@@ -51,8 +51,8 @@ namespace CodeWarriors.IITDU.Controllers
                 _profile.LastName = model.LastName;
                 _profile.Age = model.Age;
                 _profile.About = model.About;
-                _profile.Country = model.Country;
-                _profile.Email = model.Email;
+                _profile.Location = model.Location;
+                _profile.MobileNumber = model.MobileNumber;
                 _profile.Gender = model.Gender;
                 _profile.ImageUrl = "Upload/"+model.ImageUrl;
                 _accountService.EditProfile(_profile, User.Identity.Name);
@@ -69,8 +69,8 @@ namespace CodeWarriors.IITDU.Controllers
             _profileModel.About = profile.About;
             _profileModel.Age = profile.Age;
             _profileModel.Gender = profile.Gender;
-            _profileModel.Country = profile.Country;
-            _profileModel.Email = profile.Email;
+            _profileModel.Location= profile.Location;
+            _profileModel.MobileNumber = profile.MobileNumber;
             _profileModel.ImageUrl = profile.ImageUrl;
             return View(_profileModel);
         }
@@ -83,8 +83,8 @@ namespace CodeWarriors.IITDU.Controllers
                 _profile.LastName = model.LastName;
                 _profile.Age = model.Age;
                 _profile.About = model.About;
-                _profile.Country = model.Country;
-                _profile.Email = model.Email;
+                _profile.Location = model.Location;
+                _profile.MobileNumber = model.MobileNumber;
                 _profile.Gender = model.Gender;
                 _accountService.EditProfile(_profile, User.Identity.Name);
                 return RedirectToAction("Index");

@@ -39,10 +39,10 @@ namespace CodeWarriors.IITDU.Controllers
         {
             if (ModelState.IsValid)
             {
-                bool status = _accountService.ValidateLogin(model.UserName, model.Password);
+                bool status = _accountService.ValidateLogin(model.Email, model.Password);
                 if (status)
                 {
-                    FormsAuthentication.SetAuthCookie(model.UserName, model.RememberMe);
+                    FormsAuthentication.SetAuthCookie(model.Email, model.RememberMe);
                     ViewData["Status"] = "Login Successful";
                     Session["CartList"] = new List<CartItem>();
                     return RedirectToAction("Index", "Home");
@@ -72,16 +72,17 @@ namespace CodeWarriors.IITDU.Controllers
         {
             if (ModelState.IsValid)
             {
-                bool status = _accountService.ValidateRegistration(model.UserName);
+                bool status = _accountService.ValidateRegistration(model.Email);
                 if (status)
                 {
-                    FormsAuthentication.SetAuthCookie(model.UserName, false);
+                    FormsAuthentication.SetAuthCookie(model.Email, false);
                     _user.Password = model.Password;
-                    _user.UserName = model.UserName;
+                    _user.Email = model.Email;
                     _accountService.SaveUser(_user);
                     _profile.FirstName = model.FirstName;
                     _profile.LastName = model.LastName;
-                    _accountService.SaveProfile(_profile, model.UserName);
+                    _profile.MobileNumber = model.MobileNumber;
+                    _accountService.SaveProfile(_profile, model.Email);
                     ViewData["Status"] = "Registration Successful";
                     Session["CartList"] = new List<CartItem>();
                     return RedirectToAction("Index", "Home");
@@ -90,30 +91,30 @@ namespace CodeWarriors.IITDU.Controllers
                 {
                     ModelState.AddModelError("", "User Name already exists");
                     ViewData["Status"] = "Registration Failure";
-                    return View();
+                    return Redirect("/#/register");
                 }
 
             }
-            return View();
+            return Redirect("/#/register");
         }
         [Authorize]
         public ActionResult ChangePassword()
         {
             var user = _accountService.GetUser(User.Identity.Name);
-            _editAccountModel.UserName = user.UserName;
+            _editAccountModel.Email = user.Email;
             return View(_editAccountModel);
         }
 
         [Authorize]
         [HttpPost]
-        public ActionResult ChangePassword([Bind(Exclude = "UserName")]EditAccountModel model)
+        public ActionResult ChangePassword([Bind(Exclude = "Email")]EditAccountModel model)
         {
-            model.UserName = User.Identity.Name;
+            model.Email = User.Identity.Name;
             if (ModelState.IsValid)
             {
-                if (_accountService.ValidateLogin(model.UserName, model.CurrentPassword))
+                if (_accountService.ValidateLogin(model.Email, model.CurrentPassword))
                 {
-                    _user.UserName = model.UserName;
+                    _user.Email = model.Email;
                     _user.Password = model.Password;
                     _accountService.UpdateAccount(_user);
                     Session["Success"] = "Edit account successful";

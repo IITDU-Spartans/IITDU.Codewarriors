@@ -50,7 +50,7 @@ namespace CodeWarriors.IITDU.Controllers
 
                 if (_accountService.GetUser(userInfo.UniqueId)==null)
                 {
-                    var user = new User { UserName = userInfo.UniqueId, Password = "iit123"};
+                    var user = new User { Email = userInfo.UniqueId, Password = "iit123"};
                     _accountService.SaveUser(user);
 
                     var newUserProfile = new UserProfile
@@ -59,7 +59,7 @@ namespace CodeWarriors.IITDU.Controllers
                         FirstName = userInfo.FullName,
                         Gender = userInfo.Gender
                     };
-                    _accountService.SaveProfile(newUserProfile, user.UserName);
+                    _accountService.SaveProfile(newUserProfile, user.Email);
                 }
 
                 FormsAuthentication.SetAuthCookie(userInfo.UniqueId, false);

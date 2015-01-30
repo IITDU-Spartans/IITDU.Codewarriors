@@ -43,7 +43,7 @@ namespace CodeWarriors.IITDU.Repository
             oldProfile.LastName = profile.LastName;
             oldProfile.Gender = profile.Gender;
             oldProfile.Email = profile.Email;
-            oldProfile.Country = profile.Country;
+            oldProfile.Location = profile.Location;
             oldProfile.Age = profile.Age;
             oldProfile.About = profile.About;
             oldProfile.ImageUrl = profile.ImageUrl;

@@ -16,11 +16,17 @@ namespace CodeWarriors.IITDU.Models
         public String ProductName { get; set; }
         public Double Price { get; set; }
         public String Description { get; set; }
-        public String ImageUrl { get; set; }
+        public List<String> ImageUrls { get; set; }
         public int WishCount { get; set; }
         public int PurchaseCount { get; set; }
         public int AvailableCount { get; set; }
         public double AverageRate { get; set; }
+        public String AvailableSizes { get; set; } 
+        public String CatagoryName { get; set; }
+        public String SubCatagoryName { get; set; }
+        public String AvailableModels { get; set; }
+        public String Manufacturer { get; set; }
+
     }
 
 }

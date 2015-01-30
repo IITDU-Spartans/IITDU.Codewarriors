@@ -45,9 +45,9 @@
         a.LastName = b.LastName;
         a.Age = b.Age;
         a.About = b.About;
-        a.Country = b.Country;
-        a.Email = b.Email;
+        a.Location = b.Location;
         a.Gender = b.Gender;
+        a.MobileNumber = b.MobileNumber;
     }
 
 
@@ -59,7 +59,7 @@
         uploadManager.uploadProfile();
     };
 
-    $rootScope.$on('uploadProfileDone', function (e, call) {
+    $scope.$on('uploadProfileDone', function (e, call) {
         $scope.CopyProfileObject($scope.NewProfileInfo, $scope.ProfileInfo);
         $scope.NewProfileInfo.ImageUrl = uploadManager.files()[0];
         $http.post("/Profile/UpdateProfile", $scope.NewProfileInfo).success(function(response) {
@@ -69,7 +69,7 @@
     });
 
 
-    $rootScope.$on('fileAdded', function (e, call) {
+    $scope.$on('fileAdded', function (e, call) {
         $scope.files = [];
         $scope.files.push(call);
         $scope.$apply();

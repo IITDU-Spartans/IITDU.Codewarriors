@@ -30,16 +30,16 @@
             <td>{{ProfileInfo.Gender}}</td>
         </tr>
         <tr>
-            <td>Email</td>
-            <td>{{ProfileInfo.Email}}</td>
-        </tr>
-        <tr>
             <td>Age</td>
             <td>{{ProfileInfo.Age}}</td>
         </tr>
         <tr>
-            <td>Country</td>
-            <td>{{ProfileInfo.Country}}</td>
+            <td>Mobile Number</td>
+            <td>{{ProfileInfo.MobileNumber}}</td>
+        </tr>
+        <tr>
+            <td>Location</td>
+            <td>{{ProfileInfo.Location}}</td>
         </tr>
         <tr>
             <td>About</td>
@@ -49,7 +49,7 @@
     <a data-ng-click="EditProfile()" class="btn btn-info">Edit Information</a>    {{Message}}
 </div>
 
-<div class="col-lg-6 top-bottom-padding" data-ng-show="EditMode">
+<div class="col-lg-8 top-bottom-padding" data-ng-show="EditMode">
     <div class="well bs-component">
         <form class="form-horizontal">
             <fieldset>
@@ -57,19 +57,19 @@
                     Profile
                 </legend>
                 <div class="form-group">
-                    <label for="inputFName" class="col-lg-3 control-label">First Name</label>
+                    <label for="inputFName" class="col-lg-3 control-label">First Name *</label>
                     <div class="col-lg-9">
                         <input type="text" class="form-control" id="inputFName" name="FirstName" data-ng-model="NewProfileInfo.FirstName" placeholder="First Name">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="inputLName" class="col-lg-3 control-label">Last Name</label>
+                    <label for="inputLName" class="col-lg-3 control-label">Last Name *</label>
                     <div class="col-lg-9">
                         <input type="text" class="form-control" id="inputLName" name="LastName" data-ng-model="NewProfileInfo.LastName" placeholder="Last Name">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="inputEmail" class="col-lg-3 control-label">Gender</label>
+                    <label for="inputEmail" class="col-lg-3 control-label">Gender *</label>
                     <div class="col-lg-9">
                         <label class="radio-inline">
                             <input type="radio" data-ng-model="NewProfileInfo.Gender" name="Gender" value="Male" checked="" /> Male
@@ -86,15 +86,15 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="inputEmail" class="col-lg-3 control-label">Email</label>
+                    <label for="inputCPassword" class="col-lg-3 control-label">Location *</label>
                     <div class="col-lg-9">
-                        <input type="email" name="Email" placeholder="Email" data-ng-model="NewProfileInfo.Email" class="form-control" />
+                        <input type="text" class="form-control" id="inputCPassword" data-ng-model="NewProfileInfo.Location" placeholder="Location" name="Country">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="inputCPassword" class="col-lg-3 control-label">Country</label>
+                    <label for="inputCPassword" class="col-lg-3 control-label">Mobile Number *</label>
                     <div class="col-lg-9">
-                        <input type="text" class="form-control" id="inputCPassword" data-ng-model="NewProfileInfo.Country" placeholder="Country" name="Country">
+                        <input type="text" class="form-control" id="inputCPassword" data-ng-model="NewProfileInfo.MobileNumber" placeholder="Mobile Number" name="Country">
                     </div>
                 </div>
                 <div class="form-group">

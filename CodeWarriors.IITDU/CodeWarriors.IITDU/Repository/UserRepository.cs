@@ -15,9 +15,9 @@ namespace CodeWarriors.IITDU.Repository
             _userContext = userContext;
         }
 
-        public User GetUser(String userName)
+        public User GetUser(String email)
         {
-            return _userContext.Users.FirstOrDefault(u => u.UserName == userName);
+            return _userContext.Users.FirstOrDefault(u => u.Email == email);
         }
 
 
@@ -55,9 +55,9 @@ namespace CodeWarriors.IITDU.Repository
             return _userContext.Users.Find(userId);
         }
 
-        public int GetUserId(string userName)
+        public int GetUserId(string email)
         {
-            var user = GetUser(userName);
+            var user = GetUser(email);
             return user.UserId;
         }
     }

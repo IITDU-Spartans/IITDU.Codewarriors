@@ -18,7 +18,7 @@
     $scope.UpdateProduct = function () {
         uploadManager.upload();
     }
-    $rootScope.$on('uploadDone', function (e, call) {
+    $scope.$on('uploadDone', function (e, call) {
         $scope.NewProduct.ImageUrl = uploadManager.files()[0];
 
         $http.post("/Product/UpdateProduct", $scope.NewProduct).success(function (response) {
@@ -30,7 +30,7 @@
     });
 
 
-    $rootScope.$on('fileAdded', function (e, call) {
+    $scope.$on('fileAdded', function (e, call) {
         $scope.files = [];
         $scope.files.push(call);
         $scope.$apply();

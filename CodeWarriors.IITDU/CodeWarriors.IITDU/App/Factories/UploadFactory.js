@@ -3,7 +3,7 @@
 
     return {
         add: function (file) {
-            this.clear();
+            //this.clear();
             _files.push(file);
             $rootScope.$broadcast('fileAdded', file.files[0].name);
         },

@@ -15,7 +15,8 @@ namespace CodeWarriors.IITDU.Models
         public String Email { get; set; }
         public String Gender { get; set; }
         public int Age { get; set; }
-        public String Country { get; set; }
+        public String Location { get; set; }
+        public String MobileNumber { get; set; }
         public String About { get; set; }
         public String ImageUrl { get; set; }
     }

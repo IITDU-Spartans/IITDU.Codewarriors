@@ -1,5 +1,29 @@
 ﻿<div class="col-md-12 top-bottom-padding">
-    <div data-ng-repeat="p in Products">
-        <product-item info="p" add-to-cart="p.ProductId" add-to-wishlist="p.ProductId"></product-item>
+    <div class="col-md-3">
+        <ul class="nav list-group">
+            <li data-ng-repeat="category in categories" class="list-group-item">
+                <a href="" data-ng-show="category.subcategories.length==0" data-ng-click="GetCategoryProducts(category.name)">{{category.name}}</a>
+                <a href="" data-ng-show="category.subcategories.length>0" data-toggle="collapse" data-target="#{{category.id}}" data-ng-click="GetCategoryProducts(category.name)">
+                    <span class="glyphicon glyphicon-tags"></span>
+                    &nbsp;{{category.name}}
+                </a>
+                <ul data-ng-show="category.subcategories.length>0" class="nav collapse" id="{{category.id}}">
+                    <li data-ng-repeat="subcategory in category.subcategories">
+                        <a href="" data-ng-click="GetSubCategoryProducts(category.name,subcategory)">
+                            &nbsp;&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-tag"></span>
+                            &nbsp;{{subcategory}}
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
     </div>
+    <div class="col-md-9">
+        <div data-ng-repeat="p in Products">
+            <product-item info="p" add-to-cart="p.ProductId" add-to-wishlist="p.ProductId"></product-item>
+        </div>
+        <!--<button scroll="onScroll()">Hello!</button>-->
+        <button class="center btn btn-default" data-ng-click="onScroll()">Load More!!</button>
+    </div>
+
 </div>

@@ -58,7 +58,7 @@ namespace CodeWarriors.IITDU.Service
         public void UpdateAccount(User user)
         {
             user.Password = Encryption.GetHash(user.Password);
-            _userRepository.Update(user, _userRepository.GetUserId(user.UserName));
+            _userRepository.Update(user, _userRepository.GetUserId(user.Email));
         }
 
         public void EditProfile(UserProfile userProfile, string userName)

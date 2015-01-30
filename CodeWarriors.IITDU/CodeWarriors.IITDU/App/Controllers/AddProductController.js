@@ -1,5 +1,6 @@
 
 app.controller("AddProductController", function ($, $scope, $rootScope, $http, $location, addProductFactory, uploadManager) {
+    $scope.files = [];
     init();
     function init() {
         $http.get("/Account/IsAuthenticated").success(function (response) {
@@ -8,51 +9,42 @@ app.controller("AddProductController", function ($, $scope, $rootScope, $http, $
             }
         });
     }
-    var addProductFactoryOperations = addProductFactory();
-    $scope.EditMode = true;
-    $scope.Product = {};
+
+    $scope.subcategories = [];
+    $scope.categories = [{ category: "Apparels", subcategories: ["Male", "Female", "Child"] },
+        { category: "Electronics", subcategories: ["Computers", "Mobiles", "Accessories"] },
+        { category: "Foods", subcategories: ["Fresh", "Dry", "Others"] },
+        { category: "Miscellaneous", subcategories: ["Gift Items", "Perfume", "Others"] }];
     $scope.NewProduct = {};
     $scope.Message = "";
     $scope.ResetInfo = function () {
-        $scope.CopyProfileObject($scope.NewProduct, $scope.Product);
+        $scope.NewProduct.ProductName = "";
+        $scope.NewProduct.CategoryName = "";
+        $scope.NewProduct.AvailableCount = "";
+        $scope.NewProduct.Price = "";
+        $scope.NewProduct.ImageUrl = "";
+        $scope.NewProduct.Description = "";
     }
 
     $scope.AddProduct = function () {
         uploadManager.uploadProduct();
     }
-    $rootScope.$on('uploadProductDone', function (e, call) {
+    $scope.$on('uploadProductDone', function (e, call) {
         $scope.NewProduct.ImageUrl = uploadManager.files()[0];
-        
-        $http.post("/Product/AddProduct", $scope.NewProduct).success(function (response) {
-            $scope.CopyProfileObject($scope.Product, $scope.NewProduct);
-            $scope.EditMode = false;
-            $scope.Message = response;
 
-            addProductFactoryOperations.updateClientsAboutLastProduct($scope.NewProduct);
+        $http.post("/Product/AddProduct", $scope.NewProduct).success(function (response) {
+            $scope.ResetInfo();
+            $scope.Message = response.Message;
+            $location.path("product/" + response.ProductId);
         });
 
     });
-
-
-    $rootScope.$on('fileAdded', function (e, call) {
-        $scope.files = [];
+    $scope.UpdateSubcategory = function () {
+        $scope.subcategories = $scope.NewProduct.Category.subcategories;
+    }
+    $scope.$on('fileAdded', function (e, call) {
         $scope.files.push(call);
         $scope.$apply();
     });
 
-    var showNewProductFunc = function (productData) {
-        alert(productData);
-    };
-
-    addProductFactoryOperations.setCallbacks($rootScope.getAddedProduct);
-    //addProductFactoryOperations.setCallbacks(showNewProductFunc);
-    addProductFactoryOperations.initializeClient();
-
-    $scope.CopyProfileObject = function (a, b) {
-        a.ProductName = b.ProductName;
-        a.CategoryName = b.CategoryName;
-        a.Price = b.Price;
-        a.ImageUrl = b.ImageUrl;
-        a.Description = b.Description;
-    }
 });

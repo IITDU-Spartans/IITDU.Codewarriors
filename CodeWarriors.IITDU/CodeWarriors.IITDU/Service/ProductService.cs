@@ -32,25 +32,9 @@ namespace CodeWarriors.IITDU.Service
             _category = category;
             _purchase = purchase;
         }
-        public bool AddProduct(ProductViewModel model, string userName)
+        public bool AddProduct(Product product, string userName)
         {
-            //product
-            _product.ProductName = model.ProductName;
-            _product.Price = model.Price;
-            _product.Description = model.Description;
-            _product.ImageUrl = model.ImageUrl;
-            _product.AvailableCount = model.AvailableCount;
-            int categoryId = _catagoryRepository.GetCategoryIdByCategoryName(model.CategoryName);
-
-            if (categoryId == 0)
-            {
-                //category
-                _category.Name = model.CategoryName;
-                _catagoryRepository.Add(_category);
-                categoryId = _catagoryRepository.GetCategoryIdByCategoryName(model.CategoryName);
-            }
-            _product.CatagoryId = categoryId;
-
+            _productRepository.Add(product);
             //sale
             _sale.ProductId = _productRepository.AddProduct(_product);
             _sale.UserId = _userRepository.GetUserId(userName);
@@ -58,7 +42,10 @@ namespace CodeWarriors.IITDU.Service
 
             return _saleRepository.Add(_sale);
         }
-
+        public List<Product> GetProducts(int index, int size)
+        {
+            return _productRepository.GetProducts(index, size);
+        }
         public bool RemoveProduct(int productId)
         {
             var product = _productRepository.Get(productId);
@@ -80,25 +67,8 @@ namespace CodeWarriors.IITDU.Service
             return _productRepository.Get(productId);
         }
 
-        public bool UpdateProduct(ProductViewModel model, int productId)
+        public bool UpdateProduct(Product product)
         {
-            //product
-            _product.ProductId = productId;
-            _product.ProductName = model.ProductName;
-            _product.Price = model.Price;
-            _product.Description = model.Description;
-            _product.ImageUrl = model.ImageUrl;
-            _product.AvailableCount = model.AvailableCount;
-            int categoryId = _catagoryRepository.GetCategoryIdByCategoryName(model.CategoryName);
-
-            if (categoryId == 0)
-            {
-                //category
-                _category.Name = model.CategoryName;
-                _catagoryRepository.Add(_category);
-                categoryId = _catagoryRepository.GetCategoryIdByCategoryName(model.CategoryName);
-            }
-            _product.CatagoryId = categoryId;
             return _productRepository.Update(_product);
         }
 
@@ -139,6 +109,16 @@ namespace CodeWarriors.IITDU.Service
         public bool IsOwnProduct(int productId, string userName)
         {
             return _saleRepository.GetUserId(productId) == _userRepository.GetUserId(userName);
+        }
+
+        public List<Product> GetProductByCatagoryName(string catagoryName)
+        {
+            return _productRepository.GetProductByCatagoryName(catagoryName);
+        }
+
+        public List<Product> GetProductBySubCatagoryName(string catagoryName, string subCatagoryName)
+        {
+            return _productRepository.GetProductBySubCatagoryName(catagoryName, subCatagoryName);
         }
     }
 }

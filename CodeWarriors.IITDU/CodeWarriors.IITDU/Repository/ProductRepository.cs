@@ -59,7 +59,7 @@ namespace CodeWarriors.IITDU.Repository
 
         public bool Add(Product model)
         {
-            return AddProduct(model)>0;
+            return AddProduct(model) > 0;
         }
 
         public bool Remove(Product model)
@@ -91,6 +91,38 @@ namespace CodeWarriors.IITDU.Repository
                            select product;
 
             return products.ToList();
+        }
+
+        public List<Product> GetProductByCatagoryName(string catagoryName)
+        {
+            var products = from product in _databaseContext.Products
+                           where product.CatagoryName.Equals(catagoryName)
+                           select product;
+
+            return products.ToList();
+        }
+
+        public List<Product> GetProductBySubCatagoryName(string subCatagoryName)
+        {
+            var products = from product in _databaseContext.Products
+                           where product.SubCatagoryName.Equals(subCatagoryName)
+                           select product;
+            return products.ToList();
+
+        }
+
+        public List<Product> GetProductBySubCatagoryName(string catagoryName, string subCatagoryName)
+        {
+            var products = from product in _databaseContext.Products
+                           where product.CatagoryName.Equals(catagoryName) & product.SubCatagoryName.Equals(subCatagoryName)
+                           select product;
+            return products.ToList();
+
+        }
+
+        public List<Product> GetProducts(int index, int size)
+        {
+            return _databaseContext.Products.Select(product => product).OrderBy(p => p.ProductId).Skip(index * size).Take(size).ToList();
         }
 
     }
