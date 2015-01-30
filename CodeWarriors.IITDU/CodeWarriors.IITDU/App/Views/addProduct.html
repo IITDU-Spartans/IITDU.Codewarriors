@@ -8,14 +8,14 @@
                 <div class="form-group">
                     <label for="inputPName" class="col-lg-3 control-label">Product Name</label>
                     <div class="col-lg-9">
-                        <input type="text" class="form-control" id="inputPName" name="FirstName" data-ng-model="NewProduct.ProductName" placeholder="Product Name">
+                        <input type="text" class="form-control" data-ng-model="NewProduct.Dynamic[0]" placeholder="Product Name">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="inputLName" class="col-lg-3 control-label">Category</label>
                     <div class="col-lg-9">
                         <select class="form-control" data-ng-options="option as option.category for option in categories"
-                                data-ng-model="NewProduct.Category" data-ng-change="UpdateSubcategory()">
+                                data-ng-model="NewProduct.Dynamic[1]" data-ng-change="UpdateSubcategory()">
                             <option value="">Select Category</option>
                         </select>
                     </div>
@@ -24,7 +24,7 @@
                     <label for="inputLName" class="col-lg-3 control-label">Sub Category</label>
                     <div class="col-lg-9">
                         <select class="form-control" data-ng-options="option for option in subcategories"
-                                data-ng-model="NewProduct.SubCategoryName">
+                                data-ng-model="NewProduct.Dynamic[2]" data-ng-change="UpdateFormFields()">
                             <option value="">Select Sub Category</option>
                         </select>
                     </div>
@@ -32,19 +32,25 @@
                 <div class="form-group">
                     <label for="inputPassword" class="col-lg-3 control-label">Price</label>
                     <div class="col-lg-9">
-                        <input type="number" data-ng-model="NewProduct.Price" min="0" class="form-control" id="inputPassword" placeholder="Price" name="Price">
+                        <input type="number" data-ng-model="NewProduct.Dynamic[3]" min="0" class="form-control" id="inputPassword" placeholder="Price" name="Price">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="inputPassword" class="col-lg-3 control-label">Total Available</label>
                     <div class="col-lg-9">
-                        <input type="number" data-ng-model="NewProduct.AvailableCount" min="0" class="form-control" id="inputPassword" placeholder="Total Available" name="Price">
+                        <input type="number" data-ng-model="NewProduct.Dynamic[4]" min="0" class="form-control" id="inputPassword" placeholder="Total Available" name="Price">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="inputEmail" class="col-lg-3 control-label">Description</label>
+                    <label for="inputPassword" class="col-lg-3 control-label">Manufacturer</label>
                     <div class="col-lg-9">
-                        <input type="text" name="Email" placeholder="Description" data-ng-model="NewProduct.Description" class="form-control"/>
+                        <input type="text" data-ng-model="NewProduct.Dynamic[5]" min="0" class="form-control" id="inputPassword" placeholder="Manufacturer" name="Manufacturer">
+                    </div>
+                </div>
+                <div class="form-group" data-ng-repeat="item in DynamicFormList">
+                    <label for="inputEmail" class="col-lg-3 control-label">{{item}}</label>
+                    <div class="col-lg-9">
+                        <input type="text" name="Email" placeholder="{{item}}" data-ng-model="NewProduct.Dynamic[$index+6]" class="form-control" />
                     </div>
                 </div>
                 <!--<div class="form-group">

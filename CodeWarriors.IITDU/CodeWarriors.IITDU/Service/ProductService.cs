@@ -32,15 +32,15 @@ namespace CodeWarriors.IITDU.Service
             _category = category;
             _purchase = purchase;
         }
-        public bool AddProduct(Product product, string userName)
+        public int AddProduct(Product product, string userName)
         {
-            _productRepository.Add(product);
+            //_productRepository.Add(product);
             //sale
-            _sale.ProductId = _productRepository.AddProduct(_product);
+            _sale.ProductId = _productRepository.AddProduct(product);
             _sale.UserId = _userRepository.GetUserId(userName);
             _sale.UploadDateTime = DateTime.Now;
-
-            return _saleRepository.Add(_sale);
+            _saleRepository.Add(_sale);
+            return _sale.ProductId;
         }
         public List<Product> GetProducts(int index, int size)
         {

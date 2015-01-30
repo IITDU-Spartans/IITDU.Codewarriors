@@ -28,10 +28,10 @@ namespace CodeWarriors.IITDU.Controllers
             _product.CatagoryName = category;
             _product.SubCatagoryName = values[2];
             _product.Price = int.Parse(values[3]);
-            _product.Price = int.Parse(values[4]);
+            _product.AvailableCount = int.Parse(values[4]);
             _product.Manufacturer = values[5];
             List<String> imageUrls = new List<string>();
-            
+
             if (category == "Apparels")
             {
                 _product.AvailableSizes = values[6];
@@ -41,7 +41,7 @@ namespace CodeWarriors.IITDU.Controllers
                     imageUrls.Add(values[i]);
                 }
             }
-            else if (category == "Electronics"||category=="Accessories")
+            else if (category == "Electronics" || category == "Accessories")
             {
                 _product.AvailableModels = values[6];
                 _product.Description = values[7];
@@ -58,10 +58,10 @@ namespace CodeWarriors.IITDU.Controllers
                     imageUrls.Add(values[i]);
                 }
             }
-            
+
             _product.ImageUrls = imageUrls;
-            _productService.AddProduct(_product,User.Identity.Name);
-            return Json("Product Added Successfully", JsonRequestBehavior.AllowGet);
+            var Id = _productService.AddProduct(_product, User.Identity.Name);
+            return Json(new { Message = "Product Added Successfully", ProductId = Id }, JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
@@ -112,7 +112,7 @@ namespace CodeWarriors.IITDU.Controllers
             _product.CatagoryName = category;
             _product.SubCatagoryName = values[3];
             _product.Price = int.Parse(values[4]);
-            _product.Price = int.Parse(values[5]);
+            _product.AvailableCount = int.Parse(values[5]);
             _product.Manufacturer = values[6];
             List<String> imageUrls = new List<string>();
 
@@ -148,7 +148,7 @@ namespace CodeWarriors.IITDU.Controllers
             return Json("Product Added Successfully", JsonRequestBehavior.AllowGet);
         }
 
-        [HttpPost]
+        [HttpGet]
         public ActionResult GetFormElements(String category)
         {
             List<String> elementList = new List<string>()
@@ -167,9 +167,9 @@ namespace CodeWarriors.IITDU.Controllers
             else if (category == "Electronics")
             {
                 elementList.Add("Available Models");
-                
+
             }
-            else if(category=="Accessories")
+            else if (category == "Accessories")
             {
                 elementList.Add("Available Models");
             }

@@ -1,6 +1,9 @@
 ﻿app.controller("EditProductController", function ($scope, $http, $stateParams, uploadManager, $rootScope) {
+    $scope.files = [];
     init();
-    $scope.Product = {};
+    $scope.SortedFormList = [];
+    $scope.DynamicFormList = [];
+
     function init() {
         $http.get("/Account/IsAuthenticated").success(function (response) {
             if (!response) {
@@ -9,12 +12,41 @@
         });
         var productId = parseInt($stateParams.productId);
         $http.get("/Product/GetProduct?productId=" + productId).success(function (response) {
-            $scope.NewProduct = response.product;
-            $scope.NewProduct.CategoryName = response.CategoryName;
-            $scope.CopyObject($scope.Product, $scope.NewProduct);
+            //$scope.NewProduct = response.product;
+            //$scope.NewProduct.CategoryName = response.CategoryName;
+            for (var i = 0; i < response.product.length; i++) {
+                $scope.NewProduct.Dynamic[i] = response.product[i];
+            }
         });
     }
 
+    $scope.subcategories = [];
+    $scope.categories = [{ category: "Apparels", subcategories: ["Male", "Female", "Child"] },
+        { category: "Electronics", subcategories: ["Computers", "Mobiles", "Accessories"] },
+        { category: "Foods", subcategories: ["Fresh", "Dry", "Others"] },
+        { category: "Miscellaneous", subcategories: ["Gift Items", "Perfume", "Others"] }];
+    $scope.NewProduct = {};
+    $scope.Message = "";
+    $scope.ResetInfo = function () {
+        for (var i = 0; i < $scope.SortedFormList.length; i++) {
+            $scope.NewProduct.Dynamic[i] = $scope.Product.Dynamic[i];
+        }
+        $scope.files = [];
+    }
+
+    $scope.UpdateSubcategory = function () {
+        $scope.subcategories = $scope.NewProduct.Dynamic[1].subcategories;
+    }
+
+    $scope.UpdateFormFields = function () {
+        $http.get("/Product/GetFormElements?category=" + $scope.NewProduct.Dynamic[1].category).success(function (response) {
+            $scope.SortedFormList = response;
+            $scope.DynamicFormList = [];
+            for (var i = 6; i < response.length; i++) {
+                $scope.DynamicFormList.push(response[i]);
+            }
+        });
+    }
     $scope.UpdateProduct = function () {
         uploadManager.upload();
     }
@@ -31,7 +63,6 @@
 
 
     $scope.$on('fileAdded', function (e, call) {
-        $scope.files = [];
         $scope.files.push(call);
         $scope.$apply();
     });

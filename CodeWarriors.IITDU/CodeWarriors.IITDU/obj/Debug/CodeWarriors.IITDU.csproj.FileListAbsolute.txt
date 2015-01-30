@@ -171,3 +171,44 @@ C:\Users\user1\Desktop\Rifat\IITDU.Codewarriors\CodeWarriors.IITDU\CodeWarriors.
 C:\Users\user1\Desktop\Rifat\IITDU.Codewarriors\CodeWarriors.IITDU\CodeWarriors.IITDU\obj\Debug\CodeWarriors.IITDU.csprojResolveAssemblyReference.cache
 C:\Users\user1\Desktop\Rifat\IITDU.Codewarriors\CodeWarriors.IITDU\CodeWarriors.IITDU\obj\Debug\CodeWarriors.IITDU.dll
 C:\Users\user1\Desktop\Rifat\IITDU.Codewarriors\CodeWarriors.IITDU\CodeWarriors.IITDU\obj\Debug\CodeWarriors.IITDU.pdb
+F:\Codes\Code Warrior 15\final battle\IITDU.Codewarriors\CodeWarriors.IITDU\CodeWarriors.IITDU\bin\CodeWarriors.IITDU.dll.config
+F:\Codes\Code Warrior 15\final battle\IITDU.Codewarriors\CodeWarriors.IITDU\CodeWarriors.IITDU\bin\CodeWarriors.IITDU.dll
+F:\Codes\Code Warrior 15\final battle\IITDU.Codewarriors\CodeWarriors.IITDU\CodeWarriors.IITDU\bin\CodeWarriors.IITDU.pdb
+F:\Codes\Code Warrior 15\final battle\IITDU.Codewarriors\CodeWarriors.IITDU\CodeWarriors.IITDU\bin\EntityFramework.dll
+F:\Codes\Code Warrior 15\final battle\IITDU.Codewarriors\CodeWarriors.IITDU\CodeWarriors.IITDU\bin\EntityFramework.SqlServer.dll
+F:\Codes\Code Warrior 15\final battle\IITDU.Codewarriors\CodeWarriors.IITDU\CodeWarriors.IITDU\bin\Microsoft.AspNet.SignalR.Core.dll
+F:\Codes\Code Warrior 15\final battle\IITDU.Codewarriors\CodeWarriors.IITDU\CodeWarriors.IITDU\bin\Microsoft.Owin.dll
+F:\Codes\Code Warrior 15\final battle\IITDU.Codewarriors\CodeWarriors.IITDU\CodeWarriors.IITDU\bin\Microsoft.Owin.Host.SystemWeb.dll
+F:\Codes\Code Warrior 15\final battle\IITDU.Codewarriors\CodeWarriors.IITDU\CodeWarriors.IITDU\bin\Microsoft.Owin.Security.dll
+F:\Codes\Code Warrior 15\final battle\IITDU.Codewarriors\CodeWarriors.IITDU\CodeWarriors.IITDU\bin\Microsoft.Web.Infrastructure.dll
+F:\Codes\Code Warrior 15\final battle\IITDU.Codewarriors\CodeWarriors.IITDU\CodeWarriors.IITDU\bin\Newtonsoft.Json.dll
+F:\Codes\Code Warrior 15\final battle\IITDU.Codewarriors\CodeWarriors.IITDU\CodeWarriors.IITDU\bin\Ninject.dll
+F:\Codes\Code Warrior 15\final battle\IITDU.Codewarriors\CodeWarriors.IITDU\CodeWarriors.IITDU\bin\Ninject.Web.Common.dll
+F:\Codes\Code Warrior 15\final battle\IITDU.Codewarriors\CodeWarriors.IITDU\CodeWarriors.IITDU\bin\Ninject.Web.Mvc.dll
+F:\Codes\Code Warrior 15\final battle\IITDU.Codewarriors\CodeWarriors.IITDU\CodeWarriors.IITDU\bin\Owin.dll
+F:\Codes\Code Warrior 15\final battle\IITDU.Codewarriors\CodeWarriors.IITDU\CodeWarriors.IITDU\bin\System.Web.Helpers.dll
+F:\Codes\Code Warrior 15\final battle\IITDU.Codewarriors\CodeWarriors.IITDU\CodeWarriors.IITDU\bin\System.Web.Mvc.dll
+F:\Codes\Code Warrior 15\final battle\IITDU.Codewarriors\CodeWarriors.IITDU\CodeWarriors.IITDU\bin\System.Web.Razor.dll
+F:\Codes\Code Warrior 15\final battle\IITDU.Codewarriors\CodeWarriors.IITDU\CodeWarriors.IITDU\bin\System.Web.WebPages.Deployment.dll
+F:\Codes\Code Warrior 15\final battle\IITDU.Codewarriors\CodeWarriors.IITDU\CodeWarriors.IITDU\bin\System.Web.WebPages.dll
+F:\Codes\Code Warrior 15\final battle\IITDU.Codewarriors\CodeWarriors.IITDU\CodeWarriors.IITDU\bin\System.Web.WebPages.Razor.dll
+F:\Codes\Code Warrior 15\final battle\IITDU.Codewarriors\CodeWarriors.IITDU\CodeWarriors.IITDU\bin\WebActivatorEx.dll
+F:\Codes\Code Warrior 15\final battle\IITDU.Codewarriors\CodeWarriors.IITDU\CodeWarriors.IITDU\bin\EntityFramework.xml
+F:\Codes\Code Warrior 15\final battle\IITDU.Codewarriors\CodeWarriors.IITDU\CodeWarriors.IITDU\bin\EntityFramework.SqlServer.xml
+F:\Codes\Code Warrior 15\final battle\IITDU.Codewarriors\CodeWarriors.IITDU\CodeWarriors.IITDU\bin\Microsoft.AspNet.SignalR.Core.xml
+F:\Codes\Code Warrior 15\final battle\IITDU.Codewarriors\CodeWarriors.IITDU\CodeWarriors.IITDU\bin\Microsoft.Owin.xml
+F:\Codes\Code Warrior 15\final battle\IITDU.Codewarriors\CodeWarriors.IITDU\CodeWarriors.IITDU\bin\Microsoft.Owin.Host.SystemWeb.xml
+F:\Codes\Code Warrior 15\final battle\IITDU.Codewarriors\CodeWarriors.IITDU\CodeWarriors.IITDU\bin\Microsoft.Owin.Security.xml
+F:\Codes\Code Warrior 15\final battle\IITDU.Codewarriors\CodeWarriors.IITDU\CodeWarriors.IITDU\bin\Ninject.xml
+F:\Codes\Code Warrior 15\final battle\IITDU.Codewarriors\CodeWarriors.IITDU\CodeWarriors.IITDU\bin\Ninject.Web.Common.xml
+F:\Codes\Code Warrior 15\final battle\IITDU.Codewarriors\CodeWarriors.IITDU\CodeWarriors.IITDU\bin\Ninject.Web.Mvc.xml
+F:\Codes\Code Warrior 15\final battle\IITDU.Codewarriors\CodeWarriors.IITDU\CodeWarriors.IITDU\bin\Newtonsoft.Json.xml
+F:\Codes\Code Warrior 15\final battle\IITDU.Codewarriors\CodeWarriors.IITDU\CodeWarriors.IITDU\bin\System.Web.Helpers.xml
+F:\Codes\Code Warrior 15\final battle\IITDU.Codewarriors\CodeWarriors.IITDU\CodeWarriors.IITDU\bin\System.Web.Mvc.xml
+F:\Codes\Code Warrior 15\final battle\IITDU.Codewarriors\CodeWarriors.IITDU\CodeWarriors.IITDU\bin\System.Web.Razor.xml
+F:\Codes\Code Warrior 15\final battle\IITDU.Codewarriors\CodeWarriors.IITDU\CodeWarriors.IITDU\bin\System.Web.WebPages.xml
+F:\Codes\Code Warrior 15\final battle\IITDU.Codewarriors\CodeWarriors.IITDU\CodeWarriors.IITDU\bin\System.Web.WebPages.Deployment.xml
+F:\Codes\Code Warrior 15\final battle\IITDU.Codewarriors\CodeWarriors.IITDU\CodeWarriors.IITDU\bin\System.Web.WebPages.Razor.xml
+F:\Codes\Code Warrior 15\final battle\IITDU.Codewarriors\CodeWarriors.IITDU\CodeWarriors.IITDU\obj\Debug\CodeWarriors.IITDU.csprojResolveAssemblyReference.cache
+F:\Codes\Code Warrior 15\final battle\IITDU.Codewarriors\CodeWarriors.IITDU\CodeWarriors.IITDU\obj\Debug\CodeWarriors.IITDU.dll
+F:\Codes\Code Warrior 15\final battle\IITDU.Codewarriors\CodeWarriors.IITDU\CodeWarriors.IITDU\obj\Debug\CodeWarriors.IITDU.pdb
