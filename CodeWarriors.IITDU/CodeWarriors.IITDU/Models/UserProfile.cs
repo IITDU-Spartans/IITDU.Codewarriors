@@ -19,5 +19,6 @@ namespace CodeWarriors.IITDU.Models
         public String MobileNumber { get; set; }
         public String About { get; set; }
         public String ImageUrl { get; set; }
+        public double AverageRating { get; set; }
     }
 }

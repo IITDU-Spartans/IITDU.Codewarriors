@@ -1,5 +1,5 @@
 
-app.controller("AddProductController", function ($, $scope, $rootScope, $http, $location, addProductFactory, uploadManager) {
+app.controller("AddProductController", function ($, $scope, $rootScope, $http, $location, uploadManager) {
     $scope.files = [];
     init();
     $scope.SortedFormList = [];
@@ -25,6 +25,7 @@ app.controller("AddProductController", function ($, $scope, $rootScope, $http, $
         for (var i = 0; i < $scope.SortedFormList.length; i++) {
             $scope.NewProduct.Dynamic[i] = '';
         }
+        uploadManager.clear();
         $scope.files = [];
     }
 

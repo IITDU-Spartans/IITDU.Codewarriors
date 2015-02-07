@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.EnterpriseServices;
 using System.Linq;
+using System.Threading;
 using System.Web;
 using CodeWarriors.IITDU.Models;
 using CodeWarriors.IITDU.Repository;
@@ -22,10 +23,13 @@ namespace CodeWarriors.IITDU.Service
         private ProductImageRepository _productImageRepository;
         private Purchase _purchase;
         private ProductImage _productImage;
+        private SearchService _searchService;
+        private SearchRepository _searchRepository;
+
         public ProductService(UserRepository userRepository, ProductRepository productRepository, SaleRepository saleRepository,
             CategoryRepository catagoryRepository, Product product, Sale sale, Category category,
             PurchaseRepository purchaseRepository, ProductImageRepository productImageRepository, Purchase purchase,
-            ProductImage productImage)
+            ProductImage productImage, SearchService searchService)
         {
             _userRepository = userRepository;
             _productRepository = productRepository;
@@ -38,6 +42,7 @@ namespace CodeWarriors.IITDU.Service
             _purchase = purchase;
             _productImageRepository = productImageRepository;
             _productImage = productImage;
+            _searchService = searchService;
         }
         public int AddProduct(Product product, string userName)
         {
@@ -47,9 +52,14 @@ namespace CodeWarriors.IITDU.Service
             _sale.UserId = _userRepository.GetUserId(userName);
             _sale.UploadDateTime = DateTime.Now;
             _saleRepository.Add(_sale);
+            product.ProductId = _sale.ProductId;
+            _searchService.CreateIndex();
+            Thread thread = new Thread(() => NotifyUsers(product));
+            thread.Start();
             //NotifyUsers(product);
             return _sale.ProductId;
         }
+
         public List<Product> GetProducts(int index, int size)
         {
             return _productRepository.GetProducts(index, size);
@@ -59,6 +69,7 @@ namespace CodeWarriors.IITDU.Service
             var product = _productRepository.Get(productId);
             var sale = _saleRepository.GetSaleByProductId(productId);
             _productImageRepository.RemoveAllImagesByProductId(productId);
+            _searchService.DeleteProductFromIndex(productId);
             return _productRepository.Remove(product) && _saleRepository.Remove(sale);
         }
 
@@ -78,7 +89,7 @@ namespace CodeWarriors.IITDU.Service
 
         public bool UpdateProduct(Product product)
         {
-            return _productRepository.Update(_product);
+            return _productRepository.Update(product);
         }
 
         public String GetProductCategory(int categoryId)
@@ -151,5 +162,47 @@ namespace CodeWarriors.IITDU.Service
             List<User> users = wishedProductRepository.GetAllUser(product.SubCatagoryName);
             mailService.SendMail(users, product);
         }
+
+        public List<Product> GetRecommendedProducts(int userId)
+        {
+            List<Product> recommendedProducts = new List<Product>();
+            WishedProductRepository wishedProductRepository = new WishedProductRepository(new DatabaseContext());
+            recommendedProducts.AddRange(wishedProductRepository.GetTopRatedProducts(userId));
+            recommendedProducts.AddRange(_purchaseRepository.GetTopRatedProducts(userId));
+
+            return recommendedProducts.OrderByDescending(model => model.AverageRate).Distinct().Take(4).ToList();
+        }
+
+        public List<Product> GetPurchasedProducts(String email)
+        {
+            var idList = _purchaseRepository.GetAll().Where(e => e.UserId == _userRepository.GetUserId(email)).Select(e=>e.ProductId).ToList();
+            List<Product> products= new List<Product>();
+            foreach (var id in idList)
+            {
+                products.Add(_productRepository.Get(id));
+            }
+            return products;
+        }
+
+        public List<Product> GetSoldProducts(string email)
+        {
+            int userId = _userRepository.GetUserId(email);
+            var idList = from sale in _saleRepository.GetAll()
+                from purchase in _purchaseRepository.GetAll()
+                where sale.ProductId == purchase.ProductId && sale.UserId == userId
+                select sale.ProductId;
+            List<Product> products = new List<Product>();
+            foreach (var id in idList)
+            {
+                products.Add(_productRepository.Get(id));
+            }
+            return products;
+        }
+        public int GetBuyerId(int orderId)
+        {
+            ProductOrderRepository productOrderRepo = new ProductOrderRepository(new DatabaseContext());
+            return productOrderRepo.Get(orderId).BuyerId;
+        }
+
     }
 }

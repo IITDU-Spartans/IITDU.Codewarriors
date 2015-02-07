@@ -12,37 +12,24 @@ namespace CodeWarriors.IITDU.Service
         private readonly RatingRepository _ratingRepository;
         private Rating _rating;
         private readonly UserRepository _userRepository;
-        private readonly ProductRepository _productRepository;
-        private readonly SaleRepository _saleRepository;
-        public RatingService(RatingRepository ratingRepository, ProductRepository productRepository, UserRepository userRepository, SaleRepository saleRepository, Rating rating)
+        private ProfileRepository _profileRepository;
+        public RatingService(RatingRepository ratingRepository, UserRepository userRepository, Rating rating, ProfileRepository profileRepository)
         {
             _ratingRepository = ratingRepository;
             _rating = rating;
             _userRepository = userRepository;
-            _productRepository = productRepository;
-            _saleRepository = saleRepository;
+            _profileRepository = profileRepository;
         }
-        public double AddRating(int productId, int rating, string userName)
+        public double AddRating(int sellerId, int rating, string userName)
         {
-            var product = _productRepository.GetProductByProductId(productId);
-            var userId = _userRepository.GetUserId(userName);
-            if (_saleRepository.GetUserId(productId) != userId)
-            {
-                var existingRating = _ratingRepository.GetRatingByUserId(userId);
-                if (existingRating != null)
-                {
-                    product.AverageRate = 2 * product.AverageRate - existingRating.Rate;
-                    _ratingRepository.Remove(existingRating);
-                }
-                _rating.Rate = rating;
-                _rating.ProductId = productId;
-                _rating.UserId = userId;
-                _ratingRepository.Add(_rating);
-                product.AverageRate = _ratingRepository.GetAll().Average(e => e.Rate);
-                _productRepository.Update(product);
-                
-            }
-            return product.AverageRate;
+            var seller = _profileRepository.Get(sellerId);
+            _rating.BuyerId = _userRepository.GetUserId(userName);
+            _rating.SellerId = sellerId;
+            _rating.Rate = rating;
+            _ratingRepository.Add(_rating);
+            seller.AverageRating = _ratingRepository.GetAll().Average(e=>e.Rate);
+            _profileRepository.Update(seller, sellerId);
+            return seller.AverageRating;
         }
 
     }

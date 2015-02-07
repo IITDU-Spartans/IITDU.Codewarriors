@@ -11,8 +11,8 @@ namespace CodeWarriors.IITDU.Models
     {
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int RatingId { get; set; }
-        public int UserId { get; set; }
-        public int ProductId { get; set; }
-        public int  Rate { get; set; }
+        public int BuyerId { get; set; }
+        public int SellerId { get; set; }
+        public int Rate { get; set; }
     }
 }

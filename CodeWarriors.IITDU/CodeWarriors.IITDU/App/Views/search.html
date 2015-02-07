@@ -1,0 +1,23 @@
+﻿<div class="col-md-12 top-bottom-padding">
+    <div class="" scroll="onScroll()">
+        <div class="well">
+            Filter Products By
+            <span class="pull-right">Product Name: <input class="input-xs" type="text" data-ng-model="NameFilter.Info.ProductName" /></span>
+            <span class="pull-right">
+                Price Range: <input class="input-xs" type="number" data-ng-model="range.minPrice" placeholder="From" />
+                &nbsp;<input class="input-xs" type="number" data-ng-model="range.maxPrice" placeholder="To" />
+            </span>
+        </div>
+        <div class="well">
+            Sort Products By
+            <button data-ng-click="sortparam = 'Info.Price'; reverse=!reverse" class="btn btn-default pull-right">Price</button>
+            <button data-ng-click="sortparam = 'Info.PurchaseCount'; reverse=!reverse" class="btn btn-default pull-right">Most Sold</button>
+        </div>
+        <div data-ng-repeat="p in Products | filter: NameFilter:strict| filter: FilterByPriceRange | orderBy:sortparam:reverse">
+            <product-item info="p.Info" add-to-cart="addToCart(productId)" add-to-wishlist="addToWishlist(productId)" image="p.ImageUrl"></product-item>
+        </div>
+        <!--<button scroll="onScroll()">Hello!</button>-->
+        <!--<button class="center btn btn-default" data-ng-click="onScroll()">Load More!!</button>-->
+    </div>
+
+</div>

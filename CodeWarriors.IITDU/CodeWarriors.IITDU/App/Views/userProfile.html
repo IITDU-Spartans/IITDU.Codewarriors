@@ -1,0 +1,45 @@
+﻿<div class="col-md-4 top-bottom-padding">
+    <div class="form-group">
+        <div class="col-md-12">
+            <div class="fileinput-preview thumbnail imageProfile img-thumbnail" data-trigger="fileinput">
+                <img data-ng-src="/{{ProfileInfo.ImageUrl}}" alt="">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-md-6 top-bottom-padding">
+    <table class="table table-hover table-bordered table-striped">
+        <tr>
+            <td>Name</td>
+            <td>{{ProfileInfo.FirstName}} {{ProfileInfo.LastName}}</td>
+        </tr>
+        <tr>
+            <td>Gender</td>
+            <td>{{ProfileInfo.Gender}}</td>
+        </tr>
+        <tr>
+            <td>Age</td>
+            <td>{{ProfileInfo.Age}}</td>
+        </tr>
+        <tr>
+            <td>Mobile Number</td>
+            <td>{{ProfileInfo.MobileNumber}}</td>
+        </tr>
+        <tr>
+            <td>Location</td>
+            <td>{{ProfileInfo.Location}}</td>
+        </tr>
+        <tr>
+            <td>About</td>
+            <td>{{ProfileInfo.About}}</td>
+        </tr>
+        <tr>
+            <td>Rating</td>
+            <td>{{ProfileInfo.AverageRating}}</td>
+        </tr>
+    </table>
+</div>
+
+<div class="col-lg-7 well">
+    <iframe class="col-lg-12" style="height: 400px" data-ng-src="{{MapSource}}"></iframe>
+</div>

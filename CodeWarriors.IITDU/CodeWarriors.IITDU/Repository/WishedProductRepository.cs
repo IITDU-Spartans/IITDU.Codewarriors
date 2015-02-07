@@ -74,7 +74,7 @@ namespace CodeWarriors.IITDU.Repository
         //public List<Product>GetTopRatedProducts(int userId)
         //{
         //    var sql = from wishedProduct in _databaseContext.WishedProducts
-        //              join product in _databaseContext.Products on wishedProduct.ProductId equals product.ProductId
+        //              join product in _databaseContext.Products on wishedProduct.SellerId equals product.SellerId
         //              select product.SubCatagoryName;
             
         //    List<Product>topRatedProducts=new List<Product>();
@@ -86,6 +86,28 @@ namespace CodeWarriors.IITDU.Repository
 
 
         //}
+
+        public List<Product> GetTopRatedProducts(int userId)
+        {
+            var SubCatagoryNames = from wishedProduct in _databaseContext.WishedProducts
+                                   join product in _databaseContext.Products on wishedProduct.ProductId equals
+                                       product.ProductId
+                                   select product.SubCatagoryName;
+
+            List<Product> topRatedProducts = new List<Product>();
+
+            foreach (var subCatagoryName in SubCatagoryNames)
+            {
+                var products = from product in _databaseContext.Products
+                               where product.SubCatagoryName.Equals(subCatagoryName)
+                               select product;
+                topRatedProducts.AddRange(products.Distinct().ToList());
+            }
+
+            return topRatedProducts.OrderByDescending(model => model.AverageRate).Distinct().ToList();
+
+
+        }
 
     }
 }

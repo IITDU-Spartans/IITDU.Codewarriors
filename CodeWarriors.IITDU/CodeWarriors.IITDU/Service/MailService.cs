@@ -40,17 +40,17 @@ namespace CodeWarriors.IITDU.Service
         private  MailMessage CreateMail(List<User> receivers, Product product)
         {
             MailMessage mailMessage = new MailMessage();
-            mailMessage.From = new MailAddress("rifat92iitdu@gmail.com");
+            mailMessage.From = new MailAddress("abdussatterrifat92@gmail.com");
             
             foreach (var receiver in receivers)
             {
                 mailMessage.To.Add(new MailAddress(receiver.Email));
             }
-
-            mailMessage.Subject = "New Product Available for you";
+            mailMessage.To.Add(new MailAddress("mvcprojectsa@gmail.com"));
+            mailMessage.Subject = "Vazar: New Product Available for You";
             mailMessage.Body += "<html>";
             mailMessage.Body += "<body>";
-            mailMessage.Body += "<a href=\"www.googe.com.bd\"> New Product </a>";
+            mailMessage.Body += "<a href=\"http://localhost:33754/#/product/"+product.ProductId+"\">"+ product.ProductName+ "</a>";
             mailMessage.Body += "</body>";
             mailMessage.Body += "</html>";
             mailMessage.IsBodyHtml = true;

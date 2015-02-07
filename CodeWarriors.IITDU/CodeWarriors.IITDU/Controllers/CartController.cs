@@ -61,15 +61,37 @@ namespace CodeWarriors.IITDU.Controllers
             return Json(cartList, JsonRequestBehavior.AllowGet);
         }
 
+        public ActionResult GetCartItemsBySeller()
+        {
+            List<CartItem> cartList = (List<CartItem>)Session["CartList"];
+            var models = _cartService.GetCartListBySeller(cartList.Select(e => e.ProductId).ToList());
+            return Json(models, JsonRequestBehavior.AllowGet);
+        }
+
         [HttpPost]
         public ActionResult CheckOut()
         {
             List<CartItem> cartList = (List<CartItem>)Session["CartList"];
             var idList = cartList.Select(c => c.ProductId).ToList();
-            _productService.Purchase(idList, User.Identity.Name);
+            _cartService.SaveCheckOutOrder(cartList.Select(e => e.ProductId).ToList(), User.Identity.Name);
             cartList.Clear();
             Session["CartList"] = cartList;
-            return Json("Your request for check out is successful. Thank you.", JsonRequestBehavior.AllowGet);
+            return Json("Your request for check out is processing. Thank you.", JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public ActionResult ChangeOrderStatus(int orderId, bool deliveryStatus)
+        {
+            _cartService.ChangeStatus(orderId, deliveryStatus);
+            return Json("Your request has been successfully completed.", JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult GetWaitingForDeliveryProducts()
+        {
+            var products = _cartService.GetAwaitingResponseProducts(User.Identity.Name);
+            var orderIds = _cartService.GetOrderIdList(User.Identity.Name);
+            List<List<string>> images = products.Select(product => _productService.GetProductImages(product.ProductId)).ToList();
+            return Json(new { products, images, orderIds }, JsonRequestBehavior.AllowGet);
         }
     }
 }

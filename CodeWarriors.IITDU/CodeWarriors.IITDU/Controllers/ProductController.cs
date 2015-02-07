@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.UI.WebControls;
 using CodeWarriors.IITDU.Models;
+using CodeWarriors.IITDU.Repository;
 using CodeWarriors.IITDU.Service;
 using CodeWarriors.IITDU.ViewModels;
 
@@ -75,6 +76,8 @@ namespace CodeWarriors.IITDU.Controllers
         public ActionResult GetProduct(int productId)
         {
             var product = _productService.GetProduct(productId);
+            product.AverageRate++;
+            _productService.UpdateProduct(product);
             var owner = false;
             if (!string.IsNullOrEmpty(User.Identity.Name))
                 owner = _productService.IsOwnProduct(productId, User.Identity.Name);
@@ -110,61 +113,25 @@ namespace CodeWarriors.IITDU.Controllers
         }
 
         [HttpPost]
-        public ActionResult UpdateProduct(List<String> values)
+        public ActionResult UpdateProduct(Product product)
         {
-            var category = values[2];
-            _product.ProductId = int.Parse(values[0]);
-            _product.ProductName = values[1];
-            _product.CatagoryName = category;
-            _product.SubCatagoryName = values[3];
-            _product.Price = int.Parse(values[4]);
-            _product.AvailableCount = int.Parse(values[5]);
-            _product.Manufacturer = values[6];
-            List<String> imageUrls = new List<string>();
-
-            if (category == "Apparels")
-            {
-                _product.AvailableSizes = values[7];
-                _product.Description = values[8];
-                for (int i = 9; i < values.Count(); i++)
-                {
-                    imageUrls.Add(values[i]);
-                }
-            }
-            else if (category == "Electronics" || category == "Accessories")
-            {
-                _product.AvailableModels = values[7];
-                _product.Description = values[8];
-                for (int i = 9; i < values.Count(); i++)
-                {
-                    imageUrls.Add(values[i]);
-                }
-            }
-            else
-            {
-                _product.Description = values[7];
-                for (int i = 8; i < values.Count(); i++)
-                {
-                    imageUrls.Add(values[i]);
-                }
-            }
-
-            _productService.UpdateProduct(_product);
-            _productService.SaveProductImages(imageUrls, _product.ProductId);
-            return Json("Product Added Successfully", JsonRequestBehavior.AllowGet);
+            _productService.UpdateProduct(product);
+            return Json("Product Updated Successfully", JsonRequestBehavior.AllowGet);
         }
         [AllowAnonymous]
         public ActionResult GetProductByCategory(String category, int index, int size)
         {
             var products = _productService.GetProductByCatagoryName(category, index, size);
-            return Json(products, JsonRequestBehavior.AllowGet);
+            List<List<string>> images = products.Select(product => _productService.GetProductImages(product.ProductId)).ToList();
+            return Json(new { products, images }, JsonRequestBehavior.AllowGet);
         }
 
         [AllowAnonymous]
         public ActionResult GetProductBySubCategory(String category, String subCategory, int index, int size)
         {
             var products = _productService.GetProductBySubCatagoryName(category, subCategory, index, size);
-            return Json(products, JsonRequestBehavior.AllowGet);
+            List<List<string>> images = products.Select(product => _productService.GetProductImages(product.ProductId)).ToList();
+            return Json(new { products, images }, JsonRequestBehavior.AllowGet);
         }
         [HttpGet]
         public ActionResult GetFormElements(String category)
@@ -195,5 +162,58 @@ namespace CodeWarriors.IITDU.Controllers
             return Json(elementList, JsonRequestBehavior.AllowGet);
         }
 
+
+        public ActionResult GetPurchasedProducts()
+        {
+            var products = _productService.GetPurchasedProducts(User.Identity.Name);
+            List<List<string>> images = products.Select(product => _productService.GetProductImages(product.ProductId)).ToList();
+            return Json(new { products, images }, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult GetSoldProducts()
+        {
+            var products = _productService.GetSoldProducts(User.Identity.Name);
+            List<List<string>> images = products.Select(product => _productService.GetProductImages(product.ProductId)).ToList();
+            return Json(new { products, images }, JsonRequestBehavior.AllowGet);
+        }
+        [AllowAnonymous]
+        public JsonResult GetRecommendedProducts()
+        {
+            UserRepository userRepository = new UserRepository(new DatabaseContext());
+            var products = _productService.GetRecommendedProducts(userRepository.GetUserId(User.Identity.Name));
+            List<List<string>> images = products.Select(product => _productService.GetProductImages(product.ProductId)).ToList();
+            return Json(new { products, images }, JsonRequestBehavior.AllowGet);
+        }
+        [AllowAnonymous]
+        public JsonResult GetRelevantProducts(int productId)
+        {
+            Product currentProduct = _productService.GetProduct(productId);
+            var products = _productService.GetProductBySubCatagoryName(currentProduct.CatagoryName, currentProduct.SubCatagoryName, 0, 100).ToList();
+            products.Remove(currentProduct);
+            List<List<string>> images = products.Select(product => _productService.GetProductImages(product.ProductId)).ToList();
+            return Json(new { products, images }, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetProductGallaryImages()
+        {
+            var products = _productService.GetAllProduct();
+            List<List<string>> images = products.Select(product => _productService.GetProductImages(product.ProductId)).ToList();
+            return Json(images, JsonRequestBehavior.AllowGet);
+        }
+
+        [AllowAnonymous]
+        public JsonResult GetBuyerId(int orderId)
+        {
+            return Json(_productService.GetBuyerId(orderId), JsonRequestBehavior.AllowGet);
+        }
+
+        [AllowAnonymous]
+        public JsonResult GetGroupedProductsByBuyers()
+        {
+            UserRepository userRepository = new UserRepository(new DatabaseContext());
+            ProductOrderService productOrderService = new ProductOrderService();
+            List<BuyerWithProducts> productsGroupByBuyers = productOrderService.GetProductsWithBuyers(userRepository.GetUserId(User.Identity.Name));
+            return Json(productsGroupByBuyers, JsonRequestBehavior.AllowGet);
+        }
     }
 }

@@ -45,6 +45,13 @@
     <Reference Include="EntityFramework.SqlServer">
       <HintPath>..\packages\EntityFramework.6.1.2\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib">
+      <HintPath>..\packages\SharpZipLib.0.86.0\lib\20\ICSharpCode.SharpZipLib.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Lucene.Net">
+      <HintPath>..\packages\Lucene.Net.3.0.3\lib\NET40\Lucene.Net.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.AspNet.SignalR.Core">
       <HintPath>..\packages\Microsoft.AspNet.SignalR.Core.2.0.0\lib\net45\Microsoft.AspNet.SignalR.Core.dll</HintPath>
     </Reference>
@@ -137,8 +144,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\MapController.cs" />
     <Compile Include="Controllers\OAuthController.cs" />
     <Compile Include="Controllers\RatingController.cs" />
+    <Compile Include="Controllers\ReviewController.cs" />
+    <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\UploadController.cs" />
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="Controllers\CartController.cs" />
@@ -153,8 +163,10 @@
     <Compile Include="Hubs\Test.cs" />
     <Compile Include="Models\CartItem.cs" />
     <Compile Include="Models\Category.cs" />
+    <Compile Include="Models\CommentModel.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\ProductImage.cs" />
+    <Compile Include="Models\ProductOrder.cs" />
     <Compile Include="Models\Purchase.cs" />
     <Compile Include="Models\Rating.cs" />
     <Compile Include="Models\Review.cs" />
@@ -176,26 +188,34 @@
     <Compile Include="Repository\ICategoryRepository.cs" />
     <Compile Include="Repository\IProductRepository.cs" />
     <Compile Include="Repository\IRepository.cs" />
+    <Compile Include="Repository\ISearchRepository.cs" />
     <Compile Include="Repository\ProductImageRepository.cs" />
+    <Compile Include="Repository\ProductOrderRepository.cs" />
     <Compile Include="Repository\ProductRepository.cs" />
     <Compile Include="Repository\ProfileRepository.cs" />
     <Compile Include="Repository\PurchaseRepository.cs" />
     <Compile Include="Repository\RatingRepository.cs" />
     <Compile Include="Repository\ReviewRepository.cs" />
     <Compile Include="Repository\SaleRepository.cs" />
+    <Compile Include="Repository\SearchRepository.cs" />
     <Compile Include="Repository\UserRepository.cs" />
     <Compile Include="Repository\WishedProductRepository.cs" />
     <Compile Include="Service\AccountService.cs" />
     <Compile Include="Service\CartService.cs" />
     <Compile Include="Service\IAccountService.cs" />
+    <Compile Include="Service\ISearchService.cs" />
     <Compile Include="Service\MailService.cs" />
+    <Compile Include="Service\ProductOrderService.cs" />
     <Compile Include="Service\ProductService.cs" />
     <Compile Include="Service\RatingService.cs" />
+    <Compile Include="Service\ReviewService.cs" />
+    <Compile Include="Service\SearchService.cs" />
     <Compile Include="Service\WishListService.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Utility\Encryption.cs" />
     <Compile Include="ViewModels\AccountViewModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="ViewModels\CartModel.cs" />
     <Compile Include="ViewModels\ProductViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -203,31 +223,41 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Content Include="App\app.js" />
-    <Content Include="App\Controllers\AppController.js" />
+    <Content Include="App\AppTest\angular-mocks.js" />
+    <Content Include="App\AppTest\angular-resource.js" />
+    <Content Include="App\AppTest\karma.config.js" />
+    <Content Include="App\AppTest\profile\profile.tests.js" />
     <Content Include="App\Controllers\AddProductController.js" />
-    <Content Include="App\Controllers\WishListController.js" />
+    <Content Include="App\Controllers\AppController.js" />
+    <Content Include="App\Controllers\CarouselController.js" />
     <Content Include="App\Controllers\CartController.js" />
     <Content Include="App\Controllers\EditProductController.js" />
+    <Content Include="App\Controllers\HomeController.js" />
     <Content Include="App\Controllers\MyProductController.js" />
     <Content Include="App\Controllers\ProductController.js" />
     <Content Include="App\Controllers\ProductListController.js" />
+    <Content Include="App\Controllers\UserProfileController.js" />
     <Content Include="App\Controllers\ProfileController.js" />
+    <Content Include="App\Controllers\SearchController.js" />
+    <Content Include="App\Controllers\WishListController.js" />
     <Content Include="App\Directives\ProductItemDirective.js" />
     <Content Include="App\Directives\ScrollDirective.js" />
     <Content Include="App\Directives\UploadDirective.js" />
     <Content Include="App\Factories\AddProduct.js" />
     <Content Include="App\Factories\UploadFactory.js" />
     <Content Include="App\Services\ProductService.js" />
-    <Content Include="App\Views\error.html" />
-    <Content Include="App\Views\wishlist.html" />
-    <Content Include="App\Views\editProduct.html" />
     <Content Include="App\Views\addProduct.html" />
     <Content Include="App\Views\cart.html" />
-    <Content Include="App\Views\product.html" />
-    <Content Include="App\Views\myProducts.html" />
-    <Content Include="App\Views\products.html" />
+    <Content Include="App\Views\editProduct.html" />
+    <Content Include="App\Views\error.html" />
     <Content Include="App\Views\home.html" />
+    <Content Include="App\Views\myProducts.html" />
+    <Content Include="App\Views\product.html" />
+    <Content Include="App\Views\products.html" />
+    <Content Include="App\Views\userProfile.html" />
     <Content Include="App\Views\profile.html" />
+    <Content Include="App\Views\search.html" />
+    <Content Include="App\Views\wishlist.html" />
     <Content Include="Content\bootstrap\css\bootstrap-theme.css" />
     <Content Include="Content\bootstrap\css\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap\css\bootstrap.css" />
@@ -244,9 +274,11 @@
     <Content Include="Scripts\angular-ui-router.js" />
     <Content Include="Scripts\angular.min.js" />
     <Content Include="Scripts\fileinput.js" />
+    <Content Include="Scripts\googleMap.js" />
     <Content Include="Scripts\jasmine\jasmine-html.js" />
     <Content Include="Scripts\jasmine\jasmine.css" />
     <Content Include="Scripts\jasmine\jasmine.js" />
+    <Content Include="App\AppTest\npm-debug.log" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -272,6 +304,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </Content>
     <Content Include="Views\Web.config" />
+    <Content Include="Views\Map\ShowMap.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

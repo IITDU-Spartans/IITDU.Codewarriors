@@ -10,12 +10,14 @@
     $scope.EditMode = false;
     $scope.ProfileInfo = {};
     $scope.NewProfileInfo = {};
+    $scope.MapSource = "";
     $scope.Message = "";
     $http.get("/Profile/GetProfileInformation").success(function (response) {
         $scope.ProfileInfo = response;
         if ($scope.ProfileInfo.ImageUrl == null) {
             $scope.ProfileInfo.ImageUrl = "Upload//default.jpg";
         }
+        $scope.MapSource = "/Map/ShowMap?location=" + $scope.ProfileInfo.Location;
     });
 
     $scope.EditProfile = function () {
@@ -30,6 +32,7 @@
 
     $scope.ResetInfo = function () {
         $scope.CopyProfileObject($scope.NewProfileInfo, $scope.ProfileInfo);
+        //uploadManager.clear();
     }
 
     $scope.UpdateProfile = function () {
@@ -48,6 +51,7 @@
         a.Location = b.Location;
         a.Gender = b.Gender;
         a.MobileNumber = b.MobileNumber;
+        a.ImageUrl = b.ImageUrl;
     }
 
 
@@ -61,11 +65,12 @@
 
     $scope.$on('uploadProfileDone', function (e, call) {
         $scope.CopyProfileObject($scope.NewProfileInfo, $scope.ProfileInfo);
-        $scope.NewProfileInfo.ImageUrl = uploadManager.files()[0];
-        $http.post("/Profile/UpdateProfile", $scope.NewProfileInfo).success(function(response) {
+        var allFiles = uploadManager.files();
+        $scope.NewProfileInfo.ImageUrl = allFiles[allFiles.length - 1];
+        $http.post("/Profile/UpdateProfilePicture", $scope.NewProfileInfo).success(function (response) {
             alert('done');
         });
-        
+
     });
 
 

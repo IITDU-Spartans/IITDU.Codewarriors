@@ -11,7 +11,6 @@ namespace CodeWarriors.IITDU.Models
     {
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ReviewId { get; set; }
-        public int RateId { get; set; }
         public String ReviewDescription { get; set; }
         public DateTime ReviewDateTime { get; set; }
         public int UserId { get; set; }

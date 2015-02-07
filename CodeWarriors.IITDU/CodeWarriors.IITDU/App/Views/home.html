@@ -1,3 +1,20 @@
-﻿<div class="col-md-6 top-bottom-padding">
-    Home
+﻿<div class="col-md-12 top-bottom-padding">
+    <div class="fixed-gallery-height">
+        <div class="col-md-4" data-ng-repeat="image in Images"
+             style="height: 250px !important;">
+            <carousel interval="3000">
+                <slide data-ng-repeat="im in image" active="slide.active" class="gallary">
+                    <img data-ng-src="/Upload/{{im}}">
+                </slide>
+            </carousel>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <h3 data-ng-show="RecommendedProducts.length>0">Reccomended products for you....</h3>
+        <div data-ng-show="RecommendedProducts.length>0">
+            <div data-ng-repeat="rp in RecommendedProducts">
+                <product-item info="rp.Info" add-to-cart="addToCart(productId)" add-to-wishlist="addToWishlist(productId)" image="rp.ImageUrl"></product-item>
+            </div>
+        </div>
+    </div>
 </div>

@@ -33,7 +33,12 @@
                         }
                         <li>
                             <form class="navbar-form navbar-right">
-                                <input type="text" class="form-control col-lg-8" placeholder="Search">
+                                <div class="input-group">
+                                    <input type="text" data-ng-model="SearchText" class="form-control" placeholder="Search for..">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-default" type="button" data-ng-click="SearchProduct()">Go!</button>
+                                    </span>
+                                </div>
                             </form>
                         </li>
                     </ul>
@@ -65,8 +70,8 @@
                 </div>
             </div>
         </nav>
+        <ui-view></ui-view>
     </div>
-    <ui-view></ui-view>
 </div>
 <div class="navbar navbar-fixed-bottom">
     <div class="footer">
@@ -81,6 +86,7 @@
 <script src="~/Content/bootstrap/js/bootstrap.min.js"></script>
 <script src="~/Scripts/jquery-ui.js"></script>
 <script src="~/Scripts/angular.min.js"></script>
+<script src="https://cdn.rawgit.com/lavinjj/angular-responsive/master/src/responsive-directive.js"></script>
 <script src="~/Scripts/angular-ui-router.js"></script>
 <script src="~/Scripts/ui-bootstrap-tpls-0.12.0.min.js"></script>
 <script src="~/Scripts/fileinput.js"></script>
@@ -88,6 +94,7 @@
 <script src="~/Scripts/jquery.fileupload-jquery-ui.js"></script>
 <script src="~/App/app.js"></script>
 <script src="~/App/Controllers/AppController.js"></script>
+<script src="~/App/Controllers/HomeController.js"></script>
 <script src="~/App/Controllers/ProfileController.js"></script>
 <script src="~/App/Services/ProductService.js"></script>
 <script src="~/App/Factories/AddProduct.js"></script>
@@ -101,4 +108,7 @@
 <script src="~/App/Directives/UploadDirective.js"></script>
 <script src="~/App/Factories/UploadFactory.js"></script>
 <script src="~/App/Controllers/WishListController.js"></script>
+<script src="~/App/Controllers/UserProfileController.js"></script>
 <script src="~/App/Directives/ScrollDirective.js"></script>
+<script src="~/App/Controllers/SearchController.js"></script>
+<script src="~/App/Controllers/CarouselController.js"></script>

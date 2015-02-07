@@ -24,7 +24,7 @@ namespace CodeWarriors.IITDU.Service
             _wishedProduct = wishedProduct;
         }
 
-        public void AddWishedProduct(int productId, string userName)
+        public string AddWishedProduct(int productId, string userName)
         {
             var userId = _userRepository.GetUserId(userName);
             var wishList = _wishedProductRepository.GetAllByUserId(userId);
@@ -36,7 +36,9 @@ namespace CodeWarriors.IITDU.Service
                 product.WishCount++;
                 _wishedProductRepository.Add(_wishedProduct);
                 _productRepository.Update(product);
+                return "Product added to Wishlist successfully";
             }
+            return "Product could not be added to Wishlist";
         }
 
         public List<WishedProduct> GetWishList(string userName)

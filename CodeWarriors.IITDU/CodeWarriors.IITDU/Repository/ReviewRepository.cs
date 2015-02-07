@@ -41,5 +41,10 @@ namespace CodeWarriors.IITDU.Repository
         {
             return _databaseContext.Reviews.Find(id);
         }
+
+        public List<Review> GetReviewsByProductId(int productId)
+        {
+            return _databaseContext.Reviews.Where(e => e.ProductId == productId).ToList();
+        }
     }
 }

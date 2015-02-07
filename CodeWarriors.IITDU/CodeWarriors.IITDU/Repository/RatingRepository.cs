@@ -7,10 +7,10 @@ using CodeWarriors.IITDU.Models;
 
 namespace CodeWarriors.IITDU.Repository
 {
-    public class RatingRepository:IRepository<Rating>
+    public class RatingRepository : IRepository<Rating>
     {
         private readonly DatabaseContext _databaseContext;
-        public  RatingRepository(DatabaseContext databaseContext)
+        public RatingRepository(DatabaseContext databaseContext)
         {
             _databaseContext = databaseContext;
         }
@@ -44,7 +44,7 @@ namespace CodeWarriors.IITDU.Repository
 
         public Rating GetRatingByUserId(int userId)
         {
-            return _databaseContext.Ratings.FirstOrDefault(e => e.UserId == userId);
+            return _databaseContext.Ratings.FirstOrDefault(e => e.BuyerId == userId);
         }
     }
 }

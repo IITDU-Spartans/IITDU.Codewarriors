@@ -1,5 +1,5 @@
 ﻿<div class="row top-bottom-padding">
-    <div class="col-md-8 col-md-offset-1" data-ng-show="CartItems.length>0">
+    <div class="col-md-8 col-md-offset-1" data-ng-show="CartItems.length>0 && !Show">
         <h3>Cart</h3>
         <table class="table table-bordered table-hover table-striped">
             <tr>
@@ -46,11 +46,50 @@
         <button class="btn btn-success btn-lg" data-ng-click="CheckOut()"><i class="glyphicon glyphicon-shopping-cart"></i> Check Out</button><br />
     </div>
     <div>
-        <div class="alert alert-success" data-ng-show="Show">
-            <button type="button" class="close" data-dismiss="alert"
-                    aria-hidden="true">
-                &times;
-            </button>{{Message}}
+        <div class="" data-ng-show="Show">
+
+            <div class="col-md-7">
+                <div data-ng-repeat="item in CartModels">
+                    <div class="thumbnail">
+                        <div>Seller: {{item.SellerName}}</div>
+                        <div data-ng-repeat="name in item.ProductNames">
+                            <div>
+                                <h3>
+                                    Product Name: <b>{{name}}</b>
+                                </h3>
+                            </div>
+                            <div>
+                                <h3>Review:</h3>
+                                <div>
+                                    <textarea cols="80" rows="3" placeholder="Add your review" data-ng-model="CartModels[$parent.$index].Reviews[$index]"></textarea>
+                                </div>
+                                <hr />
+                            </div>
+                        </div>
+                        <div>
+                            <div>
+                                <h3>
+                                    You can also rate the seller: <rating data-ng-model="CartModels[$parent.$index].Ratings[$index]" max="5"
+                                                                          data-ng-click="RateSeller(item.SellerId,CartModels[$parent.$index].Ratings[$index])"></rating>
+                                </h3>
+                            </div>
+                        </div>
+                        <div>
+                            <button class="btn btn-lg btn-success" data-ng-click="SubmitReview($index)">Submit</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-md-12">
+                <a class="btn btn-lg btn-primary" data-ng-click="Proceed()">Proceed</a>
+            </div>
         </div>
+    </div>
+    <div class="alert alert-success" data-ng-show="proceeded">
+        <button type="button" class="close" data-dismiss="alert"
+                aria-hidden="true">
+            &times;
+        </button>{{Message}}
     </div>
 </div>

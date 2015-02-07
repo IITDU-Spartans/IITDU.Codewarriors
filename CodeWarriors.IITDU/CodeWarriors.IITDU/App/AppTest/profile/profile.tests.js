@@ -6,6 +6,8 @@
         $httpBackend = _$httpBackend_;
         $httpBackend.when('GET', '/Profile/GetProfileInformation').
             respond({ FirstName: "Sponge", LastName: 'Bob' });
+        $httpBackend.when('GET', '/Account/IsAuthenticated').
+            respond(true);
         scope = $rootScope.$new();
         $controller('ProfileController', { $scope: scope });
     }));

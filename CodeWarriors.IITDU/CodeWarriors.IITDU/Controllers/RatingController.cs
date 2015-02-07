@@ -16,12 +16,15 @@ namespace CodeWarriors.IITDU.Controllers
         {
             _ratingService = ratingService;
         }
+
         [HttpPost]
-        public ActionResult AddRating(int productId, int rating)
+        public ActionResult AddRating(int sellerId, int rating)
         {
-            var average = _ratingService.AddRating(productId, rating, User.Identity.Name);
+            var average = _ratingService.AddRating(sellerId, rating, User.Identity.Name);
             return Json(average,JsonRequestBehavior.AllowGet);
         }
+
+
 
     }
 }

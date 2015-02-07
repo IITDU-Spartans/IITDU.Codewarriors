@@ -8,7 +8,7 @@ namespace CodeWarriors.IITDU.Models
     public class CartItem
     {
         public int ProductId { get; set; }
-        public String ProductName;
+        public String ProductName { get; set; }
         public int Quantity { get; set; }
         public DateTime AddTime { get; set; }
         public double Price { get; set; }

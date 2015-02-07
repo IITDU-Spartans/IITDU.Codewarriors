@@ -2,14 +2,21 @@
 
 
     <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-12">
             <div class="panel panel-info">
                 <div class="panel-heading">
                     Product Details
                 </div>
+                <div class="col-md-5" style="padding-top: 20px;">
+                    <div>
+                        <carousel interval="3000">
+                            <slide ng-repeat="slide in slides" active="slide.active">
+                                <img ng-src="/Upload/{{slide.image}}" style="min-height: 250px !important; width: 100%">
+                            </slide>
+                        </carousel>
+                    </div>
+                </div>
                 <div class="panel-body">
-                    <img data-ng-src="/{{Product.ImageUrl}}"
-                         height="300" width="300" class="col-md-5 pull-right" />
                     <div class="col-md-7">
                         <table class="table table-striped">
                             <tr>
@@ -17,16 +24,16 @@
                                 <td>: {{Product.ProductName}}</td>
                             <tr />
                             <tr>
+                                <th>Category</th>
+                                <td>: {{Product.CatagoryName}}</td>
+                            <tr />
+                            <tr>
+                                <th>Sub Category</th>
+                                <td>: {{Product.SubCatagoryName}}</td>
+                            <tr />
+                            <tr>
                                 <th>Price</th>
                                 <td>: {{Product.Price}}</td>
-                            <tr />
-                            <tr>
-                                <th>Category</th>
-                                <td>: {{Product.CategoryName}}</td>
-                            <tr />
-                            <tr>
-                                <th>Description</th>
-                                <td>: {{Product.Description}}</td>
                             <tr />
                             <tr>
                                 <th>
@@ -36,6 +43,22 @@
                                     : {{Product.AvailableCount}}
                                 </td>
                             </tr>
+                            <tr data-ng-show="Product.AvailableModels">
+                                <th>Available Models</th>
+                                <td>: {{Product.AvailableModels}}</td>
+                            <tr />
+                            <tr data-ng-show="Product.AvailableSizes">
+                                <th>Available Sizes</th>
+                                <td>: {{Product.AvailableSizes}}</td>
+                            <tr />
+                            <tr data-ng-show="Product.Manufacturer">
+                                <th>Manufacturer</th>
+                                <td>: {{Product.Manufacturer}}</td>
+                            <tr />
+                            <tr data-ng-show="Product.Description">
+                                <th>Description</th>
+                                <td>: {{Product.Description}}</td>
+                            <tr />
                             <tr>
                                 <th>
                                     Purchase Count
@@ -60,12 +83,12 @@
                                     : {{Product.AverageRate}}
                                 </td>
                             </tr>
-                            <tr data-ng-show="!IsOwner">
+                            <!--<tr data-ng-show="!IsOwner">
                                 <td colspan="2" class="well-lg">
                                     <rating data-ng-model="Product.AverageRate" max="5" data-ng-click="Rate()"></rating>
 
                                 </td>
-                            </tr>
+                            </tr>-->
                             <tr data-ng-show="!IsOwner">
                                 <td colspan="2">
                                     <a class="btn btn-primary" title="Add to Cart" data-ng-click="addToCart(Product.ProductId)">
@@ -80,48 +103,45 @@
                         </table>
 
                     </div>
-                    <accordion class="col-md-12" data-ng-click="ShowReviews()">
+                    <accordion class="col-md-12">
                         <accordion-group heading="{{statusMessage}}" is-open="show">
-                            <div class="media">
+                            <div class="media" data-ng-repeat="review in Reviews">
                                 <div class="pull-left">
                                     <img class="media-object" src="/Upload/default.jpg" height="64" width="64" alt="">
                                 </div>
                                 <div class="media-body">
-                                    <h4 class="media-heading"><b>User</b> <small>says at 6:39:33</small></h4>
+                                    <h4 class="media-heading"><b>{{review.UserName}}</b> <small>{{review.Time | date:'medium'}}</small></h4>
                                     <p>
-                                        It's a quality product.
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="media">
-                                <div class="pull-left">
-                                    <img class="media-object" src="/Upload/default.jpg" height="64" width="64" alt="">
-                                </div>
-                                <div class="media-body">
-                                    <h4 class="media-heading"><b>User</b> <small>says at 6:39:33</small></h4>
-                                    <p>
-                                        It's a quality product.
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="media">
-                                <div class="pull-left">
-                                    <img class="media-object" src="/Upload/default.jpg" height="64" width="64" alt="">
-                                </div>
-                                <div class="media-body">
-                                    <h4 class="media-heading"><b>User</b> <small>says at 6:39:33</small></h4>
-                                    <p>
-                                        It's a quality product.
+                                        {{review.ReviewDescription}}
                                     </p>
                                 </div>
                             </div>
                         </accordion-group>
                     </accordion>
                 </div>
-                
+
             </div>
 
         </div>
 
+        <h3>Relevant Products</h3>
+        <div data-ng-show="ReleventProducts.length>0">
+            <div data-ng-repeat="rp in ReleventProducts">
+                <product-item info="rp.Info" add-to-cart="addToCart(productId)" add-to-wishlist="addToWishlist(productId)" image="rp.ImageUrl"></product-item>
+            </div>
+        </div>
+    </div>
+
+
+    <div ng-controller="CarouselDemoCtrl">
+        <carousel interval="myInterval">
+            <slide ng-repeat="slideCollection in groupedSlides" active="slide.active">
+                <div>
+                    <img ng-src="{{slideCollection.image1.image}}" style="margin:auto;" height="100" width="300">
+                    <img ng-src="{{slideCollection.image2.image}}" style="margin:auto;" height="100" width="300">
+                    <img ng-src="{{slideCollection.image3.image}}" style="margin:auto;" height="100" width="300">
+                </div>
+            </slide>
+        </carousel>
     </div>
 </div>

@@ -66,7 +66,7 @@ namespace CodeWarriors.IITDU.Repository
 
         public int GetUserId(int productId)
         {
-            return _databaseContext.Sales.Where(s => s.ProductId == productId).Select(s => s.UserId).First();
+            return _databaseContext.Sales.Where(s => s.ProductId == productId).Select(s => s.UserId).FirstOrDefault();
         }
 
     }

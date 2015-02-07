@@ -65,5 +65,11 @@ namespace CodeWarriors.IITDU.Service
         {
             _profileRepository.Update(userProfile, _userRepository.GetUserId(userName));
         }
+
+        public UserProfile GetUserProfileByUserId(int userId)
+        {
+           return _profileRepository.Get(userId);
+           
+        }
     }
 }

@@ -1,30 +1,30 @@
 ﻿<div class="col-md-8 col-md-offset-1 top-bottom-padding">
     <h3>WishList</h3>
-    <table class="table table-bordered table-hover table-striped">
-        <tr>
-            <td>
-                Product
-            </td>
-            <td>
-                Price
-            </td>
-            <td>
-                Action
-            </td>
-        </tr>
-        <tr data-ng-repeat="item in WishList">
-            <td>
-                {{item.ProductName}}
-            </td>
-            <td>
-                {{item.Price}}
-            </td>
-            <td>
-                <button data-ng-click="RemoveFromWishList(item.WishedProductId)">Remove</button>
-            </td>
-        </tr>
-    </table>
-    <div class="alert alert-success" data-ng-show="Show">
-        {{Message}}
+    <div class="col-md-4" data-ng-repeat="item in WishList">
+
+        <div class="thumbnail">
+
+            <img data-ng-src="Upload/{{item.ImageUrl[0]}}" height="400" width="380"
+                 alt="Product Image" />
+            <div class="caption">
+
+                <a class="img-heading" ui-sref="product({productId:item.productInfo.ProductId})"><div style="font-size:24px;">{{item.productInfo.ProductName}}</div></a>
+                <p>
+
+                    <b>Price</b>: {{item.productInfo.Price}}<br /> <b>Category</b>:
+                    {{item.productInfo.CatagoryName}}
+                </p>
+                <a class="btn btn-primary" title="Add to Cart" data-ng-click="addToCart(item.productInfo.ProductId)">
+
+                    <span class="fa fa-shopping-cart"></span> Add to Cart
+                </a>
+                <a class="btn btn-danger" title="Remove" data-ng-click="RemoveFromWishList(item.wishId)">
+
+                    <i class="fa fa-heart"></i> Remove
+                </a>
+            </div>
+        </div>
     </div>
+    {{Message}}
+
 </div>
